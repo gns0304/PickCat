@@ -73,7 +73,7 @@ class KitchenMention(models.Model):
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def create_user(self, email, nickname, phoneNumber, longitude, latitude, address, password=None):
+    def create_user(self, email, nickname, phoneNumber, longitude, latitude, address, password):
         if not email:
             raise ValueError("Email Needed")
         user = self.model(
