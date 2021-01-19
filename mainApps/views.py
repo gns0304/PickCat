@@ -24,7 +24,7 @@ def register_cat(request):
         post.breed = request.POST['breed']
         post.isNeutered = request.POST['isNeutered']
         post.gender = request.POST['gender']
-        post.feature = request.POST.get('is_private', False)
+        post.feature = request.POST['feature']
         #post.favoriteKitchen = request.POST['favoriteKitchen']
         post.favoriteKitchen = get_object_or_404(Kitchen,pk=request.POST.get('kitchenid',''))
         post.save()

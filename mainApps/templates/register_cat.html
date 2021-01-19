@@ -20,19 +20,19 @@
       <br />
       3. isNeutered
       <br />
-      <input type="radio" name="isNeutered" value="TRUE" />
-      <input type="radio" name="isNeutered" value="FALSE" />
-      <input type="radio" name="isNeutered" value="UNKNOWN" />
+      true<input type="radio" name="isNeutered" value="T" />
+      false<input type="radio" name="isNeutered" value="F" />
+      unknown<input type="radio" name="isNeutered" value="U" />
       <br />
       4. gender
       <br />
-      <input type="radio" name="gender" value="MALE" />
-      <input type="radio" name="gender" value="FEMALE" />
-      <input type="radio" name="gender" value="UNKNOWN" />
+      male<input type="radio" name="gender" value="M" />
+      female<input type="radio" name="gender" value="F" />
+      unknown<input type="radio" name="gender" value="U" />
       <br />
       5. feature
       <br />
-      <input type="text" name="name" />
+      <input type="text" name="feature" />
       <br />
       6. favorite kitchen id
       <input type="text" name="kitchenid" />
@@ -45,16 +45,20 @@
       function values() {
         alert("onclick");
         var name = document.querySelectorAll('input[id="name"]:checked');
+        console.log(name);
         var breed = document.querySelectorAll('input[id="bread"]:checked');
-        var isNeutered = document.querySelectorAll(
-          'input[id="isNeutered"]:checked'
-        );
-        var gender = document.querySelectorAll('input[id="gender"]:checked');
+        console.log(breed);
+        var isNeutered = document.getElementById('isNeutered').value;
+        var gender = document.getElementById('gender').value;
+        console.log(gender);
         var feature = document.querySelectorAll(
           'input[type="feature"]:checked'
         );
+        console.log(feature);
         var kitchenid = document.querySelectorAll('input[id="kitchenid"]:checked');
+        console.log(kitchenid);
       }
+
     </form>
   </body>
 </html>
