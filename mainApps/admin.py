@@ -12,4 +12,17 @@ class CatPostAdmin(admin.ModelAdmin):
     inlines = [InlineImage, ]
 
 
+class UserAdmin(admin.ModelAdmin):
+    list_display = (
+        'nickname',
+        'email',
+        'date_joined'
+    )
+    list_display_links = (
+        'nickname',
+        'email'
+    )
+
+
 admin.site.register(CatPost, CatPostAdmin)
+admin.site.register(User, UserAdmin)
