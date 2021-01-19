@@ -16,6 +16,19 @@ def mypage(request):
 def register(request):
     return render(request,'register.html')
 
+def register_cat(request):
+    print(request.method)
+    if(request.method == 'POST'):
+        post = Cat()
+        post.name = request.POST['name']
+        post.breed = request.POST['breed']
+        post.isNeutered = request.POST['isNeutered']
+        post.gender = request.POST['gender']
+        post.feature = request.POST.get('is_private', False)
+        #post.favoriteKitchen = 'null'#request.POST['favoriteKitchen']
+        post.save()
+    return render(request, 'register_cat.html')    
+
 def chatting(request):
     return render(request,'chatting.html')
 

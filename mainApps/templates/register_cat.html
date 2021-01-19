@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>register_cat</title>
+    <link rel="stylesheet" type="text/css" />
+  </head>
+
+  <body class="register_cat">
+    	
+<form action="{% url 'register_cat' %}" method="post">
+{% csrf_token %}
+      1. name
+      <br />
+      <input type="text" name="name" />
+      <br />
+      2. breed
+      <br />
+      <input type="text" name="breed" />
+      <br />
+      3. isNeutered
+      <br />
+      <input type="radio" name="isNeutered" value="TRUE" />
+      <input type="radio" name="isNeutered" value="FALSE" />
+      <input type="radio" name="isNeutered" value="UNKNOWN" />
+      <br />
+      4. gender
+      <br />
+      <input type="radio" name="gender" value="MALE" />
+      <input type="radio" name="gender" value="FEMALE" />
+      <input type="radio" name="gender" value="UNKNOWN" />
+      <br />
+      5. feature
+      <br />
+      <input type="text" name="name" />
+      <br />
+      6. favorite kitchen
+      <br />
+      
+      <br />
+      <button onclick="values()">확인</button>
+    </section>
+    <script type="text/javascript">
+      function values() {
+        alert("onclick");
+        var name = document.querySelectorAll('input[id="name"]:checked');
+        var breed = document.querySelectorAll('input[id="bread"]:checked');
+        var isNeutered = document.querySelectorAll(
+          'input[id="isNeutered"]:checked'
+        );
+        var gender = document.querySelectorAll('input[id="gender"]:checked');
+        var feature = document.querySelectorAll(
+          'input[type="feature"]:checked'
+        );
+        //var favoriteKitchen = document.querySelectorAll('input[id="favoriteKitchen"]:checked');
+      }
+    </form>
+  </body>
+</html>

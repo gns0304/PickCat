@@ -41,7 +41,7 @@ class Cat(models.Model):
     isNeutered = models.CharField(max_length=1, choices=ISNEUTERED, null=False, blank=False)
     gender = models.CharField(max_length=1, choices=GENDER, null=False, blank=False)
     feature = models.TextField(null=True, blank=True)
-    favoriteKitchen = models.ForeignKey(Kitchen, on_delete=models.PROTECT, null=False, blank=False)
+    favoriteKitchen = models.ForeignKey(Kitchen, on_delete=models.PROTECT, null=True, blank=True)
     registeredAt = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
