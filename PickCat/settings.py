@@ -102,6 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'mainApps.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -123,3 +124,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+
+# Media files (Images, etc)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
+if os.environ.get('DEBUG'):
+    from .settings_production import *
