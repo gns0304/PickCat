@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 import base64 
 
@@ -25,7 +25,8 @@ def register_cat(request):
         post.isNeutered = request.POST['isNeutered']
         post.gender = request.POST['gender']
         post.feature = request.POST.get('is_private', False)
-        #post.favoriteKitchen = 'null'#request.POST['favoriteKitchen']
+        #post.favoriteKitchen = request.POST['favoriteKitchen']
+        post.favoriteKitchen = get_object_or_404(Kitchen,pk=request.POST.get('kitchenid',''))
         post.save()
     return render(request, 'register_cat.html')    
 
