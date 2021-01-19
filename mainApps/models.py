@@ -10,6 +10,8 @@ class Kitchen(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
     image = models.ImageField(upload_to='images/', null=True, blank=True)
     checkIn = models.PositiveSmallIntegerField(null=True, blank=True)
+    address = models.CharField(max_length=100, null=False, blank=False)
+    registeredAt = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
@@ -34,6 +36,7 @@ class Cat(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER, null=False, blank=False)
     feature = models.TextField(null=True, blank=True)
     favoriteKitchen = models.ForeignKey(Kitchen, on_delete=models.PROTECT, null=False, blank=False)
+    registeredAt = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
