@@ -24,9 +24,7 @@ def image_test(req):
         image = ImageTest()
         image.image = req.FILES['image']
         image.save()
-        url = image.image.url
-        url = url.encode("UTF-8")
-        url = base64.b64encode(url).decode("UTF-8")
+        url = base64.b64encode(image.image.url.encode("UTF-8")).decode("UTF-8")
         url = f"{CDN_URL}/s:300:300/rt:fill/{url}"
         return redirect(url)
     else:

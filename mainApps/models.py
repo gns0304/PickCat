@@ -1,9 +1,6 @@
 from django.db import models
-<<<<<<< HEAD
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-=======
 import uuid, os
->>>>>>> master
 
 # Create your models here.
 
@@ -16,11 +13,7 @@ class Kitchen(models.Model):
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     name = models.CharField(max_length=100, null=False, blank=False)
-<<<<<<< HEAD
-    image = models.ImageField(upload_to='images/', null=True, blank=True)
-=======
     image = models.ImageField(upload_to=image_path, null=False, blank=False)
->>>>>>> master
     checkIn = models.PositiveSmallIntegerField(null=True, blank=True)
     address = models.CharField(max_length=100, null=False, blank=False)
     registeredAt = models.DateTimeField(auto_now_add=True)
