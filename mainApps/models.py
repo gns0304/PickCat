@@ -1,14 +1,26 @@
 from django.db import models
+<<<<<<< HEAD
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+=======
+import uuid, os
+>>>>>>> master
 
 # Create your models here.
 
+def image_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f"{uuid.uuid4()}.{ext}"
+    return f"images/{filename}"
 
 class Kitchen(models.Model):
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     name = models.CharField(max_length=100, null=False, blank=False)
+<<<<<<< HEAD
     image = models.ImageField(upload_to='images/', null=True, blank=True)
+=======
+    image = models.ImageField(upload_to=image_path, null=False, blank=False)
+>>>>>>> master
     checkIn = models.PositiveSmallIntegerField(null=True, blank=True)
     address = models.CharField(max_length=100, null=False, blank=False)
     registeredAt = models.DateTimeField(auto_now_add=True)
@@ -55,7 +67,7 @@ class CatPost(models.Model):
 
 class CatPhoto(models.Model):
     post = models.ForeignKey(CatPost, on_delete=models.CASCADE, null=False, blank=False)
-    image = models.ImageField(upload_to='images/', null=False, blank=False)
+    image = models.ImageField(upload_to=image_path, null=False, blank=False)
 
 
 class CatMention(models.Model):
@@ -122,3 +134,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['nickname']
+class ImageTest(models.Model):
+    image = models.ImageField(upload_to=image_path, null=False, blank=False)
+    def __str__(self):
+        return self.image.name
