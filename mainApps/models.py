@@ -1,8 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 import uuid, os
-
+from django.contrib.auth.models import User
+from django.conf import settings
 # Create your models here.
+
+User = settings.AUTH_USER_MODEL
 
 def image_path(instance, filename):
     ext = filename.split('.')[-1]
@@ -17,6 +20,7 @@ class Kitchen(models.Model):
     checkIn = models.PositiveSmallIntegerField(null=True, blank=True)
     address = models.CharField(max_length=100, null=False, blank=False)
     registeredAt = models.DateTimeField(auto_now_add=True)
+    description = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -62,13 +66,31 @@ class CatPhoto(models.Model):
     post = models.ForeignKey(CatPost, on_delete=models.CASCADE, null=False, blank=False)
     image = models.ImageField(upload_to=image_path, null=False, blank=False)
 
+    def __str__(self):
+        return f"{self.post.cat.name} {self.post.title} {self.id}"
+
+
 
 class CatMention(models.Model):
-    pass
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    cat = models.ForeignKey(Cat, on_delete=models.CASCADE, null=False, blank=False)
+    mention = models.TextField(null=False, blank=False)
+    createdAt = models.DateTimeField(auto_now_add=True)
 
 
 class KitchenMention(models.Model):
-    pass
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    kitchen = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
+    mention = models.TextField(null=False, blank=False)
+    createdAt = models.DateTimeField(auto_now_add=True)
+
+
+class EmergencyMention(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    kitchen = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
+    mention = models.TextField(null=False, blank=False)
+    createdAt = models.DateTimeField(auto_now_add=True)
+
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -107,6 +129,28 @@ class UserManager(BaseUserManager):
         return user
 
 
+   # temp = get_object_or_404(Cat, pk=1)
+    # comm = temp.catmention_set.all()
+
+    # 테스팅 코드
+    # 삭제하지 말것
+
+    # userObject = User.objects.first()
+    # favoriteCats = userObject.favoriteCat.all()
+    # favoriteKitchens = userObject.favoriteKitchen.all()
+    #
+    # tst = CatMention.objects.none()
+    # for cat in favoriteCats:
+    #     tst = tst.union(cat.catmention_set.all())
+    #
+    # for kitchen in favoriteKitchens:
+    #     tst = tst.union(kitchen.kitchenmention_set.all())
+    #
+    # tst = tst.order_by('createdAt')
+    #
+    # return render(request,'chatting.html', {'cs' : tst})
+
+
 class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
@@ -118,6 +162,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     address = models.CharField(max_length=100, null=True, blank=True)
+    favoriteCat = models.ManyToManyField(Cat)
+    favoriteKitchen = models.ManyToManyField(Kitchen)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -127,7 +173,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['nickname']
+
+
 class ImageTest(models.Model):
     image = models.ImageField(upload_to=image_path, null=False, blank=False)
+
     def __str__(self):
         return self.image.name

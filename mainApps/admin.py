@@ -55,3 +55,6 @@ admin.site.register(User, UserAdmin)
 admin.site.register(Cat, CatAdmin)
 admin.site.register(Kitchen, KitchenAdmin)
 admin.site.register(ImageTest)
+
+admin.site.register(KitchenMention)
+admin.site.register(CatMention)
