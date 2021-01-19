@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 import uuid, os
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 def image_path(instance, filename):
@@ -67,11 +67,25 @@ class CatPhoto(models.Model):
 
 
 class CatMention(models.Model):
-    pass
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    cat = models.ForeignKey(Cat, on_delete=models.CASCADE, null=False, blank=False)
+    mention = models.TextField(null=False, blank=False)
+    createdAt = models.DateTimeField(auto_now_add=True)
 
 
 class KitchenMention(models.Model):
-    pass
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    kitchen = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
+    mention = models.TextField(null=False, blank=False)
+    createdAt = models.DateTimeField(auto_now_add=True)
+
+
+class EmergencyMention(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    kitchen = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
+    mention = models.TextField(null=False, blank=False)
+    createdAt = models.DateTimeField(auto_now_add=True)
+
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
