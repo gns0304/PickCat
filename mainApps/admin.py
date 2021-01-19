@@ -13,3 +13,4 @@ class CatPostAdmin(admin.ModelAdmin):
 
 
 admin.site.register(CatPost, CatPostAdmin)
+admin.site.register(ImageTest)

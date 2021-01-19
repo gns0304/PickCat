@@ -1,13 +1,18 @@
 from django.db import models
+import uuid, os
 
 # Create your models here.
 
+def image_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f"{uuid.uuid4()}.{ext}"
+    return f"images/{filename}"
 
 class Kitchen(models.Model):
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     name = models.CharField(max_length=100, null=False, blank=False)
-    image = models.ImageField(upload_to='images/', null=False, blank=False)
+    image = models.ImageField(upload_to=image_path, null=False, blank=False)
     checkIn = models.PositiveSmallIntegerField(null=True, blank=True)
 
     def __str__(self):
@@ -51,10 +56,13 @@ class CatPost(models.Model):
 
 class CatPhoto(models.Model):
     post = models.ForeignKey(CatPost, on_delete=models.CASCADE, null=False, blank=False)
-    image = models.ImageField(upload_to='images/', null=False, blank=False)
+    image = models.ImageField(upload_to=image_path, null=False, blank=False)
 
 
 class CatMention(models.Model):
     pass
 
-
+class ImageTest(models.Model):
+    image = models.ImageField(upload_to=image_path, null=False, blank=False)
+    def __str__(self):
+        return self.image.name
