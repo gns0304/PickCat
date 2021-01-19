@@ -63,6 +63,9 @@ class CatPhoto(models.Model):
     post = models.ForeignKey(CatPost, on_delete=models.CASCADE, null=False, blank=False)
     image = models.ImageField(upload_to=image_path, null=False, blank=False)
 
+    def __str__(self):
+        return f"{self.post.cat.name} {self.post.title} {self.id}"
+
 
 class CatMention(models.Model):
     pass
@@ -128,6 +131,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['nickname']
+    
 class ImageTest(models.Model):
     image = models.ImageField(upload_to=image_path, null=False, blank=False)
     def __str__(self):
