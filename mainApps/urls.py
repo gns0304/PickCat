@@ -14,4 +14,6 @@ urlpatterns = [
     path("image_test", views.image_test, name="image_test"),
     path("info_cat", views.info_cat, name="info_cat"),
     path("info_kitchen", views.info_kitchen, name="info_kitchen"),
+    path("login", views.login, name="login"),
+    path("join", views.join, name="join"),
 ]
