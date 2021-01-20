@@ -66,6 +66,7 @@ class CatPost(models.Model):
 class CatPhoto(models.Model):
     post = models.ForeignKey(CatPost, on_delete=models.CASCADE, null=False, blank=False)
     image = models.ImageField(upload_to=image_path, null=False, blank=False)
+    like = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.post.cat.name} {self.post.title} {self.id}"
@@ -165,6 +166,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     address = models.CharField(max_length=100, null=True, blank=True)
     favoriteCat = models.ManyToManyField(Cat)
     favoriteKitchen = models.ManyToManyField(Kitchen)
+    checkIn = models.PositiveSmallIntegerField(null=True, blank=True)
+    feeding = models.PositiveSmallIntegerField(null=True, blank=True)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
