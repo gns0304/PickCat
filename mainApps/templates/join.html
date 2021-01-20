@@ -1,0 +1,62 @@
+{% extends 'signbase.html' %} 
+
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <script src="{% static 'script.js' %}"></script>
+    <link rel="shortcut icon" href="../static/img/icon-home.png"/>
+</head>
+
+
+<body>
+    <header>
+        <div class="topbar-sign">
+            <span>
+                회원가입
+            </span>
+            <div class = "topbar-line"></div>
+        </div>
+    </header>
+
+    <div id="main-title">
+        <span id = "title-1" style="color:black; ">가입 정보 입력</span><br>
+        <span id = "title-1" style="color:black; ">픽켓과 함꼐 집사 될 준비되셨나요?</span>
+    </div>
+
+    <form method="POST" action="{% url 'join'%}">
+        {% csrf_token %}
+        <br><br>
+        
+        <div class="input-positioner">
+            <div class="input-bar-wrapper">
+                <input type="text" id="input-bar" placeholder="휴대폰 번호를 입력해주세요" name="username">
+            </div>
+            <br>
+            <div class="input-bar-wrapper">
+                <input type="password" id="input-bar" placeholder="비밀번호를 입력해주세요" name="password">
+            </div>
+            <br>
+            <div class="input-bar-wrapper">
+                <input type="password" id="input-bar" placeholder="비밀번호 확인" name="password">
+            </div>
+
+
+            <div class="">
+                <input id="btn-signin" type="submit" value="다음">
+            </div>
+
+        </div>
+    </form>
+
+    {% endblock %}
+</body>

@@ -1,0 +1,33 @@
+<!-- main과 로그인/가입 페이지 style 달라서 따로 둔 base 페이지 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PickCat_sign</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="{% static 'script.js' %}"></script>
+    <link rel="shortcut icon" href="../static/img/icon-home.png"/>
+</head>
+
+<body>
+
+    <div class="container-sign1">
+        <header>
+            <div class="topbar-sign1">
+                <span>
+                    
+                </span>
+                <div class = "topbar-line"></div>
+            </div>
+        </header>
+        {% block content %}
+        {% endblock %}
+        <div class="blank"></div>
+    </div>
+</body>
+
+</html>

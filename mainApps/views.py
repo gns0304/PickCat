@@ -97,6 +97,7 @@ def image_test(req):
     else:
         return render(req,'image_test.html')
 
+
 def sign_up(request):
     if not request.user.is_authenticated:
         if request.method == "POST":
@@ -128,3 +129,10 @@ def sign_in(request):
 def sign_out(request):
     auth.logout(request)
     return redirect("main")
+  
+def login(request):
+    return render(request, 'login.html')
+
+def join(request):
+    return render(request, 'join.html')
+
