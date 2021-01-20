@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 import base64
 from mainApps.models import User
+from django.contrib.auth import authenticate,login,logout
+
 
 CDN_URL = "https://akamai-img.scdn.pw"
 # Create your views here.
@@ -69,8 +71,18 @@ def sign_up(request):
         address = request.POST["address"]
         user = User.objects.create_user(email, nickname, phoneNumber, longitude, latitude, address, password)
         user.save()
-        return redirect("main.html")
+        return redirect("main")
     return render(request, "sign_up.html")
 
 def sign_in(request):
-    return render(request,'main.html')
+    if request.method == "POST":
+        nickname = request.POST["nickname"]
+        password = request.POST["password"]
+        user = authenticate(username = nickname, password = password)
+        if user is not None:
+            print("인증성공")
+            login(request,user)
+            return redirect("main")
+        else:
+            print(user)
+    return render(request,'sign_in.html')
