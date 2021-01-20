@@ -17,7 +17,6 @@ def register(request):
     return render(request,'register.html')
 
 def register_cat(request):
-    print(request.method)
     if(request.method == 'POST'):
         post = Cat()
         post.name = request.POST['name']
@@ -25,10 +24,9 @@ def register_cat(request):
         post.isNeutered = request.POST['isNeutered']
         post.gender = request.POST['gender']
         post.feature = request.POST['feature']
-        #post.favoriteKitchen = request.POST['favoriteKitchen']
-        post.favoriteKitchen = get_object_or_404\
-            (Kitchen,pk=request.POST.get('kitchenid',''))
         post.save()
+        post.favoriteKitchen.add(Kitchen.objects.get(pk=request.POST['kitchenid']))
+
     return render(request, 'register_cat.html')    
 
 def chatting(request):
@@ -44,3 +42,24 @@ def image_test(req):
         return redirect(url)
     else:
         return render(req,'image_test.html')
+
+def sign_up(request):
+    if request.method == "POST":
+        user = UserManager()
+        nickname = request.POST["nickname"]
+        email = request.POST["email"]
+        password = request.POST["password"]
+        phoneNumber = request.POST["phoneNumber"]
+        longitude = request.POST["longitude"]
+        latitude = request.POST["latitude"]
+        address = request.POST["address"]
+        user.create_user(email,nickname,phoneNumber,longitude,latitude,address,password)
+
+        #user = User.objects.create_user(username,email,password)
+        user.save()
+        return redirect("main.html")
+    return render(request,"sign_up.html")
+
+def sign_in(request):
+    
+    return render(request,'main.html')

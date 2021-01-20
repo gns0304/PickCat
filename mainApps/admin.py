@@ -16,12 +16,10 @@ class CatPostAdmin(admin.ModelAdmin):
         'updatedAt'
     )
 
-class InlineCat(admin.TabularInline):
-    model = Cat
 
 
 class KitchenAdmin(admin.ModelAdmin):
-    inlines = [InlineCat, ]
+
     list_display = (
         'name',
         'address',
@@ -55,3 +53,6 @@ admin.site.register(User, UserAdmin)
 admin.site.register(Cat, CatAdmin)
 admin.site.register(Kitchen, KitchenAdmin)
 admin.site.register(ImageTest)
+
+admin.site.register(KitchenMention)
+admin.site.register(CatMention)
