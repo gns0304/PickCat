@@ -26,7 +26,8 @@ def register_cat(request):
         post.gender = request.POST['gender']
         post.feature = request.POST['feature']
         #post.favoriteKitchen = request.POST['favoriteKitchen']
-        post.favoriteKitchen = get_object_or_404(Kitchen,pk=request.POST.get('kitchenid',''))
+        post.favoriteKitchen = get_object_or_404\
+            (Kitchen,pk=request.POST.get('kitchenid',''))
         post.save()
     return render(request, 'register_cat.html')    
 
