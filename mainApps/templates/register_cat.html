@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>register_cat</title>
+    <link rel="stylesheet" type="text/css" />
+  </head>
+
+  <body class="register_cat">
+    	
+<form action="{% url 'register_cat' %}" method="post">
+{% csrf_token %}
+      1. name
+      <br />
+      <input type="text" name="name" />
+      <br />
+      2. breed
+      <br />
+      <input type="text" name="breed" />
+      <br />
+      3. isNeutered
+      <br />
+      true<input type="radio" name="isNeutered" value="T" />
+      false<input type="radio" name="isNeutered" value="F" />
+      unknown<input type="radio" name="isNeutered" value="U" />
+      <br />
+      4. gender
+      <br />
+      male<input type="radio" name="gender" value="M" />
+      female<input type="radio" name="gender" value="F" />
+      unknown<input type="radio" name="gender" value="U" />
+      <br />
+      5. feature
+      <br />
+      <input type="text" name="feature" />
+      <br />
+      6. favorite kitchen id
+      <input type="text" name="kitchenid" />
+      <br />
+      
+      <br />
+      <button onclick="values()">확인</button>
+    </section>
+    <script type="text/javascript">
+      function values() {
+        alert("onclick");
+        var name = document.querySelectorAll('input[id="name"]:checked');
+        console.log(name);
+        var breed = document.querySelectorAll('input[id="bread"]:checked');
+        console.log(breed);
+        var isNeutered = document.getElementById('isNeutered').value;
+        var gender = document.getElementById('gender').value;
+        console.log(gender);
+        var feature = document.querySelectorAll(
+          'input[type="feature"]:checked'
+        );
+        console.log(feature);
+        var kitchenid = document.querySelectorAll('input[id="kitchenid"]:checked');
+        console.log(kitchenid);
+      }
+
+    </form>
+  </body>
+</html>
