@@ -1,7 +1,7 @@
 <h2>로그인페이지</h2>
 <br /><br />
 <form action="{% url 'sign_in' %}" method="POST">
-  {% csrf_token %} nickname : <input name="nickname" type="text" />
+  {% csrf_token %} email : <input name="email" type="text" />
   <br />
 
   password : <input name="password" type="password" />

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 import base64
 from mainApps.models import User
-from django.contrib.auth import authenticate,login,logout
+from django.contrib import auth
 
 
 CDN_URL = "https://akamai-img.scdn.pw"
@@ -61,28 +61,33 @@ def image_test(req):
         return render(req,'image_test.html')
 
 def sign_up(request):
-    if request.method == "POST":
-        nickname = request.POST["nickname"]
-        email = request.POST["email"]
-        password = request.POST["password"]
-        phoneNumber = request.POST["phoneNumber"]
-        longitude = request.POST["longitude"]
-        latitude = request.POST["latitude"]
-        address = request.POST["address"]
-        user = User.objects.create_user(email, nickname, phoneNumber, longitude, latitude, address, password)
-        user.save()
-        return redirect("main")
-    return render(request, "sign_up.html")
+    if not request.user.is_authenticated:
+        if request.method == "POST":
+            nickname = request.POST["nickname"]
+            email = request.POST["email"]
+            password = request.POST["password"]
+            phoneNumber = request.POST["phoneNumber"]
+            longitude = request.POST["longitude"]
+            latitude = request.POST["latitude"]
+            address = request.POST["address"]
+            user = User.objects.create_user(email, nickname, phoneNumber, longitude, latitude, address, password)
+            user.save()
+            return redirect("main")
+        return render(request, "sign_up.html")
+    return redirect("main")
 
 def sign_in(request):
-    if request.method == "POST":
-        nickname = request.POST["nickname"]
-        password = request.POST["password"]
-        user = authenticate(username = nickname, password = password)
-        if user is not None:
-            print("인증성공")
-            login(request,user)
-            return redirect("main")
-        else:
-            print(user)
-    return render(request,'sign_in.html')
+    if not request.user.is_authenticated:
+        if request.method == "POST":
+            email = request.POST["email"]
+            password = request.POST["password"]
+            user = auth.authenticate(email=email, password=password)
+            if user is not None:
+                auth.login(request, user)
+                return redirect("main")
+        return render(request, 'sign_in.html') #로그인 틀리면 어디로?
+    return redirect("main")
+
+def sign_out(request):
+    auth.logout(request)
+    return redirect("main")
