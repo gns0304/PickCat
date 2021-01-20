@@ -22,6 +22,7 @@ header .topbar{
     position:relative;
 }
 
+
 header .topbar span{
     transform:translate(-50%,0%);
     position:absolute;
@@ -32,6 +33,7 @@ header .topbar span{
     left:50%;
     z-index: 1;
 }
+
 
 
 header .bottombar{

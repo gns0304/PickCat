@@ -1,52 +1,80 @@
-{% extends 'base.html' %}
+{% extends 'signbase.html' %} 
 
 {% block content %}
 {% load static %}
-<div id="main">
-    <div id="div-login">로그인</div>
-</div>
 
-<div id="main-title">
-    <div id="div-login-title">픽켓과 함께 우리 동네 집사가 되볼까요?</div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
 
-<form method="POST" action="{% url 'signin'%}">
-    {% csrf_token %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    {% load static %}
 
-    <div id="div-link-register">먼저
-        <a href="login" style="color:grey; text-decoration-color: black;">로그인</a> 이 필요해요!
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <script src="{% static 'script.js' %}"></script>
+    <link rel="shortcut icon" href="../static/img/icon-home.png"/>
+</head>
+
+
+<body>
+    <!--
+    <div id="main">
+        <div id="div-login">로그인</div>
+    </div>
+    -->
+
+    <header>
+        <div class="topbar-sign">
+            <span>
+                로그인
+            </span>
+            <div class = "topbar-line"></div>
+        </div>
+    </header>
+
+    <div id="main-title">
+        <span id = "title-1" style="color:#8B8CEC; ">핏켓</span><span id = "title-2" style="color:#70737B;">과 </span>함께<br>
+        <span id = "title-3" style="color:#8B8CEC;">우리 동네 집사</span>가 되어 볼까요?
     </div>
 
-    <div class="input-positioner">
-        <div class="input-bar-wrapper">
-            <input type="text" id="input-bar" placeholder="아이디를 입력해주세요" name="username">
-        </div>
-        <br>
-        <div class="input-bar-wrapper">
-            <input type="password" id="input-bar" placeholder="비밀번호를 입력해주세요" name="password">
+    <form method="POST" action="{% url 'login'%}">
+        {% csrf_token %}
+        <br><br>
+        <div id="div-link-register"><span>먼저</span>
+            <a href="login">로그인</a> <span>이 필요해요!</span>
         </div>
 
-        <div id="forget-password">
-            <div>
-                비밀번호를 잊으셨나요?&nbsp;&nbsp;&nbsp;
+        <div class="input-positioner">
+            <div class="input-bar-wrapper">
+                <input type="text" id="input-bar" placeholder="아이디를 입력해주세요" name="username">
             </div>
-            <div style="color: #CCACB6;">
-                비밀번호 찾기
+            <br>
+            <div class="input-bar-wrapper">
+                <input type="password" id="input-bar" placeholder="비밀번호를 입력해주세요" name="password">
+            </div>
+
+            <div id="forget-password">
+                <div>
+                    비밀번호를 잊으셨나요?&nbsp;&nbsp;&nbsp;
+                </div>
+                <div style="color: #CCACB6;">
+                    비밀번호 찾기
+                </div>
+            </div>
+
+            <div class="">
+                <input id="btn-signin" type="submit" value="계속하기">
+            </div>
+
+            <div id = "div-find">
+                    <a href="/register" id="div-link-find2" style="color:black; ">회원정보찾기</a>
+                    <a href="/join" id="div-link-register2" style="color: #8B8CEC;">회원가입</a>
+
             </div>
         </div>
+    </form>
 
-        <div class="">
-            <input id="btn-signin" type="submit" value="계속하기">
-        </div>
-
-        <div id="div-link-find">
-            <a href="/register" style="color:black; ">회원정보찾기</a>
-        </div>
-
-        <div id="div-link-register">아직 PickCat회원이 아니신가요?
-            <a href="/join" style="color: #8B8CEC;">회원가입</a>
-        </div>
-    </div>
-</form>
-
-{% endblock %}
+    {% endblock %}
+</body>
