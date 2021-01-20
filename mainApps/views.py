@@ -17,7 +17,6 @@ def register(request):
     return render(request,'register.html')
 
 def register_cat(request):
-    print(request.method)
     if(request.method == 'POST'):
         post = Cat()
         post.name = request.POST['name']
@@ -25,9 +24,9 @@ def register_cat(request):
         post.isNeutered = request.POST['isNeutered']
         post.gender = request.POST['gender']
         post.feature = request.POST['feature']
-        #post.favoriteKitchen = request.POST['favoriteKitchen']
-        post.favoriteKitchen = get_object_or_404(Kitchen,pk=request.POST.get('kitchenid',''))
         post.save()
+        post.favoriteKitchen.add(Kitchen.objects.get(pk=request.POST['kitchenid']))
+
     return render(request, 'register_cat.html')    
 
 def chatting(request):

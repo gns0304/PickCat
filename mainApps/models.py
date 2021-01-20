@@ -16,7 +16,7 @@ class Kitchen(models.Model):
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     name = models.CharField(max_length=100, null=False, blank=False)
-    image = models.ImageField(upload_to=image_path, null=False, blank=False)
+    image = models.ImageField(upload_to=image_path, null=True, blank=True)
     checkIn = models.PositiveSmallIntegerField(null=True, blank=True)
     address = models.CharField(max_length=100, null=False, blank=False)
     registeredAt = models.DateTimeField(auto_now_add=True)
@@ -44,7 +44,7 @@ class Cat(models.Model):
     isNeutered = models.CharField(max_length=1, choices=ISNEUTERED, null=False, blank=False)
     gender = models.CharField(max_length=1, choices=GENDER, null=False, blank=False)
     feature = models.TextField(null=True, blank=True)
-    favoriteKitchen = models.ForeignKey(Kitchen, on_delete=models.PROTECT, null=False, blank=False)
+    favoriteKitchen = models.ManyToManyField(Kitchen)
     registeredAt = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

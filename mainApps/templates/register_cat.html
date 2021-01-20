@@ -41,24 +41,24 @@
       <br />
       <button onclick="values()">확인</button>
     </section>
-    <script type="text/javascript">
-      function values() {
-        alert("onclick");
-        var name = document.querySelectorAll('input[id="name"]:checked');
-        console.log(name);
-        var breed = document.querySelectorAll('input[id="bread"]:checked');
-        console.log(breed);
-        var isNeutered = document.getElementById('isNeutered').value;
-        var gender = document.getElementById('gender').value;
-        console.log(gender);
-        var feature = document.querySelectorAll(
-          'input[type="feature"]:checked'
-        );
-        console.log(feature);
-        var kitchenid = document.querySelectorAll('input[id="kitchenid"]:checked');
-        console.log(kitchenid);
-      }
 
+{#    <script type="text/javascript">#}
+{#      function values() {#}
+{#        var name = document.querySelectorAll('input[id="name"]:checked');#}
+{#        console.log(name);#}
+{#        var breed = document.querySelectorAll('input[id="bread"]:checked');#}
+{#        console.log(breed);#}
+{#        var isNeutered = document.getElementById('isNeutered').value;#}
+{#        var gender = document.getElementById('gender').value;#}
+{#        console.log(gender);#}
+{#        var feature = document.querySelectorAll(#}
+{#          'input[type="feature"]:checked'#}
+{#        );#}
+{#        console.log(feature);#}
+{#        var kitchenid = document.querySelectorAll('input[id="kitchenid"]:checked');#}
+{#        console.log(kitchenid);#}
+{#      }#}
+{#    </script>#}
     </form>
   </body>
 </html>
