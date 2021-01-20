@@ -1,0 +1,28 @@
+<section>
+  <h2>회원가입</h2>
+  <br /><br />
+  <form action="{% url 'sign_up' %}" method="POST">
+    {% csrf_token %} email : <input name="email" type="email" />
+    <br />
+
+    nickname : <input name="nickname" type="text" />
+    <br />
+
+    phoneNumber : <input name="phoneNumber" type="text" />
+    <br />
+
+    long : <input type="text" name="longitude" />
+    <br />
+
+    lat : <input type="text" name="latitude" />
+    <br />
+
+    address : <input name="address" type="text" />
+    <br />
+
+    password : <input name="password" type="password" />
+    <br />
+
+    <input type="submit" value="회원가입" />
+  </form>
+</section>

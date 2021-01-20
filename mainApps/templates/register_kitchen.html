@@ -6,44 +6,33 @@
     <link rel="stylesheet" type="text/css" />
   </head>
 
-  <body class="register_cat">
+  <body class="register_kitchen">
     	
-<form action="{% url 'register_cat' %}" enctype="multipart/form-data" method="post" >
+<form action="{% url 'register_kitchen' %}" enctype="multipart/form-data" method="post" >
 {% csrf_token %}
       1. name
       <br />
       <input type="text" name="name" />
       <br />
-      2. breed
+      2. address
       <br />
-      <input type="text" name="breed" />
+      <input type="text" name="address" />
       <br />
-      3. isNeutered
+      3. 경위도
       <br />
-      true<input type="radio" name="isNeutered" value="T" />
-      false<input type="radio" name="isNeutered" value="F" />
-      unknown<input type="radio" name="isNeutered" value="U" />
+        long : <input type="text" name="longitude" />
+        lat : <input type="text" name="latitude" />
       <br />
-      4. gender
+      4. 설명
       <br />
-      male<input type="radio" name="gender" value="M" />
-      female<input type="radio" name="gender" value="F" />
-      unknown<input type="radio" name="gender" value="U" />
+   <input type="text" name="description" />
       <br />
-      5. feature
-      <br />
-      <input type="text" name="feature" />
-      <br />
-      6. favorite kitchen id
-      <input type="text" name="kitchenid" />
-      <br />
-      7. 사진
-    <input type="file" name="uploadedImage">
-      <br />
+        5.사진
+     <input type="file" name="uploadedImage">
       <button onclick="values()">확인</button>
     </section>
 
-<!-- {#    <script type="text/javascript">#}
+{#    <script type="text/javascript">#}
 {#      function values() {#}
 {#        var name = document.querySelectorAll('input[id="name"]:checked');#}
 {#        console.log(name);#}
@@ -59,7 +48,7 @@
 {#        var kitchenid = document.querySelectorAll('input[id="kitchenid"]:checked');#}
 {#        console.log(kitchenid);#}
 {#      }#}
-{#    </script>#} -->
+{#    </script>#}
     </form>
   </body>
 </html>
