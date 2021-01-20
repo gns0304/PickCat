@@ -46,6 +46,7 @@ class Cat(models.Model):
     feature = models.TextField(null=True, blank=True)
     favoriteKitchen = models.ManyToManyField(Kitchen)
     registeredAt = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to=image_path, null=True, blank=True)
 
     def __str__(self):
         return self.name
