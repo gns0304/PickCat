@@ -106,7 +106,7 @@ class UserManager(BaseUserManager):
             phoneNumber=phoneNumber,
             longitude=longitude,
             latitude=latitude,
-            address=address,
+            address=address
         )
         user.set_password(password)
         user.save(using=self._db)
@@ -163,9 +163,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     image = models.ImageField(upload_to=image_path, null=True, blank=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
-    address = models.CharField(max_length=100, null=True, blank=True)
-    favoriteCat = models.ManyToManyField(Cat)
-    favoriteKitchen = models.ManyToManyField(Kitchen)
+    address = models.CharField(max_length=200, null=True, blank=True)
+    favoriteCat = models.ManyToManyField(Cat, null=True, blank=True)
+    favoriteKitchen = models.ManyToManyField(Kitchen, null=True, blank=True)
     checkIn = models.PositiveSmallIntegerField(null=True, blank=True)
     feeding = models.PositiveSmallIntegerField(null=True, blank=True)
 

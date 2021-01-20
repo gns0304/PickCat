@@ -1,7 +1,7 @@
 <section>
   <h2>회원가입</h2>
   <br /><br />
-  <form action="" method="POST">
+  <form action="{% url 'sign_up' %}" method="POST">
     {% csrf_token %} email : <input name="email" type="email" />
     <br />
 
