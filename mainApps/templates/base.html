@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PickCat</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    <script src="{% static 'script.js' %}"></script>
-    <link rel="shortcut icon" href="../static/img/icon-home.png"/>
+    <link rel="stylesheet" href="{% static 'style-info_cat.css' %}">
+    
+    <link rel="shortcut icon" href="../static/img/icon-home.ico"/>
 </head>
 
 <body>
-
     <div class="container">
         <header>
             <div class="topbar">
@@ -36,6 +35,9 @@
         {% endblock %}
         <div class="blank"></div>
     </div>
+    <a href="#" class="top"><div><img src="{% static 'img/direction.png' %}"></div></a>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="{% static 'script.js' %}"></script>
 </body>
 
 </html>

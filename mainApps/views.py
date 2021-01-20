@@ -16,6 +16,15 @@ def mypage(request):
 def register(request):
     return render(request,'register.html')
 
+def info_cat(request):
+    return render(request,'info_cat.html')
+
+def info_kitchen(request):
+    return render(request,'info_kitchen.html')
+
+def main(request):
+    return render(request,'main.html')
+
 def register_cat(request):
     if(request.method == 'POST'):
         post = Cat()

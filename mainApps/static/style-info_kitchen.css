@@ -1,0 +1,18 @@
+section[class="info_kitchen"] article{
+    background-color: #fafaff;
+    margin:5px;
+    border-radius: 12px;
+}
+section[class="info_kitchen"] article h2{
+    color: #8B8CEC;
+    font-size: 16px;
+    padding: 15px 0 0 20px;
+}
+section[class="info_kitchen"] article .hr{
+    position:relative;
+    top:-8px;
+    width:95%;
+    background-color: rgb(238, 238, 238);
+    height: 1px;
+    margin : 0 auto;
+}
