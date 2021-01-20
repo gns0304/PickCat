@@ -28,7 +28,6 @@ def register_cat(request):
         post.save()
         post.favoriteKitchen.add(Kitchen.objects.get(pk=request.POST['kitchenid']))
 
-
     return render(request, 'register_cat.html')
 
 def register_kitchen(request):
