@@ -6,16 +6,34 @@
         <h2>My pick</h2>
         <div class="hr"></div>
         <section>
-            hi
+            {% for cat in Cats %}
+                {{ cat.image_url }}
+                {{ cat.name }}
+            {% endfor %}
         </section>
     </article>
     <article class="live">
         <h2>픽켓 실시간</h2>
-        <div class="hr"></div>
+        <div class="hr">
+<!--{#            TODO recentMention의 경우에는 멘션 텍스트만을 보여줍니다#}-->
+            {{ recentMention }}
+<!--{#            TODO mentionTarget의 경우에는 cat혹은 kitchen 모델의 정보에 접근할 수 있습니다#}-->
+<!--{#            TODO 급식소의 경우 mentionTarget.longitude등으로 접근가능 #}-->
+<!--{#            TODO 고양이의 경우 mentionTarget.breed등으로도 접근가능#}-->
+            {{ mentionTarget }}
+        </div>
     </article>
     <article class="place">
         <h2>급식소</h2>
-        <div class="hr"></div>
+        <div class="hr">
+            {% for kitchen in Kitchens %}
+                {{ kitchen.image_url }}
+                {{ kitchen.name }}
+                {{ kitchen.checkIn }}
+            {% endfor %}
+
+        </div>
+
     </article>
 </section>
 
