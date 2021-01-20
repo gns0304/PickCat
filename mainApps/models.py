@@ -1,11 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 import uuid, os
+import base64
 from django.contrib.auth.models import User
 from django.conf import settings
 # Create your models here.
 
 User = settings.AUTH_USER_MODEL
+
+CDN_URL = 'https://akamai-img.scdn.pw'
+def get_cdn_url(url):
+    if url.startswith('https://') or url.startswith('http://'):
+        b64url = base64.b64encode(url.encode("UTF-8")).decode("UTF-8")
+        return f"{CDN_URL}/s:1080:1080/{b64url}"
+    else:
+        return url
 
 def image_path(instance, filename):
     ext = filename.split('.')[-1]
@@ -24,6 +33,10 @@ class Kitchen(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def image_url(self):
+        return get_cdn_url(self.image.url)
 
 
 class Cat(models.Model):
@@ -51,6 +64,10 @@ class Cat(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def image_url(self):
+        return get_cdn_url(self.image.url)
+
 
 class CatPost(models.Model):
     cat = models.ForeignKey(Cat, on_delete=models.CASCADE, null=False, blank=False)
@@ -71,27 +88,36 @@ class CatPhoto(models.Model):
     def __str__(self):
         return f"{self.post.cat.name} {self.post.title} {self.id}"
 
+    @property
+    def image_url(self):
+        return get_cdn_url(self.image.url)
+
+
+class Mention(models.Model):
+    TYPE = (
+        ('C', "CAT"),
+        ("K", "KITCHEN"),
+        ("E", "EMERGENCY")
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    mention = models.TextField(null=False, blank=False)
+    createdAt = models.DateTimeField(auto_now_add=True)
+    type = models.CharField(max_length=1, choices=TYPE, null=False, blank=False)
 
 
 class CatMention(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
-    cat = models.ForeignKey(Cat, on_delete=models.CASCADE, null=False, blank=False)
-    mention = models.TextField(null=False, blank=False)
-    createdAt = models.DateTimeField(auto_now_add=True)
+    target = models.ForeignKey(Cat, on_delete=models.CASCADE, null=False, blank=False)
+    mention = models.ManyToManyField(Mention)
 
 
 class KitchenMention(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
-    kitchen = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
-    mention = models.TextField(null=False, blank=False)
-    createdAt = models.DateTimeField(auto_now_add=True)
+    target = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
+    mention = models.ManyToManyField(Mention)
 
 
 class EmergencyMention(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
-    kitchen = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
-    mention = models.TextField(null=False, blank=False)
-    createdAt = models.DateTimeField(auto_now_add=True)
+    target = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
+    mention = models.ManyToManyField(Mention)
 
 
 class UserManager(BaseUserManager):
@@ -131,28 +157,6 @@ class UserManager(BaseUserManager):
         return user
 
 
-   # temp = get_object_or_404(Cat, pk=1)
-    # comm = temp.catmention_set.all()
-
-    # 테스팅 코드
-    # 삭제하지 말것
-
-    # userObject = User.objects.first()
-    # favoriteCats = userObject.favoriteCat.all()
-    # favoriteKitchens = userObject.favoriteKitchen.all()
-    #
-    # tst = CatMention.objects.none()
-    # for cat in favoriteCats:
-    #     tst = tst.union(cat.catmention_set.all())
-    #
-    # for kitchen in favoriteKitchens:
-    #     tst = tst.union(kitchen.kitchenmention_set.all())
-    #
-    # tst = tst.order_by('createdAt')
-    #
-    # return render(request,'chatting.html', {'cs' : tst})
-
-
 class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
@@ -178,9 +182,17 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['nickname']
 
+    @property
+    def image_url(self):
+        return get_cdn_url(self.image.url)
+
 
 class ImageTest(models.Model):
     image = models.ImageField(upload_to=image_path, null=False, blank=False)
 
     def __str__(self):
         return self.image.name
+
+    @property
+    def image_url(self):
+        return get_cdn_url(self.image.url)
