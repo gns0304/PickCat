@@ -56,3 +56,4 @@ admin.site.register(ImageTest)
 
 admin.site.register(KitchenMention)
 admin.site.register(CatMention)
+admin.site.register(Mention)
