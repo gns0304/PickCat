@@ -70,7 +70,6 @@ def sign_up(request):
         user.create_user(email,nickname,phoneNumber,longitude,latitude,address,password)
 
         #user = User.objects.create_user(username,email,password)
-        user.save()
         return redirect("main.html")
     return render(request,"sign_up.html")
 
