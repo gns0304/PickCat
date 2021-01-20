@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+*{
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* 상단 text */
+
+#div-login {
+    font-size: 18px;
+    text-align: center;
+  
+    margin-top: 60px;
+    color: black;
+}
+
+#div-login-title {
+    font-size: 36px;
+    color : #8B8CEC;
+}
+
+/* 입력 part */
+
+#div-link-register {
+    font-size: 18px;
+    color : grey;
+}
+
+.input-positioner {
+    position: relative;
+    top: 20px;
+    display: block;
+}
+  
+
+.input-bar-wrapper {
+    /* position */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  
+    /* size */
+    height: 7vh;
+    width: 40vw;
+    max-height: 50px;
+    padding-top: 20px;
+    margin: 0 auto;
+  
+    /* shape */
+    border-radius: 10px;
+}
+  
+#input-bar {
+    border: 1.5px solid #896581;
+  
+    outline-style: none;
+    border-radius: 10px;
+    /* size */
+    height: 7vh;
+    width: 80vw;
+    max-height: 50px;
+    padding: 0 10px;
+  
+  
+    font-size: 15px;
+    font-weight: 400;
+}
+
+
+#forget-password {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+}
+
+/* 하단 part */
+
+#btn-signin {
+    background-color: #f6f3f2;
+    border: 2px solid lightslategray;
+    outline-style: none;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  
+    height: 7vh;
+    width: 20vw;
+    max-height: 50px;
+    margin: 0 auto;
+    /* border-radius: 10px; */
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  #div-link-find {
+      font-size: 15px;
+  }
+  
+  #div-link-register {
+    text-underline-offset: 5px;
+    padding-top: 40px;
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: underline;
+  }

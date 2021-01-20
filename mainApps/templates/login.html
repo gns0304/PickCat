@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div id="main">
+    <div id="div-login">로그인</div>
+</div>
+
+<div id="main-title">
+    <div id="div-login-title">픽켓과 함께 우리 동네 집사가 되볼까요?</div>
+</div>
+
+<form method="POST" action="{% url 'signin'%}">
+    {% csrf_token %}
+
+    <div id="div-link-register">먼저
+        <a href="login" style="color:grey; text-decoration-color: black;">로그인</a> 이 필요해요!
+    </div>
+
+    <div class="input-positioner">
+        <div class="input-bar-wrapper">
+            <input type="text" id="input-bar" placeholder="아이디를 입력해주세요" name="username">
+        </div>
+        <br>
+        <div class="input-bar-wrapper">
+            <input type="password" id="input-bar" placeholder="비밀번호를 입력해주세요" name="password">
+        </div>
+
+        <div id="forget-password">
+            <div>
+                비밀번호를 잊으셨나요?&nbsp;&nbsp;&nbsp;
+            </div>
+            <div style="color: #CCACB6;">
+                비밀번호 찾기
+            </div>
+        </div>
+
+        <div class="">
+            <input id="btn-signin" type="submit" value="계속하기">
+        </div>
+
+        <div id="div-link-find">
+            <a href="/register" style="color:black; ">회원정보찾기</a>
+        </div>
+
+        <div id="div-link-register">아직 PickCat회원이 아니신가요?
+            <a href="/join" style="color: #8B8CEC;">회원가입</a>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

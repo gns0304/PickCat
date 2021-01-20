@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 import base64 
 
@@ -29,3 +29,10 @@ def image_test(req):
         return redirect(url)
     else:
         return render(req,'image_test.html')
+
+
+def login(request):
+    return render(request, 'login.html')
+
+def join(request):
+    return render(request, 'join.html')

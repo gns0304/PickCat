@@ -10,5 +10,7 @@ urlpatterns = [
     path("mypage", views.mypage, name="mypage"),
     path("register", views.register, name="register"),
     path("chatting", views.chatting, name="chatting"),
-    path("image_test", views.image_test, name="image_test")
+    path("image_test", views.image_test, name="image_test"),
+    path("login", views.login, name="login"),
+
 ]
