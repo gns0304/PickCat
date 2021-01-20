@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 import base64 
 
@@ -15,6 +15,19 @@ def mypage(request):
 
 def register(request):
     return render(request,'register.html')
+
+def register_cat(request):
+    if(request.method == 'POST'):
+        post = Cat()
+        post.name = request.POST['name']
+        post.breed = request.POST['breed']
+        post.isNeutered = request.POST['isNeutered']
+        post.gender = request.POST['gender']
+        post.feature = request.POST['feature']
+        post.save()
+        post.favoriteKitchen.add(Kitchen.objects.get(pk=request.POST['kitchenid']))
+
+    return render(request, 'register_cat.html')    
 
 def chatting(request):
     return render(request,'chatting.html')
