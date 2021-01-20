@@ -46,6 +46,7 @@ class Cat(models.Model):
     feature = models.TextField(null=True, blank=True)
     favoriteKitchen = models.ManyToManyField(Kitchen)
     registeredAt = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to=image_path, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -162,7 +163,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     address = models.CharField(max_length=100, null=True, blank=True)
-    #
     favoriteCat = models.ManyToManyField(Cat)
     favoriteKitchen = models.ManyToManyField(Kitchen)
 

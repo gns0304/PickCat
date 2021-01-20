@@ -24,10 +24,25 @@ def register_cat(request):
         post.isNeutered = request.POST['isNeutered']
         post.gender = request.POST['gender']
         post.feature = request.POST['feature']
+        post.image = request.FILES['uploadedImage']
         post.save()
         post.favoriteKitchen.add(Kitchen.objects.get(pk=request.POST['kitchenid']))
 
-    return render(request, 'register_cat.html')    
+
+    return render(request, 'register_cat.html')
+
+def register_kitchen(request):
+    if(request.method == "POST"):
+        kitchen = Kitchen()
+        kitchen.name = request.POST['name']
+        kitchen.longitude = request.POST['longitude']
+        kitchen.latitude = request.POST['latitude']
+        kitchen.address = request.POST['address']
+        kitchen.description = request.POST['description']
+        kitchen.image = request.FILES['uploadedImage']
+        kitchen.save()
+
+    return render(request, 'register_kitchen.html')
 
 def chatting(request):
     return render(request,'chatting.html')
