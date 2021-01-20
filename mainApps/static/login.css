@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 상단 text */
+
+.container-sign1{
+    margin:0 auto;
+    max-width:430px;
+    width:100%;
+}
+
+header .topbar-sign1{
+    height:120px;
+    background-color:white;
+    position:relative;
+}
+
+header .topbar-sign span{
+    transform:translate(-50%,0%);
+    position:absolute;
+    text-align: center;
+    color:black;
+    font-size:15px;
+    opacity: 1;
+    letter-spacing: 1px;
+    top:50px;
+    bottom:30px;
+    left:50%;
+    z-index: 1;
+}
+
+
+
+/* 상단 구분 line */
+
+#main-title {
+    font-size: 22px;
+    color : black;
+
+}
+
+
+/* 입력 part */
+
+#div-link-register {
+    font-size: 13px;
+    color : #484848;
+    text-decoration: underline;
+    text-align: left;
+}
+
+.input-positioner {
+    position: relative;
+    top: 20px;
+    display: block;
+}
+  
+
+.input-bar-wrapper {
+    /* position */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  
+    /* size */
+    height: 7vh;
+    width: 40vw;
+    max-height: 50px;
+    padding-top: 0;
+    margin: 0 auto;
+  
+    /* shape */
+    border-radius: 10px;
+}
+  
+#input-bar {
+    border: 1px solid #CFCFCF;
+  
+    outline-style: none;
+    border-radius: 24px;
+    opacity: 1;
+
+    /* size */
+    height: 48px;
+    width: 327px;
+    max-height: 50px;
+    padding: 0 10px;
+  
+  
+    font-size: 12px;
+    font-weight: 400;
+}
+
+
+#forget-password {
+    font-size: 13px;
+    margin-top: 13px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+}
+
+/* 하단 part */
+
+#btn-signin {
+    background-color: #CFCFCF 0% 0% no-repeat padding-box;
+    border: 1px solid #CFCFCF;
+    opacity: 1;
+
+    outline-style: none;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  
+    top:557px;
+
+    height: 812px;
+    width: 375px;
+    max-height: 50px;
+    margin: 0 auto;
+
+    /* border-radius: 10px; */
+
+    font-size: 13px;
+    font-weight: bold;
+
+    /* 글자 */
+    font-size: 13px;
+    color : white;
+    opacity: 1;
+  }
+
+/* 가장 하단 part */
+
+#div-find {
+    padding-top: 20px;
+    font-size: 13px;
+    top : 620px;
+    letter-spacing: 0px;
+    text-decoration: none;
+}
+
+#div-link-find2 {
+    text-align: left;
+  }
+  
+#div-link-register2 {
+    text-align: right;
+    padding-left : 288px;
+  }
