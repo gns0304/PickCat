@@ -42,3 +42,10 @@ def image_test(req):
         return redirect(url)
     else:
         return render(req,'image_test.html')
+
+
+def login(request):
+    return render(request, 'login.html')
+
+def join(request):
+    return render(request, 'join.html')
