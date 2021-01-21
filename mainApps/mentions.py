@@ -6,7 +6,6 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 
-
 @login_required
 def newCatMention(req):
     if req.method == 'POST':
@@ -44,15 +43,15 @@ def newKitchenMention(req):
 
 
 @login_required
-def newEmergencyMention(req):
+def newEmergencyMention(req,cat_id):
     if req.method == 'POST':
         mention = Mention()
         mention.user = req.user
-        mention.mention = req.POST['mention']
+        mention.mention = 'Hello World'
         mention.type = 'EMERGENCY'
         mention.save()
         m = EmergencyMention()
-        cat = Cat.objects.get(pk=req.POST['id'])
+        cat = Cat.objects.get(pk=cat_id)
         m.target = cat
         m.mention = mention
         m.save()
@@ -63,8 +62,6 @@ def newEmergencyMention(req):
         text = f"'{cat.name}'냥이에 대해 아래 내용의 긴급 메시지가 등록되었습니다.\n\n{mention.mention}"
         print(sms(to, text))
         return HttpResponse(str(to))
-    else:
-        return render(req, 'emergency.html')
 
 
 def checkUser(req, user):

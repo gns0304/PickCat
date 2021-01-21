@@ -1,66 +1,65 @@
-{% extends 'signbase.html' %} {% block content %} {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>login</title>
-    {% load static %}
-
-    <link rel="stylesheet" href="{% static 'style-login.css' %}" />
-    <link rel="stylesheet" href="{% static 'style-join.css' %}" />
-    <script src="{% static 'script.js' %}"></script>
-    <link rel="shortcut icon" href="../static/img/icon-home.png" />
+    <meta charset="utf-8" />
+    <title>클릭한 위치에 마커 표시하기</title>
   </head>
-
   <body>
-    <header>
-      <div class="topbar-sign">
-        <span> 지역인증 </span>
-        <div class="topbar-line"></div>
-      </div>
-    </header>
-
-    <div id="main-title">
-      <span id="title-1" style="color: black">어디에서 활동하시나요?</span><br />
-      <span id="title-1" style="color: black"
-        >안전한 픽켓을 만들기 위해 지역을 인증해주세요!</span>
-    </div>
+    <div id="map" style="width: 100%; height: 350px"></div>
+    <p><em>지도를 클릭해주세요!</em></p>
+    <div id="clickLatlng"></div>
 
     <form method="POST" action="{% url 'join3'%}">
       {% csrf_token %}
       <br /><br />
 
-      <div class="input-positioner">
-        <div class="input-bar-wrapper">지도</div>
-        <br />
-        long : <input type="text" name="longitude" />
-        <br />
+      lat<input type="text" name="lat" />
 
-        lat : <input type="text" name="latitude" />
-        <br />
-        <div class="input-box-wrapper">
-          <img src="../static/img/join3-map.png" id="join3-map-image"
-                style = "width: 375px; height: 279px;">
-          <br />
-
-        <div class="input-bar-wrapper">
-          <input
-            name="nickname"
-            id="input-bar-join3"
-            type="text"
-            placeholder="내 위치가 '용현동' 지역 내 위치합니다!"
-          />
-        </div>
-        
-        <div class="">
-          <button id="btn-signin" type="submit" onclick="location.href='join4'">
-            완료하기
-          </button>
-        </div>
-      </div>
+      <br />
+      lng<input type="text" name="lng" />
+      <button id="btn-signin" type="submit" onclick="location.href='join4'">
+        다음
+      </button>
     </form>
 
-    {% endblock %}
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f46e5561c28ddbcaa52d31253347ebcb"
+    ></script>
+    <script>
+      var mapContainer = document.getElementById("map"), // 지도를 표시할 div
+        mapOption = {
+          center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+          level: 3, // 지도의 확대 레벨
+        };
+
+      var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+      // 지도를 클릭한 위치에 표출할 마커입니다
+      var marker = new kakao.maps.Marker({
+        // 지도 중심좌표에 마커를 생성합니다
+        position: map.getCenter(),
+      });
+      // 지도에 마커를 표시합니다
+      marker.setMap(map);
+
+      // 지도에 클릭 이벤트를 등록합니다
+      // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+      kakao.maps.event.addListener(map, "click", function (mouseEvent) {
+        // 클릭한 위도, 경도 정보를 가져옵니다
+        var latlng = mouseEvent.latLng;
+
+        // 마커 위치를 클릭한 위치로 옮깁니다
+        marker.setPosition(latlng);
+
+        var message = "클릭한 위치의 위도는 " + latlng.getLat() + " 이고, ";
+        message += "경도는 " + latlng.getLng() + " 입니다";
+
+        var resultDiv = document.getElementById("clickLatlng");
+        resultDiv.innerHTML = message;
+        document.getElementById("lat") = latlng.getLat();
+        document.getElementById("lng") = latlng.getLng();
+      });
+    </script>
   </body>
 </html>

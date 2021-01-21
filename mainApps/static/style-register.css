@@ -1,0 +1,71 @@
+section[class="register"] .register_header{
+    width:100%;
+    display: flex;
+    height:50px;
+    border-bottom: 1px solid #f0f0f0;
+    justify-content: space-between;
+}
+section[class="register"] .register_header>a{
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+    color:gray;
+    font-size: 14px;
+    text-decoration: none;
+}
+section[class="register"] .register_header>a:last-child{
+    border-left: 1px solid #f0f0f0;
+}
+
+section[class="register"] input[type="submit"]{
+    width:80%;
+    display:block;
+    margin:0 auto;
+    border-radius: 30px;
+    height:50px;
+    color:white;
+    background: linear-gradient(to bottom,#8B8CEC,#484bff);
+    font-size:14px;
+    cursor:pointer;
+}
+section[class="register"] .input_box{
+    width: 100%;
+    height: 40px;
+    border-radius: 15px;
+    margin : 0 auto;
+    padding-left:0;
+    padding-right:0;
+    margin-top:10px;
+    border : 1px solid gray;
+    background-color: white;
+}
+
+
+section[class="register"] .register_article{
+    width: 85%;
+    margin : 0 auto;
+    margin-top:20px;
+    color:gray;
+}
+
+section[class="register"] .register_article > span{
+    padding-left:5px;
+    color:#8B8CEC;
+    font-size: 14px;
+}
+
+section[class="register"] .register_article > .register_button{
+    cursor:pointer;
+    padding:5px;
+    width:50px;
+    font-size:13px;
+    text-align: center;
+    border-radius: 10px;
+    color:white;
+    background-color: #8B8CEC;
+    margin-top:10px;
+    float:right;
+}

@@ -10,8 +10,7 @@ urlpatterns = [
     path("mypage", views.mypage, name="mypage"),
     path("register", views.register, name="register"),
     path("register_cat", views.register_cat, name="register_cat"),
-    path("register_kitchen/<int:kitchen_id>",
-         views.register_kitchen, name="register_kitchen"),
+    path("register_kitchen", views.register_kitchen, name="register_kitchen"),
     path("chatting", views.chatting, name="chatting"),
     path("image_test", views.image_test, name="image_test"),
     path("", views.intro, name="intro"),
@@ -39,7 +38,7 @@ urlpatterns = [
     path("join4", views.join4, name="join4"),
 
     path("sign_out", views.sign_out, name="sign_out"),
-    path("emergency", mentions.newEmergencyMention, name="emergency"),
+    path("emergency/<int:cat_id>", mentions.newEmergencyMention, name="emergency"),
     path("getCatMentions", mentions.getCatMentions, name="getCatMentions"),
     path("getKitchenMentions", mentions.getCatMentions, name="getKitchenMentions"),
     path("newCatMentions", mentions.getCatMentions, name="newCatMentions"),
@@ -58,8 +57,8 @@ urlpatterns = [
          views.removeFavoriteCat, name="removeFavoriteCat"),
     path("mention_kitchen", views.mention_kitchen, name="mention_kitchen"),
     path("read_qr", views.read_qr, name="read_qr"),
+    path("readQr/<int:kitchen_id>", views.readQRdetail, name="readQRdetail"),
     path("newChat", mentions.newChat, name="newChat"),
     path("getChat", mentions.getChat, name="getChat"),
     path("newchat", views.newchat, name="newchat")
-
 ]
