@@ -27,12 +27,17 @@
       >
     </div>
 
-    <form method="POST" action="{% url 'join'%}">
+    <form method="POST" action="{% url 'join3'%}">
       {% csrf_token %}
       <br /><br />
 
       <div class="input-positioner">
         <div class="input-bar-wrapper">지도</div>
+        <br />
+        long : <input type="text" name="longitude" />
+        <br />
+
+        lat : <input type="text" name="latitude" />
         <br />
         <div class="">
           <button id="btn-signin" type="button" onclick="location.href='join4'">

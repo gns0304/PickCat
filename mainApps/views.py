@@ -146,22 +146,43 @@ def sign_out(request):
     auth.logout(request)
     return redirect("main")
 
-def join(request):
+
+
+def join1(request):
     if not request.user.is_authenticated:
         if request.method == "POST":
             password = request.POST["password"]
             phoneNumber = request.POST["phoneNumber"]
-            return render(request, 'join2.html', {
-        'password': password, 'phoneNumber':phoneNumber})
-        return render(request, "join.html")
+            print(password)
+            print(1)
+            return render(request, "join2.html", {'password': password, 'phoneNumber':phoneNumber})
+        return render(request, "join1.html")
+    return redirect("main")
+
+
+def join2(request):
+    if not request.user.is_authenticated:
+        if request.method == "POST":
+            image = request.POST["image"]
+            nickname = request.POST["nickname"]
+            print(password)
+            return render(request, 'join3.html', {
+        'password': password, 'phoneNumber':phoneNumber,\
+            'nickname': nickname, 'image':image})
+        return render(request, "join2.html")
     return redirect("main")
     
 
-def join2(request):
-    return render(request,'join2.html')
-
 def join3(request):
-    return render(request,'join3.html')
+    if not request.user.is_authenticated:
+        if request.method == "POST":
+            longitude = request.POST["longitude"]
+            latitude = request.POST["latitude"]
+            return render(request, 'join4.html', {
+        'password': password, 'phoneNumber':phoneNumber,'nickname': nickname, \
+            'image':image, 'longitude':longitude, 'latitude':latitude})
+        return render(request, "join3.html")
+    return redirect("main")
 
 def join4(request):
     return render(request,'join4.html')

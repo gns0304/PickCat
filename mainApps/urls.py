@@ -17,9 +17,9 @@ urlpatterns = [
     path("info_cat", views.info_cat, name="info_cat"),
     path("info_kitchen", views.info_kitchen, name="info_kitchen"),
     path("login", views.login, name="login"),
-    path("join", views.join, name="join"),
-    path("join2", views.join2, name="join2"),
-    path("join3", views.join3, name="join3"),
-    path("join4", views.join4, name="join4"),
+    path("join1", views.join.join1, name="join1"),
+    path("join2", views.join.join2, name="join2"),
+    path("join3", views.join.join3, name="join3"),
+    path("join4", views.join.join4, name="join4"),
 
 ]
