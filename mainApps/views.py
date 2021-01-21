@@ -53,8 +53,7 @@ def main(request):
             {
                 "Cats": favoriteCats,
                 "Kitchens": favoriteKitchens,
-                "recentMention": tempMention.mention,
-                "mentionTarget": mentionTarget,
+                "recentMention": tempMention.mention
             },
         )
 
