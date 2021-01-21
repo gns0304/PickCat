@@ -38,7 +38,7 @@ urlpatterns = [
     path("join4", views.join4, name="join4"),
 
     path("sign_out", views.sign_out, name="sign_out"),
-    path("emergency", mentions.newEmergencyMention, name="emergency"),
+    path("emergency/<int:cat_id>", mentions.newEmergencyMention, name="emergency"),
     path("getCatMentions", mentions.getCatMentions, name="getCatMentions"),
     path("getKitchenMentions", mentions.getCatMentions, name="getKitchenMentions"),
     path("newCatMentions", mentions.getCatMentions, name="newCatMentions"),
