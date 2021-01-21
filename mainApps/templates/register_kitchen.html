@@ -11,18 +11,18 @@
     </div>
     <div class="register_article">
       <span>급식소 사진 등록</span>
-      <input class="input_box" type="file" name="uploadedImage" style="line-height: 35px;">
+      <input class="input_box" type="file" name="uploadedImage" style="line-height: 35px;" required>
     </div>
     <div class="register_article">
       <span>급식소 기본 정보</span>
-      <input class="input_box" type="text" name="name" placeholder="  급식소의 이름을 입력해주세요">
+      <input class="input_box" type="text" name="name" placeholder="  급식소의 이름을 입력해주세요" required>
       <input id="address" class="input_box" type="text" name="address" placeholder="  급식소의 주소를 입력해주세요" disabled>
       <div class="register_button" onclick="getLocation()">위치찾기</div>
       <br><br>
     </div>
     <div class="register_article">
       <span>급식소 설명</span>
-      <input class="input_box" type="text" name="description" placeholder="  급식소에 대한 의견을 적어주세요">
+      <input class="input_box" type="text" name="description" placeholder="  급식소에 대한 의견을 적어주세요" required>
     </div>
     <div class="register_article"></div>
     <input type="submit" value="완료">
