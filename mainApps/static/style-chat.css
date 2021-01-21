@@ -5,7 +5,21 @@
 .chat_wrap .chat ul { width: 100%; list-style: none; padding-inline-start: 0px;}
 .chat_wrap .chat ul li { width: 100%; }
 .chat_wrap .chat ul li.left { text-align: left; }
-.chat_wrap .chat ul li.right { text-align: right; }
+
+/* 내가 보내는 chating */
+.chat_wrap .chat ul li.right { 
+    text-align: right; 
+
+    /* text */
+
+    width: 71px;
+    height: 18px;
+    text-align: left;
+    font: normal normal normal 13px/18px Avenir;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+}
  
 .chat_wrap .chat ul li > div { font-size: 13px;  }
 .chat_wrap .chat ul li > div.sender { margin: 10px 20px 0 20px; font-weight: bold; }
