@@ -150,7 +150,11 @@ header .topbar-sign span{
 
     /* 글자 */
     font-size: 13px;
-    color : white;
+    text-align: center;
+    font: normal normal normal 13px/19px Noto Sans KR;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
   }
 
 /* 회원가입 - 다음 button */
