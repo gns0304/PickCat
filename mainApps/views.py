@@ -4,7 +4,7 @@ from .models import *
 import base64
 from mainApps.models import User
 from django.contrib import auth
-
+from .mentions import *
 #todo https://xd.adobe.com/view/643f99fe-c8cd-4ea8-9a20-0f9c4019409a-316c/
 
 CDN_URL = "https://akamai-img.scdn.pw"

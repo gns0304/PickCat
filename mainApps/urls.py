@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from . import views
+from . import views, mentions
 
 urlpatterns = [
     path("main", views.main, name="main"),
@@ -20,4 +20,5 @@ urlpatterns = [
     path("join", views.join, name="join"),
     path("sign_up",views.sign_up, name="sign_up"),
     path("sign_out",views.sign_out, name="sign_out"),
+    path("emergency",mentions.newEmergencyMention, name="emergency")
 ]
