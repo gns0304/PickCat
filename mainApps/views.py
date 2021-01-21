@@ -147,6 +147,8 @@ def mypage(request):
 
     user = get_object_or_404(User, email=request.user)
 
+
+
     attendanceBadge = False
     if user.checkIn >= 10:
         attendanceBadge = True
