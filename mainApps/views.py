@@ -148,7 +148,15 @@ def info_kitchen(request, kitchen_id):
 
 
 def mypage(request):
-    return render(request, "mypage.html")
+
+    user = get_object_or_404(User, email=request.user)
+    print(user.favoriteCat.all())
+
+    attendanceBadge = False
+    if user.checkIn >= 10:
+        attendanceBadge = True
+
+    return render(request, "mypage.html", {"user" : user, "attendaceBadge" : attendanceBadge})
 
 
 def register(request):
