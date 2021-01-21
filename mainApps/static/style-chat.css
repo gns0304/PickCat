@@ -2,7 +2,7 @@
 .chat_wrap .header { font-size: 14px; padding: 15px 0; background: #F18C7E; color: white; text-align: center;  }
  
 .chat_wrap .chat { padding-bottom: 80px; }
-.chat_wrap .chat ul { width: 100%; list-style: none; }
+.chat_wrap .chat ul { width: 100%; list-style: none; padding-inline-start: 0px;}
 .chat_wrap .chat ul li { width: 100%; }
 .chat_wrap .chat ul li.left { text-align: left; }
 .chat_wrap .chat ul li.right { text-align: right; }
