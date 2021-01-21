@@ -11,24 +11,24 @@
         <h3>{{ catInfo.name }}</h3>
         <div class="buttonbox">
             {% if isFavorite %}
-                <a class="button" href="{% url 'removeFavoriteCat' catInfo.id %}">
+            <a class="button" href="{% url 'removeFavoriteCat' catInfo.id %}">
                 <img src="{% static 'img/icon-pick.png'%}">
                 <span>UnPick</span>
-            {% else %}
+                {% else %}
                 <a class="button" href="{% url 'addFavoriteCat' catInfo.id %}">
-                <img src="{% static 'img/icon-pick.png'%}">
-                <span>Pick</span>
-            {% endif %}
+                    <img src="{% static 'img/icon-pick.png'%}">
+                    <span>Pick</span>
+                    {% endif %}
 
-            </a>
-            <a class="button" href="#">
-                <img src="{% static 'img/icon-message.png'%}">
-                <span>멘션쓰기</span>
-            </a>
-            <a class="button" href="{% url "emergency" catInfo.id %}">
-                <img src="{% static 'img/icon-alarm.png'%}">
-                <span>위급상황</span>
-            </a>
+                </a>
+                <a class="button" href="#">
+                    <img src="{% static 'img/icon-message.png'%}">
+                    <span>멘션쓰기</span>
+                </a>
+                <a class="button" onclick="catEmergency()">
+                    <img src="{% static 'img/icon-alarm.png'%}">
+                    <span>위급상황</span>
+                </a>
         </div>
     </article>
     <article>
@@ -41,7 +41,7 @@
                 {{ catInfo.get_isNeutered_display }}
                 {{ catInfo.get_gender_display }}
                 {% for tag in catFeatures %}
-                    {{ tag }}
+                {{ tag }}
                 {% endfor %}
 
             </div>
@@ -55,7 +55,7 @@
             <div class="albumbox">
 
                 {% for elem in catPhoto %}
-                    <img src="{{ elem.image_url }}">
+                <img src="{{ elem.image_url }}">
 
                 {% endfor %}
             </div>
@@ -67,4 +67,33 @@
         <div class="content"></div>
     </article>
 </section>
+<script>
+    function catEmergency() {
+        if (window.emergencySent) {
+            alert('이미 긴급 알림이 전송되었습니다');
+            return
+        }
+        if (!confirm("긴급 알림을 전송하시겠습니까?")) {
+            return
+        }
+        xhr = new XMLHttpRequest();
+        xhr.open("GET", "{% url 'emergency' catInfo.id %}", true);
+        xhr.responseType = 'json';
+        xhr.send();
+        xhr.onreadystatechange = (e) => {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                data = xhr.response;
+                if (data.result == '00' || data.result == '41') {
+                    alert(`전송되었습니다.`);
+                    window.emergencySent = 1;
+
+                }
+                else {
+                    alert(`전송중 오류가 발생하였습니다.\n오류 코드 : ${data.result}`)
+                }
+            }
+        }
+
+    }
+</script>
 {% endblock %}
