@@ -91,20 +91,17 @@ header .bottombar .nav-right img{
 
 
 
-section article{
+section[class="main"] article{
     background-color: #fafaff;
-    margin:5px;
-    border-radius: 10px;
-    height:200px;
+    margin:10px 0 0;
+    border-radius: 12px;
 }
-
-section article h2{
+section[class="main"] article h2{
     color: #8B8CEC;
-    font-size: 18px;
-    padding: 10px 0 0 20px;
+    font-size: 16px;
+    padding: 15px 0 0 20px;
 }
-
-section article .hr{
+section[class="main"] article .hr{
     position:relative;
     top:-8px;
     width:95%;
@@ -113,8 +110,80 @@ section article .hr{
     margin : 0 auto;
 }
 
+section[class="main"] .content{
+    width:95%;
+    margin : 0 auto;
+    overflow-x: hidden;
+}
+section[class="main"] .content .imgbox-container{
+    width:1000px;
+    display:flex;
+    position:relative;
+}
+section[class="main"] .content .imgbox{
+    padding-top:5px;
+    width:85px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+
+}
+section[class="main"] .content .imgbox img{
+    pointer-events: none;
+    border-radius: 100%;
+    width:60px;
+    height:60px;
+    filter:drop-shadow(0px 5px 3px #d3d3d3);
+}
+section[class="main"] .content .imgbox img:hover{
+    transform: translate(0, -2px);
+    filter:drop-shadow(0px 7px 3px #d3d3d3);
+}
+section[class="main"] .content .imgbox span{
+    margin:5px 0 10px;
+    font-size:11px;
+}
+
+
 
 .blank{
     height:100px;
 }
 
+
+/*map.html*/
+section[class="map"] article{
+    background-color: #fafaff;
+    margin:5px;
+    padding:20px 0;
+}
+
+/* base.html */
+.top{
+    display : none;
+}
+.top div{
+    position:fixed; 
+    z-index: 1001;
+    left:50%;
+    bottom:0%;
+    border-radius: 70%;
+    transform:translate(150px,-110px);
+    background-color: rgba(0, 0, 0, 0.753);
+    width: 42px;
+    height : 42px;
+    text-align: center;
+    color:white;
+}
+
+.top img{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    width:12px;
+}
+.top div:hover{
+    text-decoration: none;
+    background-color: #8B8CEC;
+}
