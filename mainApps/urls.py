@@ -18,7 +18,6 @@ urlpatterns = [
     path("info_kitchen/<int:kitchen_id>",
          views.info_kitchen, name="info_kitchen"),
     path("login", views.login, name="login"),
-    path("join", views.join, name="join"),
     path("sign_out", views.sign_out, name="sign_out"),
     path("emergency", mentions.newEmergencyMention, name="emergency"),
     path("getCatMentions", mentions.getCatMentions, name="getCatMentions"),

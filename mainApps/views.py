@@ -126,10 +126,7 @@ def removeFavoriteKitchen(request, thisKitchen_id):
 
     return redirect('info_kitchen', thisKitchen_id)
 
-<<<<<<< HEAD
-def mention_kitchen(request):
-    return render(request,'mention_kitchen.html')
-=======
+
 
 def mention_kitchen(request, thisKitchen_id):
 
@@ -137,7 +134,6 @@ def mention_kitchen(request, thisKitchen_id):
 
     return render(request, 'mention_kitchen.html', {"kitchen": kitchen})
 
->>>>>>> 7d854192ef963fc401eb15f665ad03c2c52c73d8
 
 def info_kitchen(request, kitchen_id):
     kitchenInfo = get_object_or_404(Kitchen, pk=kitchen_id)
@@ -179,16 +175,12 @@ def register_cat(request):
         post.feature = request.POST["feature"]
         post.image = request.FILES["uploadedImage"]
         post.save()
-<<<<<<< HEAD
-        post.favoriteKitchen.add(Kitchen.objects.get(pk=request.POST['kitchenid']))
-    return render(request, 'register_cat.html')
-=======
         post.favoriteKitchen.add(
             Kitchen.objects.get(pk=request.POST["kitchenid"]))
 
     return render(request, "register_cat.html")
 
->>>>>>> 7d854192ef963fc401eb15f665ad03c2c52c73d8
+
 
 @login_required
 def register_kitchen(request):
