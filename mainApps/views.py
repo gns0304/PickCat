@@ -25,19 +25,14 @@ def main(request):
             tempEmergency = cat.emergencymention_set.all()
             for catmention in tempCat:
                 tempMentions = tempMentions.union(Mention.objects.filter(pk=catmention.mention.id))
-
             for emergencymention in tempEmergency:
                 tempMentions = tempMentions.union(Mention.objects.filter(pk=emergencymention.mention.id))
-
     if favoriteKitchens:
         for kitchen in favoriteKitchens:
             tempKitchen = kitchen.kitchenmention_set.all()
             for kitchenmention in tempKitchen:
                 tempMentions = tempMentions.union(Mention.objects.filter(pk=kitchenmention.mention.id))
-
     tempMention = tempMentions.order_by('-createdAt')[:10]
-
-
     return render(request, 'main.html',
                       {'Cats': favoriteCats, 'Kitchens': favoriteKitchens, 'recentMention' : tempMention})
 
@@ -281,6 +276,16 @@ def join4(request):
 
 def read_qr(req):
     return render(req, 'qr_reader.html')
+
+def readQRdetail(request, kitchen_id):
+    user = User.objects.get(email=request.user.email)
+    kitchen = Kitchen.objects.get(pk=kitchen_id)
+    user.checkIn = user.checkIn + 1
+    kitchen.checkIn = kitchen.checkIn + 1
+    user.recentCheckin = kitchen
+    user.save()
+    kitchen.save()
+    return redirect("info_kitchen", kitchen_id)
 
 
 def newchat(req):
