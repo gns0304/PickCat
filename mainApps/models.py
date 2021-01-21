@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-import uuid, os
+import uuid
+import os
 import base64
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -11,6 +12,8 @@ from django.templatetags.static import static
 User = settings.AUTH_USER_MODEL
 
 CDN_URL = 'https://akamai-img.scdn.pw'
+
+
 def get_cdn_url(url):
     if url.startswith('https://') or url.startswith('http://'):
         b64url = base64.b64encode(url.encode("UTF-8")).decode("UTF-8")
@@ -18,17 +21,20 @@ def get_cdn_url(url):
     else:
         return url
 
+
 def image_path(instance, filename):
     ext = filename.split('.')[-1]
     filename = f"{uuid.uuid4()}.{ext}"
     return f"images/{filename}"
+
 
 class Kitchen(models.Model):
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     name = models.CharField(max_length=100, null=False, blank=False)
     image = models.ImageField(upload_to=image_path, null=True, blank=True)
-    checkIn = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
+    checkIn = models.PositiveSmallIntegerField(
+        null=True, blank=True, default=0)
     address = models.CharField(max_length=100, null=False, blank=False)
     registeredAt = models.DateTimeField(auto_now_add=True)
     description = models.CharField(max_length=100, null=True, blank=True)
@@ -42,8 +48,6 @@ class Kitchen(models.Model):
             return static("img/kitchen.png")
         else:
             return get_cdn_url(self.image.url)
-
-
 
 
 class Cat(models.Model):
@@ -61,8 +65,10 @@ class Cat(models.Model):
 
     name = models.CharField(max_length=100, null=False, blank=False)
     breed = models.CharField(max_length=20, null=False, blank=False)
-    isNeutered = models.CharField(max_length=1, choices=ISNEUTERED, null=False, blank=False)
-    gender = models.CharField(max_length=1, choices=GENDER, null=False, blank=False)
+    isNeutered = models.CharField(
+        max_length=1, choices=ISNEUTERED, null=False, blank=False)
+    gender = models.CharField(
+        max_length=1, choices=GENDER, null=False, blank=False)
     feature = models.TextField(null=True, blank=True)
     favoriteKitchen = models.ManyToManyField(Kitchen)
     registeredAt = models.DateTimeField(auto_now_add=True)
@@ -80,7 +86,8 @@ class Cat(models.Model):
 
 
 class CatPost(models.Model):
-    cat = models.ForeignKey(Cat, on_delete=models.CASCADE, null=False, blank=False)
+    cat = models.ForeignKey(
+        Cat, on_delete=models.CASCADE, null=False, blank=False)
     title = models.CharField(max_length=100, null=False, blank=False)
     article = models.TextField()
     createdAt = models.DateTimeField(auto_now_add=True)
@@ -91,7 +98,8 @@ class CatPost(models.Model):
 
 
 class CatPhoto(models.Model):
-    post = models.ForeignKey(CatPost, on_delete=models.CASCADE, null=False, blank=False)
+    post = models.ForeignKey(
+        CatPost, on_delete=models.CASCADE, null=False, blank=False)
     image = models.ImageField(upload_to=image_path, null=False, blank=False)
     like = models.IntegerField(null=True, blank=True)
 
@@ -109,25 +117,39 @@ class Mention(models.Model):
         ("K", "KITCHEN"),
         ("E", "EMERGENCY")
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=False, blank=False)
     mention = models.TextField(null=False, blank=False)
     createdAt = models.DateTimeField(auto_now_add=True)
-    type = models.CharField(max_length=1, choices=TYPE, null=False, blank=False)
+    type = models.CharField(max_length=1, choices=TYPE,
+                            null=False, blank=False)
+
+
+class Chat(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=False, blank=False)
+    message = models.TextField(null=False, blank=False)
 
 
 class CatMention(models.Model):
-    target = models.ForeignKey(Cat, on_delete=models.CASCADE, null=False, blank=False)
-    mention = models.ForeignKey(Mention, on_delete=models.CASCADE, null=True, blank=True)
+    target = models.ForeignKey(
+        Cat, on_delete=models.CASCADE, null=False, blank=False)
+    mention = models.ForeignKey(
+        Mention, on_delete=models.CASCADE, null=True, blank=True)
 
 
 class KitchenMention(models.Model):
-    target = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
-    mention = models.ForeignKey(Mention, on_delete=models.CASCADE, null=True, blank=True)
+    target = models.ForeignKey(
+        Kitchen, on_delete=models.CASCADE, null=False, blank=False)
+    mention = models.ForeignKey(
+        Mention, on_delete=models.CASCADE, null=True, blank=True)
 
 
 class EmergencyMention(models.Model):
-    target = models.ForeignKey(Cat, on_delete=models.CASCADE, null=False, blank=False)
-    mention = models.ForeignKey(Mention, on_delete=models.CASCADE, null=True, blank=True)
+    target = models.ForeignKey(
+        Cat, on_delete=models.CASCADE, null=False, blank=False)
+    mention = models.ForeignKey(
+        Mention, on_delete=models.CASCADE, null=True, blank=True)
 
 
 class UserManager(BaseUserManager):
@@ -172,16 +194,21 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
     #email, nickname, phoneNumber, longitude, latitude, address, password
     email = models.EmailField(max_length=255, unique=True)
-    nickname = models.CharField(max_length=20, null=True, blank=True, unique=True)
-    phoneNumber = models.CharField(max_length=11, null=True, blank=True, unique=True)
+    nickname = models.CharField(
+        max_length=20, null=True, blank=True, unique=True)
+    phoneNumber = models.CharField(
+        max_length=11, null=True, blank=True, unique=True)
     image = models.ImageField(upload_to=image_path, null=True, blank=True)
-    longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
-    latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    longitude = models.DecimalField(
+        max_digits=9, decimal_places=6, null=True, blank=True)
+    latitude = models.DecimalField(
+        max_digits=9, decimal_places=6, null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     favoriteCat = models.ManyToManyField(Cat, null=True, blank=True)
     favoriteKitchen = models.ManyToManyField(Kitchen, null=True, blank=True)
-    checkIn = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
-    feeding = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
+    checkIn = models.PositiveSmallIntegerField(
+        null=True, blank=True, default=0)
+    recentCheckin = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=True, blank=True, related_name="recentCheckin")
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -190,7 +217,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'
-
 
     @property
     def image_url(self):

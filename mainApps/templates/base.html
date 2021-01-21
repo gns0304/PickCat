@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,24 @@
     <link rel="stylesheet" href="{% static 'style-mention.css' %}">
     <link rel="stylesheet" href="{% static 'style-info_cat.css' %}">
     <link rel="stylesheet" href="{% static 'style-info_kitchen.css' %}">
+    <link rel="stylesheet" href="{% static 'style-chat.css' %}">
+    <link rel="shortcut icon" href="../static/img/icon-home.ico" />
+    <meta property="og:title" content="PickCat" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.pickcat.xyz" />
+    <meta property="og:image"
+        content="https://akamai-img.scdn.pw/s:375:200/rt:fill/aHR0cHM6Ly9zMy51cy13ZXN0LTEud2FzYWJpc3lzLmNvbS9waWNrY2F0LWltYWdlL3BpY2tjYXQtc3BsYXNoLnBuZw==" />
+    <meta property="og:description" content="우리 동네 길고양이를 돌보는 집사들을 위한 서비스, 픽캣(PickCat)" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="www.pickcat.xyz">
+    <meta property="twitter:url" content="https://www.pickcat.xyz">
+    <meta name="twitter:title" content="PickCat">
+    <meta name="twitter:description" content="우리 동네 길고양이를 돌보는 집사들을 위한 서비스, 픽캣(PickCat)">
+    <meta name="twitter:image"
+        content="https://akamai-img.scdn.pw/s:375:200/rt:fill/aHR0cHM6Ly9zMy51cy13ZXN0LTEud2FzYWJpc3lzLmNvbS9waWNrY2F0LWltYWdlL3BpY2tjYXQtc3BsYXNoLnBuZw==">
+
+    <link rel="stylesheet" href="{% static 'style-mypage.css' %}">
     <link rel="shortcut icon" href="../static/img/icon-home.ico"/>
 </head>
 
@@ -37,7 +56,9 @@
         {% endblock %}
         <div class="blank"></div>
     </div>
-    <a href="#" class="top"><div><img src="{% static 'img/direction.png' %}"></div></a>
+    <a href="#" class="top">
+        <div><img src="{% static 'img/direction.png' %}"></div>
+    </a>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="{% static 'script.js' %}"></script>
 </body>
