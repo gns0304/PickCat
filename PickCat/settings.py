@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
+CSRF_TRUSTED_ORIGINS = ['www.pickcat.xyz']
 # Application definition
 
 INSTALLED_APPS = [
