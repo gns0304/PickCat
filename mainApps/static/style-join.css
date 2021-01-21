@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body{
+    min-height:800px;
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+}
+
+.container{
+    margin:0 auto;
+    max-width:430px;
+    width:100%;
+    position:relative;
+}
+
+/* join2.html */
+
+.input-box-wrapper {
+    top: 241px;
+    left: 0px;
+    width: 375px;
+    height: 349px;
+    background: #FAFAFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #B9B9B929;
+    opacity: 1;
+    text-align: center;
+}
+
+.join2-user-image {
+    top: 285px;
+    left: 105px;
+    margin-bottom: 40px;
+    background: transparent url('img/user.png') 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #B5AAAA29;
+    opacity: 1;
+}
+
+#input-bar-join2 {
+    top: 473px;
+    left: 39px;
+    width: 298px;
+    height: 48px;
+
+    margin-top: 100px;
+    
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #CFCFCF;
+    opacity: 1;
+}

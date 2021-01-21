@@ -7,7 +7,8 @@
     <title>login</title>
     {% load static %}
 
-    <link rel="stylesheet" href="{% static 'login.css' %}" />
+    <link rel="stylesheet" href="{% static 'style-login.css' %}" />
+    <link rel="stylesheet" href="{% static 'style-join.css' %}" />
     <script src="{% static 'script.js' %}"></script>
     <link rel="shortcut icon" href="../static/img/icon-home.png" />
   </head>
@@ -32,20 +33,24 @@
       <br /><br />
 
       <div class="input-positioner">
-        <div class="input-bar-wrapper">
-          <input type="file" id="input-bar" name="image" />
-        </div>
-        <br />
+        <div class="input-box-wrapper">
+            <img src="../static/img/join2-user.png" id="join2-user-image"
+                  style = "width: 165px; height: 161px;">
+            <input type="file" id="input-bar2" name="image" />
+
+            <br />
         <div class="input-bar-wrapper">
           <input
             name="nickname"
-            id="input-bar"
+            id="input-bar-join2"
             type="text"
             placeholder="닉네임을 입력해주세요"
           />
         </div>
         <br />
 
+        </div>
+        
         <div class="">
           <button id="btn-signin" type="button" onclick="location.href='join3'">
             다음
