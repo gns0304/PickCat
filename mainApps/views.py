@@ -60,11 +60,34 @@ def intro(request):
 
 def info_cat(request, cat_id):
     catInfo = get_object_or_404(Cat, pk=cat_id)
+    catFeatures = []
 
-    return render(request,'info_cat.html', {"catInfo":catInfo})
+    if not catInfo.feature == "":
+        catFeatures = catInfo.feature.strip()
+        catFeatures = catFeatures.replace(" ", "")
+        catFeatures = catFeatures.split("#")
+        catFeatures.pop(0)
+
+        for i in range(len(catFeatures)):
+            catFeatures[i] = "#" + catFeatures[i]
+
+    return render(request,'info_cat.html', {"catInfo": catInfo, "catFeatures": catFeatures})
+
+
+def addFavoriteCat(request, thisCat_id):
+
+    user = get_object_or_404(User, email=request.user)
+    cat = get_object_or_404(Cat, pk=thisCat_id)
+    user.favoriteCat.add(cat)
+
+    return redirect('info_cat', thisCat_id)
+
+def mention_kitchen(request):
+    return render(request,'mention_kitchen.html')
 
 def info_kitchen(request):
     return render(request,'info_kitchen.html')
+
 
 def mypage(request):
     return render(request,'mypage.html')

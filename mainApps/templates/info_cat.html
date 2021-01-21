@@ -10,7 +10,7 @@
         </div>
         <h3>{{ catInfo.name }}</h3>
         <div class="buttonbox">
-            <a class="button">
+            <a class="button" href="{% url 'addFavoriteCat' thisCat_id = catInfo.id %}">
                 <img src="{% static 'img/icon-pick.png'%}">
                 <span>Pick</span>
             </a>
@@ -33,6 +33,9 @@
                 {{ catInfo.breed }}
                 {{ catInfo.get_isNeutered_display }}
                 {{ catInfo.get_gender_display }}
+                {% for tag in catFeatures %}
+                    {{ tag }}
+                {% endfor %}
 
             </div>
         </div>
