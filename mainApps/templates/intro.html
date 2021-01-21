@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% load static %}
     <title>PickCat</title>
-    <link rel="stylesheet" href="{% static 'style-intro.css'  %}">
+    <link rel="stylesheet" href="{% static 'style-intro.css'  %}" />
 
-    <link rel="shortcut icon" href="../static/img/icon-home.ico"/>
-</head>
-<body>
+    <link rel="shortcut icon" href="../static/img/icon-home.ico" />
+  </head>
+  <body>
     <div class="loader">
-        <img src="{% static 'img/loading-logo.png'%}">
+      <img src="{% static 'img/loading-logo.png'%}" />
     </div>
     <div class="container">
-        <img src="{% static 'img/loading-logo.png'%}">
-        
-        <div class="loginbutton">
-            <a href="{% url 'login' %}">로그인하기</a>
-            <span>계정이 없으신가요? <a href="{% url 'join' %}">회원가입하러가기</a></span>
-        </div>
+      <img src="{% static 'img/loading-logo.png'%}" />
+
+      <div class="loginbutton">
+        <a href="{% url 'login' %}">로그인하기</a>
+        <span
+          >계정이 없으신가요?
+          <a href="{% url 'join1' %}">회원가입하러가기</a></span
+        >
+      </div>
     </div>
 
-
     <script>
-    function loading(){
-        document.querySelector(".loader").style.display="none";
-        document.querySelector(".container").style.display="block";    
-    }
-        window.setTimeout(loading,2000);
+      function loading() {
+        document.querySelector(".loader").style.display = "none";
+        document.querySelector(".container").style.display = "block";
+      }
+      window.setTimeout(loading, 2000);
     </script>
-</body>
+  </body>
 </html>

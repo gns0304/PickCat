@@ -27,11 +27,18 @@
         >안전한 픽켓을 만들기 위해 지역을 인증해주세요!</span>
     </div>
 
-    <form method="POST" action="{% url 'join'%}">
+    <form method="POST" action="{% url 'join3'%}">
       {% csrf_token %}
       <br /><br />
 
       <div class="input-positioner">
+        <div class="input-bar-wrapper">지도</div>
+        <br />
+        long : <input type="text" name="longitude" />
+        <br />
+
+        lat : <input type="text" name="latitude" />
+        <br />
         <div class="input-box-wrapper">
           <img src="../static/img/join3-map.png" id="join3-map-image"
                 style = "width: 375px; height: 279px;">
@@ -47,7 +54,7 @@
         </div>
         
         <div class="">
-          <button id="btn-signin" type="button" onclick="location.href='join4'">
+          <button id="btn-signin" type="submit" onclick="location.href='join4'">
             완료하기
           </button>
         </div>

@@ -28,7 +28,7 @@
       >
     </div>
 
-    <form method="POST" action="{% url 'join'%}">
+    <form method="POST" action="{% url 'join2'%}">
       {% csrf_token %}
       <br /><br />
 
@@ -52,7 +52,7 @@
         </div>
         
         <div class="">
-          <button id="btn-signin" type="button" onclick="location.href='join3'">
+          <button id="btn-signin" type="submit" onclick="location.href='join3'">
             다음
           </button>
         </div>
