@@ -49,8 +49,8 @@ def newEmergencyMention(req):
         mention.type = 'EMERGENCY'
         mention.save()
         m = EmergencyMention()
-        kitchen = Kitchen.objects.get(pk=req.POST['id'])
-        m.target = kitchen
+        cat = Cat.objects.get(pk=req.POST['id'])
+        m.target = cat
         m.mention = mention
         m.save()
         sms_user = User.objects.filter(favoriteKitchen=kitchen)
@@ -62,6 +62,7 @@ def newEmergencyMention(req):
         return HttpResponse(str(to))
     else:
         return render(req,'emergency.html')
+
 def checkUser(req,user):
     if req.user == user:
         return True
@@ -78,7 +79,7 @@ def getCatMentions(req):
         d={
             'id' : m.id,
             'name' : m.target.name,
-            'link' : '',
+            'link' : f"/info_cat/{m.target_id}",
             'image' : m.target.image_url,
             'text' : m.mention.mention,
             'is_me': checkUser(req,m.mention.user)
@@ -101,7 +102,7 @@ def getKitchenMentions(req):
         d={
             'id' : m.id,
             'name' : m.target.name,
-            'link' : '',
+            'link' : f"/info_kitchen/{m.target_id}",
             'image' : m.target.image_url,
             'text' : m.mention.mention,
             'is_me': checkUser(req,m.mention.user)

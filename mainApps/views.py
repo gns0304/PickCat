@@ -211,3 +211,16 @@ def sign_out(request):
 
 def join(request):
     return render(request, 'join.html')
+
+def join2(request):
+    return render(request,'join2.html')
+    
+
+def join3(request):
+    return render(request,'join3.html')
+
+def join4(request):
+    return render(request,'join4.html')
+
+def read_qr(req):
+    return render(req,'qr_reader.html')
