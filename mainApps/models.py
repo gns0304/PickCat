@@ -208,8 +208,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     favoriteKitchen = models.ManyToManyField(Kitchen, null=True, blank=True)
     checkIn = models.PositiveSmallIntegerField(
         null=True, blank=True, default=0)
-    feeding = models.PositiveSmallIntegerField(
-        null=True, blank=True, default=0)
+    recentCheckin = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=True, blank=True, related_name="recentCheckin")
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
