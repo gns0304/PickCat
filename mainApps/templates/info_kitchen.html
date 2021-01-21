@@ -42,7 +42,7 @@
                 <span>Pick</span>
             {% endif %}
 
-        <a class="button">
+        <a class="button" href="{% url "mention_kitchen" kitchenInfo.id %}">
             <img src="{% static 'img/icon-message.png'%}">
             <span>멘션쓰기</span>
         </a>

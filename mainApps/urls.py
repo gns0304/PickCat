@@ -27,5 +27,5 @@ urlpatterns = [
     path("removefavoritecat/<int:thisCat_id>", views.removeFavoriteCat, name="removeFavoriteCat"),
     path("addfavorietkitchen/<int:thisKitchen_id>", views.addFavoriteKitchen, name="addFavoriteKitchen"),
     path("removefavoritekitchen/<int:thisKitchen_id>", views.removeFavoriteKitchen, name="removeFavoriteKitchen"),
-    path("mention_kitchen", views.mention_kitchen, name="mention_kitchen"),
+    path("mention_kitchen/<int:thisKitchen_id>", views.mention_kitchen, name="mention_kitchen"),
 ]

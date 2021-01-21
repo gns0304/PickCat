@@ -112,8 +112,11 @@ def removeFavoriteKitchen(request, thisKitchen_id):
 
     return redirect('info_kitchen', thisKitchen_id)
 
-def mention_kitchen(request):
-    return render(request,'mention_kitchen.html')
+def mention_kitchen(request, thisKitchen_id):
+
+    kitchen = get_object_or_404(Kitchen, pk=thisKitchen_id)
+
+    return render(request,'mention_kitchen.html', {"kitchen": kitchen})
 
 def info_kitchen(request, kitchen_id):
     kitchenInfo = get_object_or_404(Kitchen, pk=kitchen_id)
