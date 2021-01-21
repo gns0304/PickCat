@@ -1,7 +1,22 @@
 //로딩
 
 $( document ).ready( function() {
-    click();
+    click_top();
+    $( '.mention_button' ).click(function(){
+        let temp = $(this).children('span.mention_span').text();
+        $(".mention_button").css('background-color','#fdfdfd');
+        $(".mention_button").children('span.mention_span').css('color','gray');
+        $(this).css('background-color','#8B8CEC');
+        $(this).children('span.mention_span').css('color','white');
+        $( '.mention_value' ).val(temp);
+        if(temp == "기타사항 멘션 작성하기"){
+            $( '.mention_value' ).css('visibility','visible');
+            $( '.mention_value' ).val("");
+        }
+        else{
+            $( '.mention_value' ).css('visibility','hidden');
+        }
+    });
     $( window ).scroll( scrollMove );
 })
   
@@ -18,12 +33,13 @@ $( document ).ready( function() {
     }
   }
   
-  function click(){
+  function click_top(){
     $( '.top' ).click( function() {
         $( 'html, body' ).filter(":not(:animated)").animate( { scrollTop : 0 }, 300 );
         return false;
     } );
   }
+
 
 
 
@@ -84,3 +100,4 @@ $( document ).ready( function() {
         }
         return false;
     } );
+

@@ -2,28 +2,28 @@
 {% block content %}
 {% load static %}
 <section class="mention">
-    <form method="POST" action="">
+    <form method="POST" >
         <div class="mention_items" style="width:100%;">
-            <img src="{% static 'img/icon-marker.png'%}">
-            <span>{{ kitchen.name }}</span>
+            <img src="{% static 'img/icon-cat.png'%}" style="width:20px">
+            <span>{{ cat.name }}</span>
         </div>
         <div class="mention_items">
             <img src="{% static 'img/cat.png'%}">
             <span>{{ request.user.nickname }} 집사님의 <span style="color:#8B8CEC">픽캣멘션</span></span>
         </div>
-        <div class="mention_items">집사님, 오늘 어떤 일을 하셨나요?</div>
+        <div class="mention_items">오늘 {{ cat.name }}는(은) 어때보이나요?</div>
         <div class="mention_items">
             <div class="items_row">
                 <div class="mention_button">
-                    <img src="{%static 'img/icon-rice.png'%}">&nbsp;&nbsp;<span class="mention_span">밥&물 챙겨주기 완료!</span>
+                    <img src="{%static 'img/icon-rice.png'%}">&nbsp;&nbsp;<span class="mention_span">즐거워 보여요!</span>
                 </div>
                 <div class="mention_button">
-                    <img src="{%static 'img/icon-clap.png'%}">&nbsp;&nbsp;<span class="mention_span">반갑게 인사 완료!</span>
+                    <img src="{%static 'img/icon-clap.png'%}">&nbsp;&nbsp;<span class="mention_span">우울해 보여요ㅠㅠ</span>
                 </div>
             </div>
             <div class="items_row">
                 <div class="mention_button">
-                    <img src="{%static 'img/icon-candy.png'%}">&nbsp;&nbsp;<span class="mention_span">맛있는 간식 조공 완료!</span>
+                    <img src="{%static 'img/icon-candy.png'%}">&nbsp;&nbsp;<span class="mention_span">오늘도 잘 자는중~</span>
                 </div>
                 <div class="mention_button">
                     <img src="{%static 'img/icon-man.png'%}">&nbsp;&nbsp;<span class="mention_span">기타사항 멘션 작성하기</span>
@@ -31,6 +31,7 @@
             </div>
             <input class="mention_value" type="text" placeholder="기타사항을 작성해주세요" required style="width:90%; display:block; margin:0 auto; border-radius: 25px; padding:5px; visibility: hidden;">
         </div>
+        
         <input type="submit" value="완료"/>
         {% csrf_token %}
     </form>
