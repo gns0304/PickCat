@@ -1,0 +1,59 @@
+{% extends 'signbase.html' %} {% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'login.css' %}" />
+    <script src="{% static 'script.js' %}"></script>
+    <link rel="shortcut icon" href="../static/img/icon-home.png" />
+  </head>
+
+  <body>
+    <header>
+      <div class="topbar-sign">
+        <span> 프로필 </span>
+        <div class="topbar-line"></div>
+      </div>
+    </header>
+
+    <div id="main-title">
+      <span id="title-1" style="color: black">프로필 설정 </span><br />
+      <span id="title-1" style="color: black"
+        >닉네임과 프로필 사진을 등록해주세요 </span
+      >
+    </div>
+
+    <form method="POST" action="{% url 'join'%}">
+      {% csrf_token %}
+      <br /><br />
+
+      <div class="input-positioner">
+        <div class="input-bar-wrapper">
+          <input type="file" id="input-bar" name="image" />
+        </div>
+        <br />
+        <div class="input-bar-wrapper">
+          <input
+            name="nickname"
+            id="input-bar"
+            type="text"
+            placeholder="닉네임을 입력해주세요"
+          />
+        </div>
+        <br />
+
+        <div class="">
+          <button id="btn-signin" type="button" onclick="location.href='join3'">
+            다음
+          </button>
+        </div>
+      </div>
+    </form>
+
+    {% endblock %}
+  </body>
+</html>
