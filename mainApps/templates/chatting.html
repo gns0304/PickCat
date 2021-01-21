@@ -1,75 +1,77 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<div class="chat_wrap">
-    <div class="chat">
-        <ul id="chatbox">
-        </ul>
+<section class="chatting">
+    <div class="chat_wrap">
+        <div class="chat">
+            <ul id="chatbox">
+            </ul>
+        </div>
+        <div class="input-div">
+            <textarea id="message" placeholder="Press Enter for send message."></textarea>
+        </div>
+    
+        <!-- format -->
+    
     </div>
-    <div class="input-div">
-        <textarea id="message" placeholder="Press Enter for send message."></textarea>
-    </div>
-
-    <!-- format -->
-
-</div>
-
-<script>
-    function onKey(e) {
-        if (e.keyCode == 13 && !e.shiftKey) {
-            e.preventDefault();
-            const message = document.getElementById("message");
-            sendMessage(message.value);
-            message.value = '';
+    
+    <script>
+        function onKey(e) {
+            if (e.keyCode == 13 && !e.shiftKey) {
+                e.preventDefault();
+                const message = document.getElementById("message");
+                sendMessage(message.value);
+                message.value = '';
+            }
         }
-    }
-    document.addEventListener("keydown", onKey);
-    window.latest = 0;
-    let chatbox = document.getElementById('chatbox')
-    const ENDPOINT = 'getChat'
-    function update() {
-        let url = `/${ENDPOINT}?id=1&latest=${window.latest}`
-        xhr = new XMLHttpRequest();
-        xhr.open("GET", url, true);
-        xhr.responseType = 'json';
-        xhr.send();
-        xhr.onreadystatechange = (e) => {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                data = xhr.response
-                if (data.count != 0) {
-                    window.latest = data.data[0].id
-                    writeData(data.data.reverse())
+        document.addEventListener("keydown", onKey);
+        window.latest = 0;
+        let chatbox = document.getElementById('chatbox')
+        const ENDPOINT = 'getChat'
+        function update() {
+            let url = `/${ENDPOINT}?id=1&latest=${window.latest}`
+            xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.responseType = 'json';
+            xhr.send();
+            xhr.onreadystatechange = (e) => {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    data = xhr.response
+                    if (data.count != 0) {
+                        window.latest = data.data[0].id
+                        writeData(data.data.reverse())
+                    }
                 }
             }
         }
-    }
-    function writeData(data) {
-        for (k in data) {
-            console.log(data[k].is_me)
-            var class1 = ""
-            var name = ""
-            if (data[k].is_me == true) {
-                class1 = "right"
-                name = "Me"
+        function writeData(data) {
+            for (k in data) {
+                console.log(data[k].is_me)
+                var class1 = ""
+                var name = ""
+                if (data[k].is_me == true) {
+                    class1 = "right"
+                    name = "Me"
+                }
+                else {
+                    class1 = "left"
+                    name = data[k].name
+                }
+                chatbox.innerHTML += `<li class="${class1}"><span class="sender">${name} : </span><span class="message">${data[k].text}</span></li><br>\n`
             }
-            else {
-                class1 = "left"
-                name = data[k].name
-            }
-            chatbox.innerHTML += `<li class="${class1}"><span class="sender">${name} : </span><span class="message">${data[k].text}</span></li><br>\n`
         }
-    }
-    update()
-    window.setInterval(update, 1000)
-    function sendMessage(message) {
-        messageUrl = "{%url 'newChat' %}"
-        xhr = new XMLHttpRequest();
-        xhr.open("POST", messageUrl, true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        var params = `message=${encodeURIComponent(message)}`;
-        xhr.send(params);
-
-    }
-</script>
-
+        update()
+        window.setInterval(update, 1000)
+        function sendMessage(message) {
+            messageUrl = "{%url 'newChat' %}"
+            xhr = new XMLHttpRequest();
+            xhr.open("POST", messageUrl, true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            var params = `message=${encodeURIComponent(message)}`;
+            xhr.send(params);
+    
+        }
+    </script>
+</section>
+<script src="{% static 'update.js'%}"></script>
 {% endblock %}

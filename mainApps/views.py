@@ -127,6 +127,7 @@ def removeFavoriteKitchen(request, thisKitchen_id):
     return redirect('info_kitchen', thisKitchen_id)
 
 
+
 def mention_kitchen(request, thisKitchen_id):
 
     kitchen = get_object_or_404(Kitchen, pk=thisKitchen_id)
@@ -178,6 +179,7 @@ def register_cat(request):
             Kitchen.objects.get(pk=request.POST["kitchenid"]))
 
     return render(request, "register_cat.html")
+
 
 
 @login_required
