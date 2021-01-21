@@ -6,6 +6,7 @@
     <title>PickCat</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style-register.css' %}">
     <link rel="stylesheet" href="{% static 'style-mention.css' %}">
     <link rel="stylesheet" href="{% static 'style-info_cat.css' %}">
     <link rel="stylesheet" href="{% static 'style-info_kitchen.css' %}">
@@ -23,7 +24,7 @@
             <div class="bottombar">
                 <div class="nav-left">
                     <a href="{% url 'chatting' %}"><img src="{% static 'img/icon-live.png' %}" style="width:30px;"></a>
-                    <a href="{% url 'register' %}"><img src="{% static 'img/icon-img.png' %}"></a>
+                    <a href="{% url 'register_cat' %}"><img src="{% static 'img/icon-img.png' %}"></a>
                 </div>
                 <a href="{% url 'main' %}"><img src="{% static 'img/icon-home.png' %}" class="icon-home"></a>
                 <div class="nav-right">

@@ -5,7 +5,6 @@ from .sms import *
 from django.http import HttpResponse, JsonResponse
 
 
-
 @login_required
 def newCatMention(req):
     if req.method == 'POST':

@@ -1,69 +1,50 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <title>register_cat</title>
-    <link rel="stylesheet" type="text/css" />
-  </head>
+<section class="register">
 
-  <body class="register_cat">
-    	
-<form action="{% url 'register_cat' %}" enctype="multipart/form-data" method="post" >
-{% csrf_token %}
-      1. name
-      <br />
-      <input type="text" name="name" />
-      <br />
-      2. breed
-      <br />
-      <input type="text" name="breed" />
-      <br />
-      3. isNeutered
-      <br />
-      true<input type="radio" name="isNeutered" value="T" />
-      false<input type="radio" name="isNeutered" value="F" />
-      unknown<input type="radio" name="isNeutered" value="U" />
-      <br />
-      4. gender
-      <br />
-      male<input type="radio" name="gender" value="M" />
-      female<input type="radio" name="gender" value="F" />
-      unknown<input type="radio" name="gender" value="U" />
-      <br />
-      5. feature
-      <br />
-      <input type="text" name="feature" />
-      <br />
-      6. favorite kitchen id
-      <input type="text" name="kitchenid" />
-      <br />
-      7. 사진
-    <input type="file" name="uploadedImage">
-      <br />
-      <button onclick="values()">확인</button>
-    </section>
+  <form action="{% url 'register_cat' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <div class="register_header">
+      <a href="{% url 'register_cat'%}" class="button" style="color:#8B8CEC;"><span>고양이 등록하기</span></a>
+      <a href="{% url 'register_kitchen'%}" class="button"><span>급식소 등록하기</span></a>
+    </div>
+    <div class="register_article"> 
+      <span>고양이 사진 등록</span>
+      <input class="input_box" type="file" name="uploadedImage" style="line-height: 35px;">
+    </div>
 
-<!-- {#    <script type="text/javascript">#}
-{#      function values() {#}
-{#        var name = document.querySelectorAll('input[id="name"]:checked');#}
-{#        console.log(name);#}
-{#        var breed = document.querySelectorAll('input[id="bread"]:checked');#}
-{#        console.log(breed);#}
-{#        var isNeutered = document.getElementById('isNeutered').value;#}
-{#        var gender = document.getElementById('gender').value;#}
-{#        console.log(gender);#}
-{#        var feature = document.querySelectorAll(#}
-{#          'input[type="feature"]:checked'#}
-{#        );#}
-{#        console.log(feature);#}
-{#        var kitchenid = document.querySelectorAll('input[id="kitchenid"]:checked');#}
-{#        console.log(kitchenid);#}
-{#      }#}
-{#    </script>#} -->
-    </form>
-  </body>
-</html>
+    <div class="register_article">
+      <span>고양이 기본 정보</span>
+      <input class="input_box" type="text" name="name" placeholder="  고양이의 이름을 입력해주세요">
+      <select class="input_box" name="kitchenid" style="color:gray;">
+        <option value="" disabled selected>&nbsp;어떤 급식소에서 고양이를 만났나요?</option>
+        <option value="1">1</option>
+      </select>
+    </div>
+    <div class="register_article">
+      <span>특징을 입력해주세요</span>
+      <input class="input_box" type="text" name="feature" placeholder="  예) 사람을 좋아해요, 줄무늬가 있어요">
+    </div>
+    <div class="register_article">
+      <span>성별을 선택해 주세요</span><br>
+      <input type="radio" name="gender" value="M" style="margin-top: 10px;">&nbsp;수컷<br>
+      <input type="radio" name="gender" value="F">&nbsp;암컷<br>
+      <input type="radio" name="gender" value="U" checked>&nbsp;모름<br>
+    </div>
+    <div class="register_article">
+      <span>중성화 여부를 선택해 주세요</span><br>
+      <input type="radio" name="isNeutered" value="T" style="margin-top: 10px;">&nbsp;O<br>
+      <input type="radio" name="isNeutered" value="F">&nbsp;X<br>
+      <input type="radio" name="isNeutered" value="U" checked>&nbsp;모름<br>
+    </div>
+    <div class="register_article">
+      <span>품종을 입력해주세요</span>
+      <input class="input_box" type="text" name="breed" placeholder="  예) 코숏">
+    </div>
+    <br>
+    <input type="submit" value="완료"><br><br>
+</section>
+</form>
+</section>
 {% endblock %}
