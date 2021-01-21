@@ -10,9 +10,16 @@
         </div>
         <h3>{{ catInfo.name }}</h3>
         <div class="buttonbox">
-            <a class="button" href="{% url 'addFavoriteCat' thisCat_id = catInfo.id %}">
+            {% if isFavorite %}
+                <a class="button" href="{% url 'removeFavoriteCat' catInfo.id %}">
+                <img src="{% static 'img/icon-pick.png'%}">
+                <span>UnPick</span>
+            {% else %}
+                <a class="button" href="{% url 'addFavoriteCat' catInfo.id %}">
                 <img src="{% static 'img/icon-pick.png'%}">
                 <span>Pick</span>
+            {% endif %}
+
             </a>
             <a class="button" href="#">
                 <img src="{% static 'img/icon-message.png'%}">
@@ -46,16 +53,11 @@
         <span class="unfold2"><img src="{% static 'img/direction-down.png'%}">&nbsp;펼치기</span>
         <div class="content">
             <div class="albumbox">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
+
+                {% for elem in catPhoto %}
+                    <img src="{{ elem.image_url }}">
+
+                {% endfor %}
             </div>
         </div>
     </article>

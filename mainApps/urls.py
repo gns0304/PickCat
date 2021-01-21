@@ -26,5 +26,6 @@ urlpatterns = [
     path("sign_out",views.sign_out, name="sign_out"),
     path("emergency",mentions.newEmergencyMention, name="emergency"),
     path("addfavoritecat/<int:thisCat_id>", views.addFavoriteCat, name="addFavoriteCat"),
+    path("removefavoritecat/<int:thisCat_id>", views.removeFavoriteCat, name="removeFavoriteCat"),
     path("mention_kitchen", views.mention_kitchen, name="mention_kitchen"),
 ]

@@ -126,7 +126,7 @@ class KitchenMention(models.Model):
 
 
 class EmergencyMention(models.Model):
-    target = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
+    target = models.ForeignKey(Cat, on_delete=models.CASCADE, null=False, blank=False)
     mention = models.ForeignKey(Mention, on_delete=models.CASCADE, null=True, blank=True)
 
 
