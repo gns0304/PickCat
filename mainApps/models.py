@@ -49,14 +49,14 @@ class Kitchen(models.Model):
 class Cat(models.Model):
 
     ISNEUTERED = (
-        ('T', 'TRUE'),
-        ('F', 'FALSE'),
-        ('U', 'UNKNOWN')
+        ('T', '중성화 O'),
+        ('F', '중성화 X'),
+        ('U', '알수없음')
     )
     GENDER = (
-        ('M', "MALE"),
-        ("F", "FEMALE"),
-        ("U", "UNKNOWN")
+        ('M', "남자"),
+        ("F", "여자"),
+        ("U", "알수없음")
     )
 
     name = models.CharField(max_length=100, null=False, blank=False)
@@ -117,17 +117,17 @@ class Mention(models.Model):
 
 class CatMention(models.Model):
     target = models.ForeignKey(Cat, on_delete=models.CASCADE, null=False, blank=False)
-    mention = models.ManyToManyField(Mention)
+    mention = models.ForeignKey(Mention, on_delete=models.CASCADE, null=True, blank=True)
 
 
 class KitchenMention(models.Model):
     target = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
-    mention = models.ManyToManyField(Mention)
+    mention = models.ForeignKey(Mention, on_delete=models.CASCADE, null=True, blank=True)
 
 
 class EmergencyMention(models.Model):
     target = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
-    mention = models.ManyToManyField(Mention)
+    mention = models.ForeignKey(Mention, on_delete=models.CASCADE, null=True, blank=True)
 
 
 class UserManager(BaseUserManager):
@@ -173,7 +173,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     #email, nickname, phoneNumber, longitude, latitude, address, password
     email = models.EmailField(max_length=255, unique=True)
     nickname = models.CharField(max_length=20, null=False, blank=False, unique=True)
-    phoneNumber = models.IntegerField(null=False, blank=False, unique=True)
+    phoneNumber = models.CharField(max_length=11, null=False, blank=False, unique=True)
     image = models.ImageField(upload_to=image_path, null=True, blank=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
