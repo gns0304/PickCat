@@ -33,6 +33,9 @@
                 {{ catInfo.breed }}
                 {{ catInfo.get_isNeutered_display }}
                 {{ catInfo.get_gender_display }}
+                {% for tag in catFeatures %}
+                    {{ tag }}
+                {% endfor %}
 
             </div>
         </div>

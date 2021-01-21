@@ -20,5 +20,6 @@ urlpatterns = [
     path("join", views.join, name="join"),
     path("sign_up",views.sign_up, name="sign_up"),
     path("sign_out",views.sign_out, name="sign_out"),
-    path("emergency",mentions.newEmergencyMention, name="emergency")
+    path("emergency",mentions.newEmergencyMention, name="emergency"),
+    path("addfavoritecat/<int:cat_id>", views.addFavoriteCat, name="addFavoriteCat")
 ]
