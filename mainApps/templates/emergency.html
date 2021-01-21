@@ -1,0 +1,20 @@
+<form method="POST" action="">
+    {% csrf_token %}
+    <br><br>
+
+    <div class="input-positioner">
+        <div class="input-bar-wrapper">
+            <input type="text" id="input-bar" placeholder="mention" name="mention">
+        </div>
+        <br>
+        <div class="input-bar-wrapper">
+            <input type="password" id="input-bar" placeholder="kid" name="kid">
+        </div>
+
+
+        <div class="">
+            <input id="btn-signin" type="submit" value="다음">
+        </div>
+
+    </div>
+</form>
