@@ -187,3 +187,15 @@ section[class="map"] article{
     text-decoration: none;
     background-color: #8B8CEC;
 }
+
+
+.alarm_container{
+    position: fixed;
+    left:50%;
+    transform:translate(-50%,0);
+    max-width:450px;
+    width:100%;
+    height:800px;
+    z-index: 1004;
+    background-color: RED;
+}
