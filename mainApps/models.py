@@ -148,10 +148,10 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, nickname, password):
+    def create_superuser(self, email, password):
         user = self.model(
             email=self.normalize_email(email),
-            nickname=nickname,
+            nickname="admin",
             phoneNumber=0,
             longitude=0,
             latitude=0,

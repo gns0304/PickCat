@@ -9,7 +9,6 @@ from django.contrib import auth
 
 CDN_URL = "https://akamai-img.scdn.pw"
 # Create your views here.
-
 @login_required
 def main(request):
     #Todo 좋아하는 고양이랑 장소가 없을 때 각각 예외처리 해주기
@@ -58,11 +57,55 @@ def map(request):
 def intro(request):
     return render(request,'intro.html')
 
-def info_cat(request):
-    return render(request,'info_cat.html')
+def info_cat(request, cat_id):
+    catInfo = get_object_or_404(Cat, pk=cat_id)
+    catFeatures = []
+    isFavorite = False
+
+    user = get_object_or_404(User, email=request.user)
+
+    if user.favoriteCat.filter(pk=cat_id):
+        isFavorite = True
+
+    if not catInfo.feature == "":
+        catFeatures = catInfo.feature.strip()
+        catFeatures = catFeatures.replace(" ", "")
+        catFeatures = catFeatures.split("#")
+        catFeatures.pop(0)
+
+        for i in range(len(catFeatures)):
+            catFeatures[i] = "#" + catFeatures[i]
+
+    catPost = get_object_or_404(CatPost, cat=catInfo)
+    catPhoto = catPost.catphoto_set.all()
+
+
+
+    return render(request,'info_cat.html', {"isFavorite":isFavorite, "catInfo": catInfo, "catFeatures": catFeatures, "catPhoto" : catPhoto})
+
+
+def addFavoriteCat(request, thisCat_id):
+
+    user = get_object_or_404(User, email=request.user)
+    cat = get_object_or_404(Cat, pk=thisCat_id)
+    user.favoriteCat.add(cat)
+    
+
+    return redirect('info_cat', thisCat_id)
+
+def removeFavoriteCat(request, thisCat_id):
+    user = get_object_or_404(User, email=request.user)
+    cat = get_object_or_404(Cat, pk=thisCat_id)
+    user.favoriteCat.remove(cat)
+
+    return redirect('info_cat', thisCat_id)
+
+def mention_kitchen(request):
+    return render(request,'mention_kitchen.html')
 
 def info_kitchen(request):
     return render(request,'info_kitchen.html')
+
 
 def mypage(request):
     return render(request,'mypage.html')
@@ -156,34 +199,35 @@ def join1(request):
             phoneNumber = request.POST["phoneNumber"]
             user = User.objects.create_user(email, None, phoneNumber, None, None, None, password)
             user.save()
+            auth.login(request, user)
             return render(request, "join2.html")
         return render(request, "join1.html")
     return redirect("main")
 
 
 def join2(request):
-    if not request.user.is_authenticated:
-        if request.method == "POST":
-            image = request.POST["image"]
-            nickname = request.POST["nickname"]
-            print(password)
-            return render(request, 'join3.html', {
-        'password': password, 'phoneNumber':phoneNumber,\
-            'nickname': nickname, 'image':image})
-        return render(request, "join2.html")
-    return redirect("main")
+    
+    if request.method == "POST":
+        print(request.user.email)
+        print(1)
+        #user = get_object_or_404(User, email=request.user.email)
+        request.user.image = request.POST["image"]
+        request.user.nickname = request.POST["nickname"]
+        #user.image = request.POST["image"]
+        #user.nickname = request.POST["nickname"]
+        print(request.POST["nickname"])
+        print(2)
+        return render(request, 'join3.html')
+    return render(request, "join2.html")
     
 
 def join3(request):
-    if not request.user.is_authenticated:
-        if request.method == "POST":
-            longitude = request.POST["longitude"]
-            latitude = request.POST["latitude"]
-            return render(request, 'join4.html', {
-        'password': password, 'phoneNumber':phoneNumber,'nickname': nickname, \
-            'image':image, 'longitude':longitude, 'latitude':latitude})
-        return render(request, "join3.html")
-    return redirect("main")
+    if request.method == "POST":
+        request.user.longitude = request.POST["longitude"]
+        request.user.latitude = request.POST["latitude"]
+        return render(request, 'join4.html')
+    return render(request, "join3.html")
+
 
 def join4(request):
     return render(request,'join4.html')
