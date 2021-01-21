@@ -2,14 +2,14 @@
 {% block content %}
 {% load static %}
 <section class="mention_kitchen">
-    <form method="POST" action="{% url 'mention_kitchen'%}">
+    <form method="POST" action="">
         <div class="mention_items" style="width:100%;">
             <img src="{% static 'img/icon-marker.png'%}">
-            <span>&nbsp;5호관 숲 급식소</span>
+            <span>{{ kitchen.name }}</span>
         </div>
         <div class="mention_items">
             <img src="{% static 'img/cat.png'%}">
-            <span>수지 집사님의 <span style="color:#8B8CEC">픽캣멘션</span></span>
+            <span>{{ request.user.nickname }} 집사님의 <span style="color:#8B8CEC">픽캣멘션</span></span>
         </div>
         <div class="mention_items">집사님, 오늘 어떤 일을 하셨나요?</div>
         <div class="mention_items">

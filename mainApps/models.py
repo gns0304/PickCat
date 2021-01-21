@@ -28,7 +28,7 @@ class Kitchen(models.Model):
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     name = models.CharField(max_length=100, null=False, blank=False)
     image = models.ImageField(upload_to=image_path, null=True, blank=True)
-    checkIn = models.PositiveSmallIntegerField(null=True, blank=True)
+    checkIn = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
     address = models.CharField(max_length=100, null=False, blank=False)
     registeredAt = models.DateTimeField(auto_now_add=True)
     description = models.CharField(max_length=100, null=True, blank=True)
@@ -148,10 +148,10 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, nickname, password):
+    def create_superuser(self, email, password):
         user = self.model(
             email=self.normalize_email(email),
-            nickname=nickname,
+            nickname="admin",
             phoneNumber=0,
             longitude=0,
             latitude=0,
@@ -180,8 +180,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     address = models.CharField(max_length=200, null=True, blank=True)
     favoriteCat = models.ManyToManyField(Cat, null=True, blank=True)
     favoriteKitchen = models.ManyToManyField(Kitchen, null=True, blank=True)
-    checkIn = models.PositiveSmallIntegerField(null=True, blank=True)
-    feeding = models.PositiveSmallIntegerField(null=True, blank=True)
+    checkIn = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
+    feeding = models.PositiveSmallIntegerField(null=True, blank=True, default=0)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
