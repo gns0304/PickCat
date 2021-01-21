@@ -33,7 +33,7 @@
         <div class="hr"></div>
         <div class="content">
             {% for kitchen in Kitchens %}
-                {{ kitchen.image_url }}
+                <img src="{{ kitchen.image_url }}">
                 {{ kitchen.name }}
                 {{ kitchen.checkIn }}
             {% endfor %}
