@@ -23,4 +23,7 @@ urlpatterns = [
     path("emergency",mentions.newEmergencyMention, name="emergency"),
     path("getCatMentions",mentions.getCatMentions, name="getCatMentions"),
     path("getKitchenMentions",mentions.getCatMentions, name="getKitchenMentions"),
+    path("addfavoritecat/<int:thisCat_id>", views.addFavoriteCat, name="addFavoriteCat"),
+    path("removefavoritecat/<int:thisCat_id>", views.removeFavoriteCat, name="removeFavoriteCat"),
+    path("mention_kitchen", views.mention_kitchen, name="mention_kitchen"),
 ]
