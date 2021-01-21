@@ -3,6 +3,8 @@ from .models import CatMention, KitchenMention, EmergencyMention, Cat, Kitchen, 
 from django.contrib.auth.decorators import login_required
 from .sms import *
 from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 @login_required
@@ -126,6 +128,7 @@ def getEmergencyMentions(req):
     pass
 
 
+@csrf_exempt
 @login_required
 def newChat(req):
     if req.method == 'POST':
@@ -136,7 +139,6 @@ def newChat(req):
     return render(req, 'newchat.html')
 
 
-@login_required
 def getChat(req):
     latest = req.GET.get('latest')
     if not latest:
