@@ -4,7 +4,7 @@ from .models import *
 import base64
 from mainApps.models import User
 from django.contrib import auth
-
+from .mentions import *
 #todo https://xd.adobe.com/view/643f99fe-c8cd-4ea8-9a20-0f9c4019409a-316c/
 
 CDN_URL = "https://akamai-img.scdn.pw"
@@ -58,11 +58,54 @@ def map(request):
 def intro(request):
     return render(request,'intro.html')
 
-def info_cat(request):
-    return render(request,'info_cat.html')
+def info_cat(request, cat_id):
+    catInfo = get_object_or_404(Cat, pk=cat_id)
+    catFeatures = []
+    isFavorite = False
+
+    user = get_object_or_404(User, email=request.user)
+
+    if user.favoriteCat.filter(pk=cat_id):
+        isFavorite = True
+
+    if not catInfo.feature == "":
+        catFeatures = catInfo.feature.strip()
+        catFeatures = catFeatures.replace(" ", "")
+        catFeatures = catFeatures.split("#")
+        catFeatures.pop(0)
+
+        for i in range(len(catFeatures)):
+            catFeatures[i] = "#" + catFeatures[i]
+
+    catPost = get_object_or_404(CatPost, cat=catInfo)
+    catPhoto = catPost.catphoto_set.all()
+
+
+
+    return render(request,'info_cat.html', {"isFavorite":isFavorite, "catInfo": catInfo, "catFeatures": catFeatures, "catPhoto" : catPhoto})
+
+
+def addFavoriteCat(request, thisCat_id):
+
+    user = get_object_or_404(User, email=request.user)
+    cat = get_object_or_404(Cat, pk=thisCat_id)
+    user.favoriteCat.add(cat)
+
+    return redirect('info_cat', thisCat_id)
+
+def removeFavoriteCat(request, thisCat_id):
+    user = get_object_or_404(User, email=request.user)
+    cat = get_object_or_404(Cat, pk=thisCat_id)
+    user.favoriteCat.remove(cat)
+
+    return redirect('info_cat', thisCat_id)
+
+def mention_kitchen(request):
+    return render(request,'mention_kitchen.html')
 
 def info_kitchen(request):
     return render(request,'info_kitchen.html')
+
 
 def mypage(request):
     return render(request,'mypage.html')

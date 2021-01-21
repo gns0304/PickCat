@@ -8,11 +8,18 @@
                 <img src="{% static 'img/cat.png'%}">
             </div>
         </div>
-        <h3>공주</h3>
+        <h3>{{ catInfo.name }}</h3>
         <div class="buttonbox">
-            <a class="button">
+            {% if isFavorite %}
+                <a class="button" href="{% url 'removeFavoriteCat' catInfo.id %}">
+                <img src="{% static 'img/icon-pick.png'%}">
+                <span>UnPick</span>
+            {% else %}
+                <a class="button" href="{% url 'addFavoriteCat' catInfo.id %}">
                 <img src="{% static 'img/icon-pick.png'%}">
                 <span>Pick</span>
+            {% endif %}
+
             </a>
             <a class="button" href="#">
                 <img src="{% static 'img/icon-message.png'%}">
@@ -30,7 +37,13 @@
         <span class="unfold1"><img src="{% static 'img/direction-down.png'%}">&nbsp;펼치기</span>
         <div class="content">
             <div class="infobox">
-                안녕<br>안녕<br>안녕<br>안녕<br>안녕<br>안녕<br>안녕<br>안녕<br>안녕<br>안녕<br>안녕<br>안녕<br>안녕<br>
+                {{ catInfo.breed }}
+                {{ catInfo.get_isNeutered_display }}
+                {{ catInfo.get_gender_display }}
+                {% for tag in catFeatures %}
+                    {{ tag }}
+                {% endfor %}
+
             </div>
         </div>
     </article>
@@ -40,16 +53,11 @@
         <span class="unfold2"><img src="{% static 'img/direction-down.png'%}">&nbsp;펼치기</span>
         <div class="content">
             <div class="albumbox">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
-                <img src="{%static 'img/cat.png'%}">
+
+                {% for elem in catPhoto %}
+                    <img src="{{ elem.image_url }}">
+
+                {% endfor %}
             </div>
         </div>
     </article>
@@ -59,5 +67,4 @@
         <div class="content"></div>
     </article>
 </section>
-
 {% endblock %}
