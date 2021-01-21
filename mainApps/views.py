@@ -210,11 +210,11 @@ def join2(request):
     if request.method == "POST":
         print(request.user.email)
         print(1)
-        #user = get_object_or_404(User, email=request.user.email)
-        request.user.image = request.POST["image"]
-        request.user.nickname = request.POST["nickname"]
-        #user.image = request.POST["image"]
-        #user.nickname = request.POST["nickname"]
+        user = get_object_or_404(User, email=request.user.email)
+        #request.user.image = request.POST["image"]
+        #request.user.nickname = request.POST["nickname"]
+        user.image = request.POST["image"]
+        user.nickname = request.POST["nickname"]
         print(request.POST["nickname"])
         print(2)
         return render(request, 'join3.html')
