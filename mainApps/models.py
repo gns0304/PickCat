@@ -4,6 +4,8 @@ import uuid, os
 import base64
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.templatetags.static import static
+
 # Create your models here.
 
 User = settings.AUTH_USER_MODEL
@@ -36,7 +38,12 @@ class Kitchen(models.Model):
 
     @property
     def image_url(self):
-        return get_cdn_url(self.image.url)
+        if not self.image:
+            return static("img/kitchen.png")
+        else:
+            return get_cdn_url(self.image.url)
+
+
 
 
 class Cat(models.Model):
@@ -66,7 +73,10 @@ class Cat(models.Model):
 
     @property
     def image_url(self):
-        return get_cdn_url(self.image.url)
+        if not self.image:
+            return static("img/cat.png")
+        else:
+            return get_cdn_url(self.image.url)
 
 
 class CatPost(models.Model):
@@ -184,7 +194,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def image_url(self):
-        return get_cdn_url(self.image.url)
+        if not self.image:
+            return static("img/cat.png")
+        else:
+            return get_cdn_url(self.image.url)
 
 
 class ImageTest(models.Model):
