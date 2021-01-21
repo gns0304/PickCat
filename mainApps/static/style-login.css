@@ -102,7 +102,7 @@ header .topbar-sign span{
     border-radius: 10px;
 }
   
-#input-bar {
+.input-bar {
     border: 1px solid #CFCFCF;
   
     outline-style: none;
