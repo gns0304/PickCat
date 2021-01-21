@@ -282,6 +282,16 @@ def join4(request):
 def read_qr(req):
     return render(req, 'qr_reader.html')
 
+def readQRdetail(request, kitchen_id):
+    user = User.objects.get(email=request.user.email)
+    kitchen = Kitchen.objects.get(pk=kitchen_id)
+    user.checkIn = user.checkIn + 1
+    kitchen.checkIn = kitchen.checkIn + 1
+    user.recentCheckin = kitchen
+    user.save()
+    kitchen.save()
+    return redirect("info_kitchen", kitchen_id)
+
 
 def newchat(req):
     return render(req, 'newchat.html')

@@ -57,6 +57,7 @@ urlpatterns = [
          views.removeFavoriteCat, name="removeFavoriteCat"),
     path("mention_kitchen", views.mention_kitchen, name="mention_kitchen"),
     path("read_qr", views.read_qr, name="read_qr"),
+    path("readQr/<int:kitchen_id>", views.readQRdetail, name="readQRdetail"),
     path("newChat", mentions.newChat, name="newChat"),
     path("getChat", mentions.getChat, name="getChat"),
     path("newchat", views.newchat, name="newchat")

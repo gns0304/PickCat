@@ -3,13 +3,9 @@
 {% load static %}
 
 <section class="mypage">
-<<<<<<< HEAD
 
-    <h3>수지 집사님의 마이 픽캣스토리</h3>
-=======
-    
     <h3>{{ request.user.nickname}}님의 마이 픽캣스토리</h3>
->>>>>>> 5b1fff7222619873f18674c9f29f12264acef7cd
+
 
     <article>
         <div class="content">
@@ -33,38 +29,22 @@
     <article>
         <div class="content"> <!-- content2는 작은 박스 -->
             <div>
-<<<<<<< HEAD
-                <span>집사님은 급식소 프로 참석러</span>
-=======
                 <span>{{ request.user.address}}에서 픽캣 중!</span>
->>>>>>> 5b1fff7222619873f18674c9f29f12264acef7cd
+
                 <br>
                 <span>방문오아 배찌 획득완료!</span>
             </div>
         </div>
     </article>
 
-    <article>
-        <div class="content2"> <!-- content2는 작은 박스 -->
-            <span>체크인 급식소</span>
-            <br>
-            <span>5호관 숲 급식소</span>
-            <div class="hr"></div>
-            <div class="content"></div>
-        </div>
-    </article>
 
     <article>
         <div class="content2"> <!-- content2는 작은 박스 -->
-<<<<<<< HEAD
-            <span>급식소 체크인 </span>
-            <br>
-            <span>총 10회</span>
-=======
+
             <span>체크인 급식소</span>
             <br>
             <span>{{ user.recentCheckin }}</span>
->>>>>>> 5b1fff7222619873f18674c9f29f12264acef7cd
+
             <div class="hr"></div>
             <div class="content">급식소 체크인 총{{ user.checkIn }}회</div>
         </div>
