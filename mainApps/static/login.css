@@ -3,32 +3,39 @@
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-/* 상단 text */
+body{
+    min-height:800px;
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+}
 
-.container-sign1{
+.container{
     margin:0 auto;
     max-width:430px;
     width:100%;
-}
-
-header .topbar-sign1{
-    height:120px;
-    background-color:white;
     position:relative;
 }
 
-header .topbar-sign span{
-    transform:translate(-50%,0%);
-    position:absolute;
+/* 상단 text */
+
+header .topbar-sign{
+    position:relative;
+    width:90%;
+    margin:0 auto;
+    margin-bottom: 80px;
     text-align: center;
+    border-bottom: 1px solid #c2c2c2;
+    padding:70px 0 20px;
+}
+
+
+
+header .topbar-sign span{
     color:black;
-    font-size:15px;
+    font-size:16px;
     opacity: 1;
     letter-spacing: 1px;
-    top:50px;
-    bottom:30px;
-    left:50%;
-    z-index: 1;
 }
 
 
@@ -36,8 +43,29 @@ header .topbar-sign span{
 #main-title {
     font-size: 22px;
     color : black;
-    position : relative;
+    width:90%;
+    margin:0 auto;
+}
+#main-title > span{
+    line-height: 40px;
+}
 
+#main-title >span:first-child{
+    font-size: 22px;
+    font-weight: 700;
+    
+}
+#main-title >span:last-child{
+
+    font-size: 15px;
+}
+
+#login-maintitle{
+    font-size: 22px;
+    color : black;
+    width:90%;
+    margin:0 auto;
+    line-height: 35px;
 }
 
 
@@ -46,7 +74,6 @@ header .topbar-sign span{
 #div-link-register {
     font-size: 13px;
     color : #484848;
-    text-decoration: underline;
     text-align: left;
 }
 
@@ -65,9 +92,8 @@ header .topbar-sign span{
     align-items: center;
   
     /* size */
-    height: 7vh;
-    width: 40vw;
-    max-height: 50px;
+    width: 90%;
+    height: 50px;
     padding-top: 0;
     margin: 0 auto;
   
@@ -84,7 +110,7 @@ header .topbar-sign span{
 
     /* size */
     height: 48px;
-    width: 327px;
+    width: 100%;
     max-height: 50px;
     padding: 0 10px;
   
@@ -105,23 +131,17 @@ header .topbar-sign span{
 /* 하단 part */
 
 #btn-signin {
-    background-color: #CFCFCF 0% 0% no-repeat padding-box;
-    border: 1px solid #CFCFCF;
-    opacity: 1;
-
-    outline-style: none;
+    background-color: #b9b9b9;
+    height:50px;
     border-radius: 40px;
+    outline-style: none;
     display: flex;
     flex-direction: row;
     justify-content: center;
-  
-    top:557px;
-
-    height: 812px;
-    width: 375px;
-    max-height: 50px;
+    cursor:pointer;
+    width: 90%;
     margin: 0 auto;
-
+    margin-top:50px;
     /* border-radius: 10px; */
 
     font-size: 13px;
@@ -130,7 +150,6 @@ header .topbar-sign span{
     /* 글자 */
     font-size: 13px;
     color : white;
-    opacity: 1;
   }
 
 /* 가장 하단 part */
@@ -151,3 +170,8 @@ header .topbar-sign span{
     text-align: right;
     padding-left : 288px;
   }
+
+form{
+    display:block;
+    width:100%;
+}
