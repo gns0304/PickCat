@@ -10,8 +10,7 @@ urlpatterns = [
     path("mypage", views.mypage, name="mypage"),
     path("register", views.register, name="register"),
     path("register_cat", views.register_cat, name="register_cat"),
-    path("register_kitchen/<int:kitchen_id>",
-         views.register_kitchen, name="register_kitchen"),
+    path("register_kitchen", views.register_kitchen, name="register_kitchen"),
     path("chatting", views.chatting, name="chatting"),
     path("image_test", views.image_test, name="image_test"),
     path("", views.intro, name="intro"),
@@ -61,5 +60,4 @@ urlpatterns = [
     path("newChat", mentions.newChat, name="newChat"),
     path("getChat", mentions.getChat, name="getChat"),
     path("newchat", views.newchat, name="newchat")
-
 ]

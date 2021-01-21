@@ -1,58 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <title>register_cat</title>
-    <link rel="stylesheet" type="text/css" />
-  </head>
-
-  <body class="register_kitchen">
-    	
-<form action="{% url 'register_kitchen' %}" enctype="multipart/form-data" method="post" >
-{% csrf_token %}
-      1. name
-      <br />
-      <input type="text" name="name" />
-      <br />
-      2. address
-      <br />
-      <input type="text" name="address" />
-      <br />
-      3. 경위도
-      <br />
-        long : <input type="text" name="longitude" />
-        lat : <input type="text" name="latitude" />
-      <br />
-      4. 설명
-      <br />
-   <input type="text" name="description" />
-      <br />
-        5.사진
-     <input type="file" name="uploadedImage">
-      <button onclick="values()">확인</button>
-    </section>
-
-{#    <script type="text/javascript">#}
-{#      function values() {#}
-{#        var name = document.querySelectorAll('input[id="name"]:checked');#}
-{#        console.log(name);#}
-{#        var breed = document.querySelectorAll('input[id="bread"]:checked');#}
-{#        console.log(breed);#}
-{#        var isNeutered = document.getElementById('isNeutered').value;#}
-{#        var gender = document.getElementById('gender').value;#}
-{#        console.log(gender);#}
-{#        var feature = document.querySelectorAll(#}
-{#          'input[type="feature"]:checked'#}
-{#        );#}
-{#        console.log(feature);#}
-{#        var kitchenid = document.querySelectorAll('input[id="kitchenid"]:checked');#}
-{#        console.log(kitchenid);#}
-{#      }#}
-{#    </script>#}
-    </form>
-  </body>
-</html>
+<section class="register">
+  <form action="{% url 'register_kitchen' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <div class="register_header">
+      <a href="{% url 'register_cat'%}" class="button"><span>고양이 등록하기</span></a>
+      <a href="{% url 'register_kitchen'%}" class="button" style="color:#8B8CEC;"><span>급식소 등록하기</span></a>
+    </div>
+    <div class="register_article">
+      <span>급식소 사진 등록</span>
+      <input class="input_box" type="file" name="uploadedImage" style="line-height: 35px;">
+    </div>
+    <div class="register_article">
+      <span>급식소 기본 정보</span>
+      <input class="input_box" type="text" name="name" placeholder="  급식소의 이름을 입력해주세요">
+      <input class="input_box" type="text" name="address" placeholder="  급식소의 주소를 입력해주세요">
+      <div class="register_button">위치찾기</div>
+      <br><br>
+    </div>
+    <div class="register_article">
+      <span>급식소 설명</span>
+      <input class="input_box" type="text" name="description" placeholder="  급식소에 대한 의견을 적어주세요">
+    </div>
+    <div class="register_article"></div>
+    <input type="submit" value="완료">
+  </form>
+</section>
 {% endblock %}
