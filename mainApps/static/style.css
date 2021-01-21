@@ -93,7 +93,7 @@ header .bottombar .nav-right img{
 
 section[class="main"] article{
     background-color: #fafaff;
-    margin:5px;
+    margin:10px 0 0;
     border-radius: 12px;
 }
 section[class="main"] article h2{
@@ -109,17 +109,18 @@ section[class="main"] article .hr{
     height: 1px;
     margin : 0 auto;
 }
-.content{
+
+section[class="main"] .content{
     width:95%;
     margin : 0 auto;
     overflow-x: hidden;
 }
-.content .imgbox-container{
+section[class="main"] .content .imgbox-container{
     width:1000px;
     display:flex;
     position:relative;
 }
-.content .imgbox-container .imgbox{
+section[class="main"] .content .imgbox{
     padding-top:5px;
     width:85px;
     display:flex;
@@ -127,18 +128,18 @@ section[class="main"] article .hr{
     align-items:center;
 
 }
-.content .imgbox-container .imgbox img{
+section[class="main"] .content .imgbox img{
     pointer-events: none;
     border-radius: 100%;
     width:60px;
     height:60px;
     filter:drop-shadow(0px 5px 3px #d3d3d3);
 }
-.content .imgbox-container .imgbox img:hover{
+section[class="main"] .content .imgbox img:hover{
     transform: translate(0, -2px);
     filter:drop-shadow(0px 7px 3px #d3d3d3);
 }
-.content .imgbox-container .imgbox span{
+section[class="main"] .content .imgbox span{
     margin:5px 0 10px;
     font-size:11px;
 }

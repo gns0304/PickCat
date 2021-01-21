@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'style-info_cat.css' %}">
+    <link rel="stylesheet" href="{% static 'style-info_kitchen.css' %}">
     
     <link rel="shortcut icon" href="../static/img/icon-home.ico"/>
 </head>
@@ -21,7 +22,7 @@
             </div>
             <div class="bottombar">
                 <div class="nav-left">
-                    <a href="{% url 'chatting' %}"><img src="{% static 'img/icon-explore.png' %}"></a>
+                    <a href="{% url 'chatting' %}"><img src="{% static 'img/icon-live.png' %}" style="width:30px;"></a>
                     <a href="{% url 'register' %}"><img src="{% static 'img/icon-img.png' %}"></a>
                 </div>
                 <a href="{% url 'main' %}"><img src="{% static 'img/icon-home.png' %}" class="icon-home"></a>
