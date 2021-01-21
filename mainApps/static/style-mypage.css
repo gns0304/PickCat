@@ -1,0 +1,137 @@
+.container{
+    margin:0 auto;
+    max-width:430px;
+    width:100%;
+    position:relative;
+}
+
+section[class="mypage"] .content{
+    width:90%;
+    margin:0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+section[class="mypage"] .content2 {
+    width:40%;
+    margin:0 auto;
+    display: flex;
+
+    justify-content: space-around;
+    align-items: center;
+}
+
+section[class="mypage"] article{
+    background-color: #fafaff;
+    margin:0 0 10px;
+    border-radius: 12px;
+    padding-bottom:20px;
+}
+section[class="mypage"] article h2{
+    color: #8B8CEC;
+    font-size: 16px;
+    padding: 15px 0 0 20px;
+}
+
+/* main에서 가져온 My pick */
+
+section[class="main"] article{
+    background-color: #fafaff;
+    margin:10px 0 0;
+    border-radius: 12px;
+}
+section[class="main"] article h2{
+    color: #8B8CEC;
+    font-size: 16px;
+    padding: 15px 0 0 20px;
+}
+section[class="main"] article .hr{
+    position:relative;
+    top:-8px;
+    width:95%;
+    background-color: rgb(238, 238, 238);
+    height: 1px;
+    margin : 0 auto;
+}
+
+section[class="main"] .content{
+    width:95%;
+    margin : 0 auto;
+    overflow-x: hidden;
+}
+section[class="main"] .content .imgbox-container{
+    width:1000px;
+    display:flex;
+    position:relative;
+}
+section[class="main"] .content .imgbox{
+    padding-top:5px;
+    width:85px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+
+}
+section[class="main"] .content .imgbox img{
+    pointer-events: none;
+    border-radius: 100%;
+    width:60px;
+    height:60px;
+    filter:drop-shadow(0px 5px 3px #d3d3d3);
+}
+section[class="main"] .content .imgbox img:hover{
+    transform: translate(0, -2px);
+    filter:drop-shadow(0px 7px 3px #d3d3d3);
+}
+section[class="main"] .content .imgbox span{
+    margin:5px 0 10px;
+    font-size:11px;
+}
+
+/* mention-kitchen에서 가져옴 */
+
+section[class="mypage"] .mention_items{
+    width:90%;
+    margin:0 auto;
+    padding:10px 0;
+}
+
+section[class="mypage"] .mention_items:first-child{
+    text-align: center;
+    padding:15px 0;
+    border-bottom:1px solid #ececec;
+    color:#8B8CEC;
+}
+
+section[class="mypage"] .mention_items:first-child > img{
+    width: 15px;
+    transform: translate(0,20%);
+}
+
+section[class="mypage"] .mention_items:nth-child(2){
+    border-bottom:1px solid #ececec;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+section[class="mypage"] .mention_items:nth-child(2) >img{
+    margin-top:30px;
+    width:100px;
+    border-radius: 100%;
+}
+section[class="mypage"] .mention_items:nth-child(2) >span{
+    color:#797979;
+    padding:20px 0;
+}
+
+section[class="mypage"] .mention_items:nth-child(3){
+    color:#8B8CEC;
+    padding:20px 0;
+    font-size:15px;
+}
+section[class="mypage"] .mention_items:nth-child(3){
+    color:#8B8CEC;
+    padding:20px 0;
+    font-size:15px;
+}

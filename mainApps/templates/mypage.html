@@ -1,32 +1,90 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+
 <section class="mypage">
-마이페이지
+    
+    <h3>수지 집사님의 마이 픽캣스토리</h3>
+
+    <form method="POST" action="">
+        <div class="mention_items" style="width:100%;">
+            <img src="{% static 'img/icon-marker.png'%}">
+            <span>{{ kitchen.name }}</span>
+        </div>
+        <div class="mention_items">
+            <img src="{% static 'img/cat.png'%}">
+            <span>{{ request.user.nickname }} 집사님의 <span style="color:#8B8CEC">픽캣멘션</span></span>
+        </div>
 
     <article>
-        <div class="imgInfobox">
-            <span>{{ user.nickname}} 집사님의 픽캣스토리</span>
+        <div class="content"> <!-- content2는 작은 박스 -->
             <div>
-                <span>{{user.address}}에서 픽캣 중!</span>
-                <span>급식소 체크인 총 {{ user.checkIn }}회</span>
+                <span>인천 미추홀구 용현동에서 픽캣 중!</span>
                 <br>
-                <span>동네 위치 변경 </span>
+                <span>동네 위치 변경</span>
+            </div>
+        </div>
+    </article>
 
-                {% if attendaceBadge == True %}
-                    집사님은 급식소 프로참석러 방문왕 배찌 획득완료!
-                {% endif %}
+    <article>
+        <div class="content2"> <!-- content2는 작은 박스 -->
+            <span>방문왕 배찌!</span>
+            <br>
+            <span>획득완료</span>
+            <div class="hr"></div>
+            <div class="content"></div>
+        </div>
+    </article>
 
+    <article>
+        <div class="content2"> <!-- content2는 작은 박스 -->
+            <span>??</span>
+            <br>
+            <span>!!!!!</span>
+            <div class="hr"></div>
+            <div class="content"></div>
+        </div>
+    </article>
 
-                {% for cat in user.favoriteCat.all %}
-                    <img src="{{ cat.image_url }}" >
-                    <a href="{% url "info_cat" cat.id %}">{{ cat.name }}</a>
+</section>
+
+<section class="main">
+    <article>
+        <h2>My pick</h2>
+        <div class="hr"></div>
+        <div class="content">
+            <div class="imgbox-container">
+                {% for cat in Cats %}
+                <div class="imgbox">
+                    <a href="{% url 'info_cat' cat.id %}"><img src="{{ cat.image_url }}"></a>
+                    <span>{{ cat.name }}</span>
+                </div>
                 {% endfor %}
             </div>
         </div>
     </article>
 </section>
 
+<section class = "main">
+    <article>
+        <h2>내가 쓴 멘션 모아보기</h2>
+        <div class="hr"></div>
+        <div class="content">
+            {% for mention in recentMention %}
+                {% if mention.type == "K" %}
+                     <a href="{% url "info_kitchen" mention.kitchenmention_set.first.target.id %}"> @ {{ mention.kitchenmention_set.first.target }}</a>
+                    {{ mention.mention }}
+                {% endif %}
+                {% if mention.type == "C" %}
+                     <a href="{% url "info_cat" mention.catmention_set.first.target.id %}"> @ {{ mention.catmention_set.first.target }}</a>
+                    {{ mention.mention }}
+                {% endif %}
+    
 
+            {% endfor %}
+    
+        </div>
+    </article>
+</section>
 
 {% endblock %}
