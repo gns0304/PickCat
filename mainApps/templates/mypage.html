@@ -35,7 +35,9 @@
             <div class="mypage_box4">
                 <div>
                     <span style="color:#8B8CEC; font-size: 14px;">체크인 급식소</span>
-                    <a href="{% url "info_kitchen" user.recentCheckin.id %}" style="text-decoration: underline; color:rgb(87, 87, 87); font-weight: 600;">{{ user.recentCheckin }}</a>
+                    {% if user.recentCheckin %}
+                        <a href="{% url "info_kitchen" user.recentCheckin.id %}" style="text-decoration: underline; color:rgb(87, 87, 87); font-weight: 600;">{{ user.recentCheckin }}</a>
+                    {% endif %}
                 </div>
                 <div style="color:rgb(87, 87, 87); font-size: 14px;">
                     급식소 체크인&nbsp;<span style="color:#8B8CEC;">총 {{ user.checkIn }}회</span>
