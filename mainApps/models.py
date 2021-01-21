@@ -190,7 +190,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['nickname']
+
 
     @property
     def image_url(self):
