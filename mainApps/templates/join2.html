@@ -24,8 +24,8 @@
     <div id="main-title">
       <span id="title-1" style="color: black">프로필 설정 </span><br />
       <span id="title-2" style="color: black"
-        >닉네임과 프로필 사진을 등록해주세요 </span
-      >
+        >닉네임과 프로필 사진을 등록해주세요
+      </span>
     </div>
 
     <form method="POST" action="{% url 'join2'%}">
@@ -34,23 +34,32 @@
 
       <div class="input-positioner">
         <div class="input-box-wrapper">
-            <img src="../static/img/join2-user.png" id="join2-user-image"
-                  style = "width: 165px; height: 161px;">
-            <input type="file" id="input-bar2" name="image" />
-
-            <br />
-        <div class="input-bar-wrapper">
-          <input
-            name="nickname"
-            id="input-bar-join2"
-            type="text"
-            placeholder="닉네임을 입력해주세요"
+          <img
+            src="../static/img/join2-user.png"
+            id="join2-user-image"
+            style="width: 165px; height: 161px"
           />
-        </div>
-        <br />
+          file<input type="file" id="input-bar2" name="image" /> image<input
+            {%
+            csrf_token
+            %}
+            type="image"
+            src="../static/img/join2-user.png"
+            alt="제출버튼"
+          />
 
+          <br />
+          <div class="input-bar-wrapper">
+            <input
+              name="nickname"
+              id="input-bar-join2"
+              type="text"
+              placeholder="닉네임을 입력해주세요"
+            />
+          </div>
+          <br />
         </div>
-        
+
         <div class="">
           <button id="btn-signin" type="submit" onclick="location.href='join3'">
             다음
