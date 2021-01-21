@@ -153,6 +153,7 @@ def join(request):
 
 def join2(request):
     return render(request,'join2.html')
+    
 
 def join3(request):
     return render(request,'join3.html')
