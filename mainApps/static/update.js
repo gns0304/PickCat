@@ -1,6 +1,6 @@
 window.latest = 0;
 let chatbox = document.getElementById('chatbox')
-const ENDPOINT = 'getCatMentions'
+const ENDPOINT = 'getKitchenMentions'
 function update() {
     let url = `/${ENDPOINT}?id=1&latest=${window.latest}`
     xhr = new XMLHttpRequest();
@@ -19,8 +19,8 @@ function update() {
 }
 function writeData(data) {
     for (k in data) {
-        chatbox.innerHTML += `<span>${data[k].text}</span><br>\n`
+        chatbox.innerHTML += `<span>${data[k].text}</span><br>\n`;
     }
 }
-function update()
-window.setInterval(update, 3000)
+update()
+window.setInterval(update, 3000);
