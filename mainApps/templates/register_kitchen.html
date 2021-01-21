@@ -65,11 +65,13 @@
         }
         document.getElementById('longitude').value = x;
         document.getElementById('latitude').value = y;
+        window.address_found = 1;
       }
     }
   }
   function verifyForm(e) {
-    if (!"폼 오류확인 if문") {
+    if (!window.address_found) {
+      alert('위치 정보를 불러와주세요');
       return false
     }
     document.querySelectorAll('input').forEach(i => i.disabled = false)
