@@ -1,3 +1,4 @@
+from .storage_config import *
 import os
 
 SECRET_KEY = os.environ['SECRET_KEY']
@@ -14,4 +15,6 @@ DATABASES = {
         'PORT': '',
     }
 }
-from .storage_config import *
+
+if(os.environ.get('DEBUG1')):
+    DEBUG = True
