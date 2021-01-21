@@ -3,13 +3,13 @@
 {% load static %}
 <section class="info_kitchen">
     <article>
-        <img class="img_kitchen" src="{% static 'img/kitchen.png'%}">
+        <img class="img_kitchen" src="{{kitchenInfo.image_url}}">
         <div class="imgInfobox">
-            <span>5호관 숲 급식소</span>
+            <span>{{ kitchenInfo.name}}</span>
             <div>
                 <img src="{% static 'img/icon-checkin.png'%}">
                 <span>오늘 체크인 </span>
-                <span>3명</span>
+                <span>{{ kitchenInfo.checkIn }}명</span>
             </div>
         </div>
     </article>
@@ -17,22 +17,13 @@
         <h2 style="font-size:13px;">급식소에 자주 오는 친구들</h2>
         <div class="hr"></div>
         <div class="content">
-            <a class="imgbox">
-                <img src="{% static 'img/cat.png'%}">
-                <span>공주</span>
+
+            {% for cat in kitchenInfo.cat_set.all %}
+                    <a class="imgbox" href="{% url 'info_cat' cat.id %}">
+                <img src="{{cat.image_url}}">
+                <span>{{ cat.name }}</span>
             </a>
-            <a class="imgbox">
-                <img src="{% static 'img/cat.png'%}">
-                <span>공주</span>
-            </a>
-            <a class="imgbox">
-                <img src="{% static 'img/cat.png'%}">
-                <span>공주</span>
-            </a>
-            <a class="imgbox">
-                <img src="{% static 'img/cat.png'%}">
-                <span>공주</span>
-            </a>
+            {% endfor %}
         </div>
     </article>
     <div class="buttonbox2">
@@ -40,7 +31,18 @@
             <img src="{% static 'img/icon-barcode.png'%}">
             <span>QR출석하기</span>
         </a>
-        <a class="button" href="{% url 'mention_kitchen'%}">
+
+            {% if isFavorite %}
+                <a class="button" href="{% url 'removeFavoriteKitchen' kitchenInfo.id %}">
+                <img src="{% static 'img/icon-pick.png'%}">
+                <span>UnPick</span>
+            {% else %}
+                <a class="button" href="{% url 'addFavoriteKitchen' kitchenInfo.id %}">
+                <img src="{% static 'img/icon-pick.png'%}">
+                <span>Pick</span>
+            {% endif %}
+
+        <a class="button">
             <img src="{% static 'img/icon-message.png'%}">
             <span>멘션쓰기</span>
         </a>
@@ -50,6 +52,7 @@
         <div class="hr"></div>
         <div class="content"></div>
     </article>
+
 </section>
 
 {% endblock %}

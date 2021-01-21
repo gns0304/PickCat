@@ -16,40 +16,34 @@ def main(request):
     userObject = User.objects.get(email=request.user)
     favoriteCats = userObject.favoriteCat.all()
     favoriteKitchens = userObject.favoriteKitchen.all()
-    tempMentions = Mention.objects.none() #멘션들을 저장할 리스트 임시변수
+    tempMentions = Mention.objects.none()
 
-    if not favoriteCats:
+    if favoriteCats:
         for cat in favoriteCats:
             tempCat = cat.catmention_set.all()
-            for catMention in tempCat:
-                tempMentions = tempMentions.union(catMention.mention.all())
+            tempEmergency = cat.emergencymention_set.all()
+            for catmention in tempCat:
+                tempMentions = tempMentions.union(Mention.objects.filter(pk=catmention.mention.id))
 
-    if not favoriteKitchens:
+            for emergencymention in tempEmergency:
+                tempMentions = tempMentions.union(Mention.objects.filter(pk=emergencymention.mention.id))
+
+    if favoriteKitchens:
         for kitchen in favoriteKitchens:
             tempKitchen = kitchen.kitchenmention_set.all()
-            for kitchenMention in tempKitchen:
-                tempMentions = tempMentions.union(kitchenMention.mention.all())
+            for kitchenmention in tempKitchen:
+                tempMentions = tempMentions.union(Mention.objects.filter(pk=kitchenmention.mention.id))
 
-    if not tempMentions:
-        return render(request, 'main.html', {'Cats': favoriteCats, 'Kitchens': favoriteKitchens})
-    else:
-        tempMention = tempMentions.order_by('-createdAt')[0]
+    tempMention = tempMentions.order_by('-createdAt')[:10]
 
-        if tempMention.type == "K":
-            mentionTarget = tempMention.kitchenmention_set.first().target
-        elif tempMention.type == "C":
-            mentionTarget = tempMention.catmention_set.first().target
 
-        return render(request, 'main.html',
-                      {'Cats': favoriteCats, 'Kitchens': favoriteKitchens, 'recentMention': tempMention.mention,
-                       "mentionTarget": mentionTarget})
+    return render(request, 'main.html',
+                      {'Cats': favoriteCats, 'Kitchens': favoriteKitchens, 'recentMention' : tempMention})
 
     # mentionTarget.longitude등으로 접근가능
     # mentionTarget.breed등으로도 접근가능
 
     # Todo 사진 없으면 오류나니 디폴트 혹은 분기설정해서 오류안나게 하기
-
-
 
 
 def map(request):
@@ -77,12 +71,15 @@ def info_cat(request, cat_id):
         for i in range(len(catFeatures)):
             catFeatures[i] = "#" + catFeatures[i]
 
-    catPost = get_object_or_404(CatPost, cat=catInfo)
-    catPhoto = catPost.catphoto_set.all()
+    catPost = CatPost.objects.filter(cat=catInfo)
 
-
+    if not catPost:
+        return render(request,'info_cat.html', {"isFavorite":isFavorite, "catInfo": catInfo, "catFeatures": catFeatures,})
+    else:
+        catPhoto = catPost.catphoto_set.all()
 
     return render(request,'info_cat.html', {"isFavorite":isFavorite, "catInfo": catInfo, "catFeatures": catFeatures, "catPhoto" : catPhoto})
+
 
 
 def addFavoriteCat(request, thisCat_id):
@@ -100,11 +97,34 @@ def removeFavoriteCat(request, thisCat_id):
 
     return redirect('info_cat', thisCat_id)
 
+def addFavoriteKitchen(request, thisKitchen_id):
+
+    user = get_object_or_404(User, email=request.user)
+    kitchen = get_object_or_404(Kitchen, pk=thisKitchen_id)
+    user.favoriteKitchen.add(kitchen)
+
+    return redirect('info_kitchen', thisKitchen_id)
+
+def removeFavoriteKitchen(request, thisKitchen_id):
+    user = get_object_or_404(User, email=request.user)
+    kitchen = get_object_or_404(Kitchen, pk=thisKitchen_id)
+    user.favoriteKitchen.remove(kitchen)
+
+    return redirect('info_kitchen', thisKitchen_id)
+
 def mention_kitchen(request):
     return render(request,'mention_kitchen.html')
 
-def info_kitchen(request):
-    return render(request,'info_kitchen.html')
+def info_kitchen(request, kitchen_id):
+    kitchenInfo = get_object_or_404(Kitchen, pk=kitchen_id)
+    isFavorite = False
+
+    user = get_object_or_404(User, email=request.user)
+    if user.favoriteKitchen.filter(pk=kitchen_id):
+        isFavorite = True
+
+    return render(request, 'info_kitchen.html',
+                  {"isFavorite": isFavorite, "kitchenInfo": kitchenInfo})
 
 
 def mypage(request):

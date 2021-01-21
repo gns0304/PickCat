@@ -9,7 +9,7 @@
             <div class="imgbox-container">
                 {% for cat in Cats %}
                 <div class="imgbox">
-                    <a href="{% url 'info_cat'%}"><img src="{{ cat.image_url }}"></a>
+                    <a href="{% url 'info_cat' cat.id %}"><img src="{{ cat.image_url }}"></a>
                     <span>{{ cat.name }}</span>
                 </div>
                 {% endfor %}
@@ -20,12 +20,19 @@
         <h2>픽켓 실시간</h2>
         <div class="hr"></div>
         <div class="content">
-            <!--{#TODO recentMention의 경우에는 멘션 텍스트만을 보여줍니다#}-->
-            {{ recentMention }}
-            <!--{#TODO mentionTarget의 경우에는 cat혹은 kitchen 모델의 정보에 접근할 수 있습니다#}-->
-            <!--{#TODO 급식소의 경우 mentionTarget.longitude등으로 접근가능 #}-->
-            <!--{#TODO 고양이의 경우 mentionTarget.breed등으로도 접근가능#}-->
-            {{ mentionTarget }}
+            {% for mention in recentMention %}
+                {% if mention.type == "K" %}
+                     <a href=""> @ {{ mention.kitchenmention_set.first.target }}</a>
+                    {{ mention.mention }}
+                {% endif %}
+                {% if mention.type == "C" %}
+                     <a href="{% url "info_cat" mention.catmention_set.first.target.id %}"> @ {{ mention.catmention_set.first.target }}</a>
+                    {{ mention.mention }}
+                {% endif %}
+
+
+            {% endfor %}
+
         </div>
     </article>
     <article>
@@ -34,7 +41,7 @@
         <div class="content">
             {% for kitchen in Kitchens %}
                 <img src="{{ kitchen.image_url }}">
-                {{ kitchen.name }}
+                <a href="{% url "info_kitchen" kitchen.id %}">{{ kitchen.name }}</a>
                 {{ kitchen.checkIn }}
             {% endfor %}
         </div>
