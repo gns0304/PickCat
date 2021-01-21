@@ -72,3 +72,37 @@ body{
     color: #8B8CEC;
     opacity: 1;
 }
+
+/* join4.html */
+
+#btn-signin-join4 {
+    top: 556px;
+    left: 24px;
+
+    width: 327px;
+    height: 48px;
+    margin-top: 77px;
+
+    background: var(--unnamed-color-8b8cec) 0% 0% no-repeat padding-box;
+    background: #8B8CEC 0% 0% no-repeat padding-box;
+    border: 1px solid #CFCFCF;
+    border-radius: 24px;
+    opacity: 1;
+
+    color: var(--unnamed-color-f7f8f9);
+    text-align: center;
+    letter-spacing: 0px;
+    color: #F7F8F9;
+
+}
+
+.input-positioner-join4 {
+    position: relative;
+    top: 20px;
+    display: block;
+    
+    text-align: center;
+    letter-spacing: 0px;
+    color: #484848;
+    opacity: 1;
+}

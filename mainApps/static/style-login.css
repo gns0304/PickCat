@@ -42,9 +42,10 @@ header .topbar-sign span{
 
 #main-title .title-1 span{
     font-size: 22px;
-    color : black;
+    color : #484848;
     width:90%;
     margin:0 auto;
+    opacity: 1;
 }
 #main-title > span{
     line-height: 40px;
