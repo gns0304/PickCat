@@ -202,4 +202,5 @@ def join3(request):
 def join4(request):
     return render(request,'join4.html')
 
-    return render(request, 'join.html')
+def read_qr(req):
+    return render(req,'qr_reader.html')
