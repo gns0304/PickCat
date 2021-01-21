@@ -25,7 +25,7 @@
                 <img src="{% static 'img/icon-message.png'%}">
                 <span>멘션쓰기</span>
             </a>
-            <a class="button">
+            <a class="button" href="{% url "emergency" catInfo.id %}">
                 <img src="{% static 'img/icon-alarm.png'%}">
                 <span>위급상황</span>
             </a>
