@@ -3,34 +3,43 @@
 {% load static %}
 
 <section class="mypage">
-    
+
     <h3>수지 집사님의 마이 픽캣스토리</h3>
 
-    <form method="POST" action="">
-        <div class="mention_items" style="width:100%;">
-            <img src="{% static 'img/icon-marker.png'%}">
-            <span>{{ kitchen.name }}</span>
+    <article>
+        <div class="content">
+            
+            <img src="{% static 'img/icon-mypage.png'%}">
+            
+            <div class="mention_items" style="width:100%;">
+                <img src="{% static 'img/icon-marker.png'%}">
+                <span>인천 미추홀구 용현동에서</span><span>픽캣 중!</span>
+            </div>
+
+            <div class="">
+                <button id="btn-signin-mypage" type="submit" onclick="location.href='join4'">
+                동네 위치 변경
+                </button>
+            </div>
+
         </div>
-        <div class="mention_items">
-            <img src="{% static 'img/cat.png'%}">
-            <span>{{ request.user.nickname }} 집사님의 <span style="color:#8B8CEC">픽캣멘션</span></span>
-        </div>
+    </article>
 
     <article>
         <div class="content"> <!-- content2는 작은 박스 -->
             <div>
-                <span>인천 미추홀구 용현동에서 픽캣 중!</span>
+                <span>집사님은 급식소 프로 참석러</span>
                 <br>
-                <span>동네 위치 변경</span>
+                <span>방문오아 배찌 획득완료!</span>
             </div>
         </div>
     </article>
 
     <article>
         <div class="content2"> <!-- content2는 작은 박스 -->
-            <span>방문왕 배찌!</span>
+            <span>체크인 급식소</span>
             <br>
-            <span>획득완료</span>
+            <span>5호관 숲 급식소</span>
             <div class="hr"></div>
             <div class="content"></div>
         </div>
@@ -38,9 +47,9 @@
 
     <article>
         <div class="content2"> <!-- content2는 작은 박스 -->
-            <span>??</span>
+            <span>급식소 체크인 </span>
             <br>
-            <span>!!!!!</span>
+            <span>총 10회</span>
             <div class="hr"></div>
             <div class="content"></div>
         </div>
