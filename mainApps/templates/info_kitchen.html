@@ -40,7 +40,7 @@
             <img src="{% static 'img/icon-barcode.png'%}">
             <span>QR출석하기</span>
         </a>
-        <a class="button">
+        <a class="button" href="{% url 'mention_kitchen'%}">
             <img src="{% static 'img/icon-message.png'%}">
             <span>멘션쓰기</span>
         </a>
@@ -50,7 +50,6 @@
         <div class="hr"></div>
         <div class="content"></div>
     </article>
-
 </section>
 
 {% endblock %}

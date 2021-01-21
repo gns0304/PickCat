@@ -17,7 +17,7 @@ body{
 }
 
 header .topbar{
-    height:120px;
+    height:70px;
     background-color:#8B8CEC;
     position:relative;
 }
@@ -29,7 +29,7 @@ header .topbar span{
     color:white;
     font-size:21px;
     letter-spacing: 1px;
-    bottom:30px;
+    bottom:20px;
     left:50%;
     z-index: 1;
 }
@@ -151,13 +151,6 @@ section[class="main"] .content .imgbox span{
 }
 
 
-/*map.html*/
-section[class="map"] article{
-    background-color: #fafaff;
-    margin:5px;
-    padding:20px 0;
-}
-
 /* base.html */
 .top{
     display : none;
@@ -199,3 +192,117 @@ section[class="map"] article{
     z-index: 1004;
     background-color: RED;
 }
+
+
+
+
+/* map.html*/
+section[class="map"] .map_box{
+    position: absolute;
+    background-color: white;
+    top:430px;
+    height: 100px;
+    left:50%;
+    padding: 0 10px;
+    transform: translate(-50%,0);
+    z-index: 999;
+    width:90%;
+    filter:drop-shadow(0px 3px 10px #b4b4b4);
+    display: flex;
+    align-items: center;
+}
+
+section[class="map"] .map_box >img{
+    width:80px;
+    height:80px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+section[class="map"] .map_box .map_comment{
+    padding-left: 30px;
+    font-size: 14px;
+    line-height: 25px;
+    height:60%;
+}
+section[class="map"] .map_box> .icon_out{
+    color:#707070;
+    position:absolute;
+    right:10px;
+    top:5px;
+    cursor:pointer;
+}
+
+
+/* input 기본 스타일 초기화 */
+
+input { 
+    -webkit-appearance : none;
+    -moz-appearance:none;
+    appearance:none;
+    }
+    /* IE10 이상에서 input box에 추가된 지우기 버튼 제거 */
+    
+    input::-ms-clear { display:none;}
+    
+    
+    
+    /* input type number 에서 화살표 제거 */
+    
+    input[type=number]::-webkit-inner-spin-button,
+    
+    input[type=number]::-webkit-out-spin-button {
+    
+    -webkit-appearance: none;
+    
+    -moz-appearance:none;
+    
+    appearance:none;
+    
+    }
+    
+    
+    
+    /* select box 스타일 초기화 */
+    
+    select {
+    
+    -webkit-appearance: none;
+    
+    -moz-appearance:none;
+    
+    appearance:none;
+    
+    }
+    
+    
+    
+    /* IE에서 Select box 화살표 제거 */
+    
+    select::-ms-expand { display:none; }
+    
+    
+    
+    
+    
+    /*Firefox에서 input number 화살표 없애는 방법*/
+    
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+    
+    -webkit-appearance: none;
+    
+    -mox-appearance: none;
+    
+    appearance: none;
+    
+    }
+    
+    
+    
+    /* input number의 외형을 텍스트필드로 바꿔줘야한다 */
+    
+    input[type=number] {
+    
+    -moz-appearance:textfield; 
+    
+    }
