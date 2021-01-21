@@ -81,6 +81,7 @@ def info_cat(request, cat_id):
     return render(request,'info_cat.html', {"isFavorite":isFavorite, "catInfo": catInfo, "catFeatures": catFeatures, "catPhoto" : catPhoto})
 
 
+
 def addFavoriteCat(request, thisCat_id):
 
     user = get_object_or_404(User, email=request.user)
@@ -96,11 +97,34 @@ def removeFavoriteCat(request, thisCat_id):
 
     return redirect('info_cat', thisCat_id)
 
+def addFavoriteKitchen(request, thisKitchen_id):
+
+    user = get_object_or_404(User, email=request.user)
+    kitchen = get_object_or_404(Kitchen, pk=thisKitchen_id)
+    user.favoriteKitchen.add(kitchen)
+
+    return redirect('info_kitchen', thisKitchen_id)
+
+def removeFavoriteKitchen(request, thisKitchen_id):
+    user = get_object_or_404(User, email=request.user)
+    kitchen = get_object_or_404(Kitchen, pk=thisKitchen_id)
+    user.favoriteKitchen.remove(kitchen)
+
+    return redirect('info_kitchen', thisKitchen_id)
+
 def mention_kitchen(request):
     return render(request,'mention_kitchen.html')
 
-def info_kitchen(request):
-    return render(request,'info_kitchen.html')
+def info_kitchen(request, kitchen_id):
+    kitchenInfo = get_object_or_404(Kitchen, pk=kitchen_id)
+    isFavorite = False
+
+    user = get_object_or_404(User, email=request.user)
+    if user.favoriteKitchen.filter(pk=kitchen_id):
+        isFavorite = True
+
+    return render(request, 'info_kitchen.html',
+                  {"isFavorite": isFavorite, "kitchenInfo": kitchenInfo})
 
 
 def mypage(request):
