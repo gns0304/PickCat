@@ -9,50 +9,44 @@ from django.contrib import auth
 
 CDN_URL = "https://akamai-img.scdn.pw"
 # Create your views here.
+
+
 @login_required
 def main(request):
     # Todo 좋아하는 고양이랑 장소가 없을 때 각각 예외처리 해주기
     userObject = User.objects.get(email=request.user)
     favoriteCats = userObject.favoriteCat.all()
     favoriteKitchens = userObject.favoriteKitchen.all()
-<<<<<<< HEAD
     tempMentions = Mention.objects.none()
-=======
-    tempMentions = Mention.objects.none()  # 멘션들을 저장할 리스트 임시변수
->>>>>>> duwls2
 
     if favoriteCats:
         for cat in favoriteCats:
             tempCat = cat.catmention_set.all()
             tempEmergency = cat.emergencymention_set.all()
             for catmention in tempCat:
-                tempMentions = tempMentions.union(Mention.objects.filter(pk=catmention.mention.id))
+                tempMentions = tempMentions.union(
+                    Mention.objects.filter(pk=catmention.mention.id))
 
             for emergencymention in tempEmergency:
-                tempMentions = tempMentions.union(Mention.objects.filter(pk=emergencymention.mention.id))
+                tempMentions = tempMentions.union(
+                    Mention.objects.filter(pk=emergencymention.mention.id))
 
     if favoriteKitchens:
         for kitchen in favoriteKitchens:
             tempKitchen = kitchen.kitchenmention_set.all()
             for kitchenmention in tempKitchen:
-                tempMentions = tempMentions.union(Mention.objects.filter(pk=kitchenmention.mention.id))
+                tempMentions = tempMentions.union(
+                    Mention.objects.filter(pk=kitchenmention.mention.id))
 
-<<<<<<< HEAD
     tempMention = tempMentions.order_by('-createdAt')[:10]
-=======
     if not tempMentions:
         return render(
-            request, "main.html", {"Cats": favoriteCats, "Kitchens": favoriteKitchens}
+            request, "main.html", {"Cats": favoriteCats,
+                                   "Kitchens": favoriteKitchens}
         )
     else:
         tempMention = tempMentions.order_by("-createdAt")[0]
->>>>>>> duwls2
 
-
-<<<<<<< HEAD
-    return render(request, 'main.html',
-                      {'Cats': favoriteCats, 'Kitchens': favoriteKitchens, 'recentMention' : tempMention})
-=======
         return render(
             request,
             "main.html",
@@ -63,7 +57,6 @@ def main(request):
                 "mentionTarget": mentionTarget,
             },
         )
->>>>>>> duwls2
 
     # mentionTarget.longitude등으로 접근가능
     # mentionTarget.breed등으로도 접근가능
@@ -98,18 +91,12 @@ def info_cat(request, cat_id):
         for i in range(len(catFeatures)):
             catFeatures[i] = "#" + catFeatures[i]
 
-<<<<<<< HEAD
     catPost = CatPost.objects.filter(cat=catInfo)
 
     if not catPost:
-        return render(request,'info_cat.html', {"isFavorite":isFavorite, "catInfo": catInfo, "catFeatures": catFeatures,})
+        return render(request, 'info_cat.html', {"isFavorite": isFavorite, "catInfo": catInfo, "catFeatures": catFeatures, })
     else:
         catPhoto = catPost.catphoto_set.all()
-
-    return render(request,'info_cat.html', {"isFavorite":isFavorite, "catInfo": catInfo, "catFeatures": catFeatures, "catPhoto" : catPhoto})
-=======
-    catPost = get_object_or_404(CatPost, cat=catInfo)
-    catPhoto = catPost.catphoto_set.all()
 
     return render(
         request,
@@ -121,8 +108,6 @@ def info_cat(request, cat_id):
             "catPhoto": catPhoto,
         },
     )
->>>>>>> duwls2
-
 
 
 def addFavoriteCat(request, thisCat_id):
@@ -142,7 +127,6 @@ def removeFavoriteCat(request, thisCat_id):
     return redirect("info_cat", thisCat_id)
 
 
-<<<<<<< HEAD
 def addFavoriteKitchen(request, thisKitchen_id):
 
     user = get_object_or_404(User, email=request.user)
@@ -151,6 +135,7 @@ def addFavoriteKitchen(request, thisKitchen_id):
 
     return redirect('info_kitchen', thisKitchen_id)
 
+
 def removeFavoriteKitchen(request, thisKitchen_id):
     user = get_object_or_404(User, email=request.user)
     kitchen = get_object_or_404(Kitchen, pk=thisKitchen_id)
@@ -158,11 +143,13 @@ def removeFavoriteKitchen(request, thisKitchen_id):
 
     return redirect('info_kitchen', thisKitchen_id)
 
+
 def mention_kitchen(request, thisKitchen_id):
 
     kitchen = get_object_or_404(Kitchen, pk=thisKitchen_id)
 
-    return render(request,'mention_kitchen.html', {"kitchen": kitchen})
+    return render(request, 'mention_kitchen.html', {"kitchen": kitchen})
+
 
 def info_kitchen(request, kitchen_id):
     kitchenInfo = get_object_or_404(Kitchen, pk=kitchen_id)
@@ -174,14 +161,14 @@ def info_kitchen(request, kitchen_id):
 
     return render(request, 'info_kitchen.html',
                   {"isFavorite": isFavorite, "kitchenInfo": kitchenInfo})
-=======
+
+
 def mention_kitchen(request):
     return render(request, "mention_kitchen.html")
 
 
 def info_kitchen(request):
     return render(request, "info_kitchen.html")
->>>>>>> duwls2
 
 
 def mypage(request):
@@ -203,7 +190,8 @@ def register_cat(request):
         post.feature = request.POST["feature"]
         post.image = request.FILES["uploadedImage"]
         post.save()
-        post.favoriteKitchen.add(Kitchen.objects.get(pk=request.POST["kitchenid"]))
+        post.favoriteKitchen.add(
+            Kitchen.objects.get(pk=request.POST["kitchenid"]))
 
     return render(request, "register_cat.html")
 
@@ -317,10 +305,9 @@ def join3(request):
     return render(request, "join3.html")
 
 
-<<<<<<< HEAD
 def join4(request):
     return render(request, "join4.html")
-=======
+
+
 def read_qr(req):
-    return render(req,'qr_reader.html')
->>>>>>> master
+    return render(req, 'qr_reader.html')
