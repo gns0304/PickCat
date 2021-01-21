@@ -33,8 +33,14 @@ header .topbar-sign span{
 
 
 
-#main-title {
+#main-title .title-1 span{
     font-size: 22px;
+    color : black;
+    position : relative;
+}
+
+#main-title .title-2 span{
+    font-size: 15px;
     color : black;
     position : relative;
 

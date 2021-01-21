@@ -187,3 +187,16 @@ section[class="map"] article{
     text-decoration: none;
     background-color: #8B8CEC;
 }
+
+/* join2.html */
+
+/* image box */
+.input-bar-wrapper{
+    top: 241px;
+    left: 0px;
+    width: 375px;
+    height: 349px;
+    background: #FAFAFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #B9B9B929;
+    opacity: 1;
+}
