@@ -1,46 +1,28 @@
-{% extends 'signbase.html' %} {% block content %} {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>login</title>
-    {% load static %}
+{% extends 'signbase.html' %} {% block content %}
+<header>
+  <div class="topbar-sign">
+    <span> 회원가입 </span>
+    <div class="topbar-line"></div>
+  </div>
+</header>
 
-    <link rel="stylesheet" href="{% static 'style-login.css' %}" />
-    <link rel="stylesheet" href="{% static 'style-join.css' %}" />
-    <script src="{% static 'script.js' %}"></script>
-    <link rel="shortcut icon" href="../static/img/icon-home.png" />
-  </head>
+<div id="main-title">
+  <span id="title-1" style="color: #484848">가입 완료 !</span><br />
+  <span id="title-1" style="color: #484848">픽켓가입이 완료되었습니다</span>
+</div>
+<br />
+<div class="input-positioner-join4">
+  <img src="../static/img/join4-icon.png" id="join4-icon-image" style="width: 126px; height: 126px;">
+  <br />
 
-  <body>
-    <header>
-      <div class="topbar-sign">
-        <span> 회원가입 </span>
-        <div class="topbar-line"></div>
-      </div>
-    </header>
+  <br /><br />
+  {{user.nickname}}님!<br />
+  우리 동네 집사가 되신 걸 환영합니다!<br />
+  <div class="">
+    <button id="btn-signin-join4" type="button" onclick="location.href='main'">
+      픽켓시작하기
+    </button>
+  </div>
+</div>
 
-    <div id="main-title">
-      <span id="title-1" style="color: #484848">가입 완료 !</span><br />
-      <span id="title-1" style="color: #484848">픽켓가입이 완료되었습니다</span>
-    </div>
-    <br />
-    <div class="input-positioner-join4">
-        <img src="../static/img/join4-icon.png" id="join4-icon-image"
-              style = "width: 126px; height: 126px;">
-        <br />
-
-    <br /><br />
-    {{user.nickname}}님!<br />
-    우리 동네 집사가 되신 걸 환영합니다!<br />
-    <div class="">
-      <button id="btn-signin-join4" type="button" onclick="location.href='main'">
-        픽켓시작하기
-      </button>
-    </div>
-    </div>
-
-    {% endblock %}
-  </body>
-</html>
+{% endblock %}
