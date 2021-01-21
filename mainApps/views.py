@@ -13,7 +13,7 @@ CDN_URL = "https://akamai-img.scdn.pw"
 
 @login_required
 def main(request):
-    # Todo 좋아하는 고양이랑 장소가 없을 때 각각 예외처리 해주기
+    #Todo 좋아하는 고양이랑 장소가 없을 때 각각 예외처리 해주기
     userObject = User.objects.get(email=request.user)
     favoriteCats = userObject.favoriteCat.all()
     favoriteKitchens = userObject.favoriteKitchen.all()
@@ -24,38 +24,22 @@ def main(request):
             tempCat = cat.catmention_set.all()
             tempEmergency = cat.emergencymention_set.all()
             for catmention in tempCat:
-                tempMentions = tempMentions.union(
-                    Mention.objects.filter(pk=catmention.mention.id))
+                tempMentions = tempMentions.union(Mention.objects.filter(pk=catmention.mention.id))
 
             for emergencymention in tempEmergency:
-                tempMentions = tempMentions.union(
-                    Mention.objects.filter(pk=emergencymention.mention.id))
+                tempMentions = tempMentions.union(Mention.objects.filter(pk=emergencymention.mention.id))
 
     if favoriteKitchens:
         for kitchen in favoriteKitchens:
             tempKitchen = kitchen.kitchenmention_set.all()
             for kitchenmention in tempKitchen:
-                tempMentions = tempMentions.union(
-                    Mention.objects.filter(pk=kitchenmention.mention.id))
+                tempMentions = tempMentions.union(Mention.objects.filter(pk=kitchenmention.mention.id))
 
     tempMention = tempMentions.order_by('-createdAt')[:10]
-    if not tempMentions:
-        return render(
-            request, "main.html", {"Cats": favoriteCats,
-                                   "Kitchens": favoriteKitchens}
-        )
-    else:
-        tempMention = tempMentions.order_by("-createdAt")[0]
 
-        return render(
-            request,
-            "main.html",
-            {
-                "Cats": favoriteCats,
-                "Kitchens": favoriteKitchens,
-                "recentMention": tempMention.mention
-            },
-        )
+
+    return render(request, 'main.html',
+                      {'Cats': favoriteCats, 'Kitchens': favoriteKitchens, 'recentMention' : tempMention})
 
     # mentionTarget.longitude등으로 접근가능
     # mentionTarget.breed등으로도 접근가능
