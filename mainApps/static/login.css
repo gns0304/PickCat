@@ -33,11 +33,10 @@ header .topbar-sign span{
 
 
 
-/* 상단 구분 line */
-
 #main-title {
     font-size: 22px;
     color : black;
+    position : relative;
 
 }
 
