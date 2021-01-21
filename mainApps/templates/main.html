@@ -41,7 +41,7 @@
         <div class="content">
             {% for kitchen in Kitchens %}
                 <img src="{{ kitchen.image_url }}">
-                {{ kitchen.name }}
+                <a href="{% url "info_kitchen" kitchen.id %}">{{ kitchen.name }}</a>
                 {{ kitchen.checkIn }}
             {% endfor %}
         </div>
