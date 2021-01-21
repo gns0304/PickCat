@@ -38,7 +38,7 @@ def newEmergencyMention(req):
         for a in sms_user:
             to.append(a.phoneNumber)
         text = f"{kitchen.name}에서 아래 내용의 긴급 메시지가 등록되었습니다.\n{mention.mention}"
-        sms(to,text)
+        print(sms(to,text))
         return HttpResponse(str(to))
     else:
         return render(req,'emergency.html')
