@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body{
+    min-height:800px;
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+}
+
+.container{
+    margin:0 auto;
+    max-width:430px;
+    width:100%;
+    position:relative;
+}
+
+/* join2.html */
+
+.input-box-wrapper {
+    top: 241px;
+    left: 0px;
+    width: 375px;
+    height: 349px;
+    background: #FAFAFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #B9B9B929;
+    opacity: 1;
+    text-align: center;
+}
+
+.join2-user-image {
+    top: 285px;
+    left: 105px;
+    margin-bottom: 40px;
+    background: transparent url('img/user.png') 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #B5AAAA29;
+    opacity: 1;
+}
+
+#input-bar-join2 {
+    top: 473px;
+    left: 39px;
+    width: 298px;
+    height: 48px;
+
+    margin-top: 100px;
+
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #CFCFCF;
+    opacity: 1;
+}
+
+/* join3.html */
+
+#input-bar-join3 {
+    top: 478px;
+    left: 30px;
+    width: 327px;
+    height: 33px;
+    border: 1px solid var(--unnamed-color-8b8cec);
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #8B8CEC;
+    opacity: 1;
+
+    /* text */
+    color: var(--unnamed-color-8b8cec);
+    text-align: center;
+    font: normal normal bold 12px/17px Noto Sans KR;
+    letter-spacing: 0px;
+    color: #8B8CEC;
+    opacity: 1;
+}
+
+/* join4.html */
+
+#btn-signin-join4 {
+    top: 556px;
+    left: 24px;
+
+    width: 327px;
+    height: 48px;
+    margin-top: 77px;
+
+    background: var(--unnamed-color-8b8cec) 0% 0% no-repeat padding-box;
+    background: #8B8CEC 0% 0% no-repeat padding-box;
+    border: 1px solid #CFCFCF;
+    border-radius: 24px;
+    opacity: 1;
+
+    color: var(--unnamed-color-f7f8f9);
+    text-align: center;
+    letter-spacing: 0px;
+    color: #F7F8F9;
+
+}
+
+.input-positioner-join4 {
+    position: relative;
+    top: 20px;
+    display: block;
+    
+    text-align: center;
+    letter-spacing: 0px;
+    color: #484848;
+    opacity: 1;
+}

@@ -18,9 +18,18 @@ urlpatterns = [
     path("info_kitchen", views.info_kitchen, name="info_kitchen"),
     path("login", views.login, name="login"),
     path("join", views.join, name="join"),
+    path("join2", views.join2, name="join2"),
+    path("join3", views.join3, name="join3"),
+    path("join4", views.join4, name="join4"),
+
     path("sign_up",views.sign_up, name="sign_up"),
     path("sign_out",views.sign_out, name="sign_out"),
     path("emergency",mentions.newEmergencyMention, name="emergency"),
+    path("getCatMentions",mentions.getCatMentions, name="getCatMentions"),
+    path("getKitchenMentions",mentions.getCatMentions, name="getKitchenMentions"),
+    path("newCatMentions",mentions.getCatMentions, name="newCatMentions"),
+    path("newKitchenMentions",mentions.getCatMentions, name="newKitchenMentions"),
     path("addfavoritecat/<int:thisCat_id>", views.addFavoriteCat, name="addFavoriteCat"),
+    path("removefavoritecat/<int:thisCat_id>", views.removeFavoriteCat, name="removeFavoriteCat"),
     path("mention_kitchen", views.mention_kitchen, name="mention_kitchen"),
 ]

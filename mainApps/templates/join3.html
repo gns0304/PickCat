@@ -1,0 +1,59 @@
+{% extends 'signbase.html' %} {% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'style-login.css' %}" />
+    <link rel="stylesheet" href="{% static 'style-join.css' %}" />
+    <script src="{% static 'script.js' %}"></script>
+    <link rel="shortcut icon" href="../static/img/icon-home.png" />
+  </head>
+
+  <body>
+    <header>
+      <div class="topbar-sign">
+        <span> 지역인증 </span>
+        <div class="topbar-line"></div>
+      </div>
+    </header>
+
+    <div id="main-title">
+      <span id="title-1" style="color: black">어디에서 활동하시나요?</span><br />
+      <span id="title-1" style="color: black"
+        >안전한 픽켓을 만들기 위해 지역을 인증해주세요!</span>
+    </div>
+
+    <form method="POST" action="{% url 'join'%}">
+      {% csrf_token %}
+      <br /><br />
+
+      <div class="input-positioner">
+        <div class="input-box-wrapper">
+          <img src="../static/img/join3-map.png" id="join3-map-image"
+                style = "width: 375px; height: 279px;">
+          <br />
+
+        <div class="input-bar-wrapper">
+          <input
+            name="nickname"
+            id="input-bar-join3"
+            type="text"
+            placeholder="내 위치가 '용현동' 지역 내 위치합니다!"
+          />
+        </div>
+        
+        <div class="">
+          <button id="btn-signin" type="button" onclick="location.href='join4'">
+            완료하기
+          </button>
+        </div>
+      </div>
+    </form>
+
+    {% endblock %}
+  </body>
+</html>
