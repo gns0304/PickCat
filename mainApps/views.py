@@ -136,3 +136,12 @@ def login(request):
 def join(request):
     return render(request, 'join.html')
 
+def join2(request):
+    return render(request,'join2.html')
+
+def join3(request):
+    return render(request,'join3.html')
+
+def join4(request):
+    return render(request,'join4.html')
+

@@ -19,5 +19,8 @@ urlpatterns = [
 
     path("login", views.login, name="login"),
     path("join", views.join, name="join"),
+    path("join2", views.join2, name="join2"),
+    path("join3", views.join3, name="join3"),
+    path("join4", views.join4, name="join4"),
 
 ]

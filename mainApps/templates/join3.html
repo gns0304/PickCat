@@ -1,0 +1,47 @@
+{% extends 'signbase.html' %} {% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'login.css' %}" />
+    <script src="{% static 'script.js' %}"></script>
+    <link rel="shortcut icon" href="../static/img/icon-home.png" />
+  </head>
+
+  <body>
+    <header>
+      <div class="topbar-sign">
+        <span> 프로필 </span>
+        <div class="topbar-line"></div>
+      </div>
+    </header>
+
+    <div id="main-title">
+      <span id="title-1" style="color: black">동네 인증</span><br />
+      <span id="title-1" style="color: black"
+        >안전한 픽켓을 만들기위해 지역을 인증해주세요</span
+      >
+    </div>
+
+    <form method="POST" action="{% url 'join'%}">
+      {% csrf_token %}
+      <br /><br />
+
+      <div class="input-positioner">
+        <div class="input-bar-wrapper">지도</div>
+        <br />
+        <div class="">
+          <button id="btn-signin" type="button" onclick="location.href='join4'">
+            동네인증 완료하고 픽켓시작하기
+          </button>
+        </div>
+      </div>
+    </form>
+
+    {% endblock %}
+  </body>
+</html>
