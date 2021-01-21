@@ -46,6 +46,9 @@ def main(request):
 def map(request):
     return render(request,'map.html')
 
+def intro(request):
+    return render(request,'intro.html')
+
 def info_cat(request):
     return render(request,'info_cat.html')
 
