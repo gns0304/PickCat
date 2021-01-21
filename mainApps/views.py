@@ -258,5 +258,10 @@ def join3(request):
     return render(request, "join3.html")
 
 
+<<<<<<< HEAD
 def join4(request):
     return render(request, "join4.html")
+=======
+def read_qr(req):
+    return render(req,'qr_reader.html')
+>>>>>>> master

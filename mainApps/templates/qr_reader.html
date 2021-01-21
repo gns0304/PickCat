@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <title></title>
+    <script src="https://pub-1.scdn.pw/lib/html5-qrcode/1.2.3/html5-qrcode.min.js"></script>
+</head>
+
+<body>
+    <div id="reader" style="width: 600px;"></div>
+    <script>
+        function onScanSuccess(qrMessage) {
+            if (qrMessage > 0) {
+                window.location.href = `/readQr/${qrMessage}`
+            }
+        }
+        function onScanFailure(error) {
+        }
+
+        let html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", { fps: 10, qrbox: 250 }, /* verbose= */ true);
+        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+        document.getElementById('reader__dashboard_section_swaplink').style.display = 'none'
+    </script>
+</body>
+
+</html>
