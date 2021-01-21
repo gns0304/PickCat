@@ -61,6 +61,7 @@ section[class="info_kitchen"] .imgbox{
     flex-direction: column;
     align-items: center;
     padding:15px 0px 0px;
+    text-decoration: none;
 }
 
 section[class="info_kitchen"] .imgbox img{
