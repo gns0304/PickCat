@@ -117,11 +117,11 @@ class Mention(models.Model):
 
 class CatMention(models.Model):
     target = models.ForeignKey(Cat, on_delete=models.CASCADE, null=False, blank=False)
-    mention = models.ManyToManyField(Mention)
+    mention = models.ManyToManyField(Moention)
 
 
 class KitchenMention(models.Model):
-    target = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
+    target = models.ForeignKey(Kitchen, n_delete=models.CASCADE, null=False, blank=False)
     mention = models.ManyToManyField(Mention)
 
 
