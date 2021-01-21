@@ -134,3 +134,5 @@ MEDIA_URL = '/media/'
 
 if os.environ.get('DEBUG'):
     from .settings_production import *
+
+LOGIN_URL = 'login'
