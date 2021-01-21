@@ -130,7 +130,7 @@ def sign_up(request):
         return render(request, "sign_up.html")
     return redirect("main")
 
-def sign_in(request):
+def login(request):
     if not request.user.is_authenticated:
         if request.method == "POST":
             email = request.POST["email"]
@@ -139,15 +139,12 @@ def sign_in(request):
             if user is not None:
                 auth.login(request, user)
                 return redirect("main")
-        return render(request, 'sign_in.html') #TODO 로그인 틀리면 어디로?
+        return render(request, 'login.html') #TODO 로그인 틀리면 어디로?
     return redirect("main")
 
 def sign_out(request):
     auth.logout(request)
     return redirect("main")
-  
-def login(request):
-    return render(request, 'login.html')
 
 def join(request):
     return render(request, 'join.html')

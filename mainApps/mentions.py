@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import CatMention, KitchenMention, EmergencyMention, Cat, Kitchen
 from django.contrib.auth.decorators import login_required
-import .sms
+from .sms import *
 
 @login_required
 def newCatMention(req):
@@ -11,8 +11,9 @@ def newCatMention(req):
         m.cat = Cat.objects.filter(pk=req.POST.catid)
         m.mention = req.POST.mention
         m.save()
-        return redirect '/'
-    else 
+        return redirect('/')
+    else:
+        pass
 
 def newKitchenMention(req):
     pass
