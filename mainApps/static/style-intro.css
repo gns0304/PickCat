@@ -1,0 +1,43 @@
+*{
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+    min-height:800px;
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+}
+.container{
+    margin:0 auto;
+    max-width:430px;
+    width:100%;
+    min-height:800px;
+    background-color: #8B8CEC;
+}
+.container img{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    left: 50%;
+    top: 35%;
+}
+
+.loader{
+    max-width: 430px;
+    width: 100%;
+    background-color: #8B8CEC;
+    min-height: 800px;
+    height: 100%;
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
+    z-index: 999;
+}
+.loader img {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 110px;
+    left: 50%;
+    top: 40%;
+}

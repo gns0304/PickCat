@@ -5,19 +5,17 @@ import base64
 from mainApps.models import User
 from django.contrib import auth
 
-#TODO https://xd.adobe.com/view/643f99fe-c8cd-4ea8-9a20-0f9c4019409a-316c/
+#todo https://xd.adobe.com/view/643f99fe-c8cd-4ea8-9a20-0f9c4019409a-316c/
 
 CDN_URL = "https://akamai-img.scdn.pw"
 # Create your views here.
 
 @login_required
 def main(request):
-    #TODO 좋아하는 고양이랑 장소가 없을 때 각각 예외처리 해주기
+    #Todo 좋아하는 고양이랑 장소가 없을 때 각각 예외처리 해주기
     userObject = User.objects.get(email=request.user)
     favoriteCats = userObject.favoriteCat.all()
     favoriteKitchens = userObject.favoriteKitchen.all()
-
-
     tempMentions = Mention.objects.none() #멘션들을 저장할 리스트 임시변수
 
     for cat in favoriteCats:
@@ -40,13 +38,22 @@ def main(request):
     # mentionTarget.longitude등으로 접근가능
     # mentionTarget.breed등으로도 접근가능
 
-    #TODO 사진 없으면 오류나니 디폴트 혹은 분기설정해서 오류안나게 하기
+    # Todo 사진 없으면 오류나니 디폴트 혹은 분기설정해서 오류안나게 하기
 
 
     return render(request, 'main.html', {'Cats': favoriteCats, 'Kitchens': favoriteKitchens, 'recentMention' : tempMention.mention, "mentionTarget": mentionTarget})
 
 def map(request):
     return render(request,'map.html')
+
+def intro(request):
+    return render(request,'intro.html')
+
+def info_cat(request):
+    return render(request,'info_cat.html')
+
+def info_kitchen(request):
+    return render(request,'info_kitchen.html')
 
 def mypage(request):
     return render(request,'mypage.html')
@@ -135,4 +142,3 @@ def login(request):
 
 def join(request):
     return render(request, 'join.html')
-

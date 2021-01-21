@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<section class="info_kitchen">
+    <article>
+        <img class="img_kitchen" src="{% static 'img/kitchen.png'%}">
+        <div class="imgInfobox">
+            <span>5호관 숲 급식소</span>
+            <div>
+                <img src="{% static 'img/icon-checkin.png'%}">
+                <span>오늘 체크인 </span>
+                <span>3명</span>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h2 style="font-size:13px;">급식소에 자주 오는 친구들</h2>
+        <div class="hr"></div>
+        <div class="content">
+            <div class="imgbox">
+                <img src="{% static 'img/cat.png'%}">
+                <span>공주</span>
+            </div>
+            <div class="imgbox">
+                <img src="{% static 'img/cat.png'%}">
+                <span>공주</span>
+            </div>
+            <div class="imgbox">
+                <img src="{% static 'img/cat.png'%}">
+                <span>공주</span>
+            </div>
+            <div class="imgbox">
+                <img src="{% static 'img/cat.png'%}">
+                <span>공주</span>
+            </div>
+        </div>
+    </article>
+    <div class="buttonbox2">
+        <a class="button" href="#">
+            <img src="{% static 'img/icon-barcode.png'%}">
+            <span>QR출석하기</span>
+        </a>
+        <a class="button">
+            <img src="{% static 'img/icon-message.png'%}">
+            <span>멘션쓰기</span>
+        </a>
+    </div>
+    <article>
+        <h2>실시간 멘션</h2>
+        <div class="hr"></div>
+        <div class="content"></div>
+    </article>
+</section>
+
+{% endblock %}

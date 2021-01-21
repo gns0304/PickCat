@@ -2,38 +2,42 @@
 {% block content %}
 {% load static %}
 <section class="main">
-    <article class="pick">
+    <article>
         <h2>My pick</h2>
         <div class="hr"></div>
-        <section>
-            {% for cat in Cats %}
-                {{ cat.image_url }}
-                {{ cat.name }}
-            {% endfor %}
-        </section>
+        <div class="content">
+            <div class="imgbox-container">
+                {% for cat in Cats %}
+                <div class="imgbox">
+                    <a href="{% url 'info_cat'%}"><img src="{{ cat.image_url }}"></a>
+                    <span>{{ cat.name }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </article>
-    <article class="live">
+    <article>
         <h2>픽켓 실시간</h2>
-        <div class="hr">
-<!--{#            TODO recentMention의 경우에는 멘션 텍스트만을 보여줍니다#}-->
+        <div class="hr"></div>
+        <div class="content">
+            <!--{#TODO recentMention의 경우에는 멘션 텍스트만을 보여줍니다#}-->
             {{ recentMention }}
-<!--{#            TODO mentionTarget의 경우에는 cat혹은 kitchen 모델의 정보에 접근할 수 있습니다#}-->
-<!--{#            TODO 급식소의 경우 mentionTarget.longitude등으로 접근가능 #}-->
-<!--{#            TODO 고양이의 경우 mentionTarget.breed등으로도 접근가능#}-->
+            <!--{#TODO mentionTarget의 경우에는 cat혹은 kitchen 모델의 정보에 접근할 수 있습니다#}-->
+            <!--{#TODO 급식소의 경우 mentionTarget.longitude등으로 접근가능 #}-->
+            <!--{#TODO 고양이의 경우 mentionTarget.breed등으로도 접근가능#}-->
             {{ mentionTarget }}
         </div>
     </article>
-    <article class="place">
+    <article>
         <h2>급식소</h2>
-        <div class="hr">
+        <div class="hr"></div>
+        <div class="content">
             {% for kitchen in Kitchens %}
                 {{ kitchen.image_url }}
                 {{ kitchen.name }}
                 {{ kitchen.checkIn }}
             {% endfor %}
-
         </div>
-
     </article>
 </section>
 

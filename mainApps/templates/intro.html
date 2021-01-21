@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style-intro.css'  %}">
+</head>
+<body>
+    <div class="loader">
+        <img src="{% static 'img/loading-logo.png'%}">
+    </div>
+    <div class="container">
+        <img src="{% static 'img/loading-logo.png'%}">
+    </div>
+    <script>
+    function loading(){
+        document.querySelector(".loader").style.display="none";
+        document.querySelector(".container").style.display="block";    
+    }
+        window.setTimeout(loading,2000);
+    </script>
+</body>
+</html>
