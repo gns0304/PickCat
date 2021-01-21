@@ -21,7 +21,7 @@
                     {% endif %}
 
                 </a>
-                <a class="button" href="#">
+                <a class="button" href="{% url "mention_cat" catInfo.id %}">
                     <img src="{% static 'img/icon-message.png'%}">
                     <span>멘션쓰기</span>
                 </a>

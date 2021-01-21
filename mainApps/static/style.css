@@ -113,7 +113,7 @@ section[class="main"] article .hr{
 section[class="main"] .content{
     width:95%;
     margin : 0 auto;
-    overflow-x: hidden;
+    overflow-x: scroll;
 }
 section[class="main"] .content .imgbox-container{
     width:1000px;

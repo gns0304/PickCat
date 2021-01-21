@@ -124,11 +124,12 @@ def removeFavoriteKitchen(request, thisKitchen_id):
 
 
 def mention_kitchen(request, thisKitchen_id):
-
     kitchen = get_object_or_404(Kitchen, pk=thisKitchen_id)
-
     return render(request, 'mention_kitchen.html', {"kitchen": kitchen})
 
+def mention_cat(request, thisCat_id):
+    cat = get_object_or_404(Cat, pk=thisCat_id)
+    return render(request, 'mention_cat.html', {"cat": cat})
 
 def info_kitchen(request, kitchen_id):
     kitchenInfo = get_object_or_404(Kitchen, pk=kitchen_id)
