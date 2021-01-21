@@ -3,76 +3,34 @@
 {% load static %}
 
 <section class="mypage">
-<<<<<<< HEAD
-
-    <h3>수지 집사님의 마이 픽캣스토리</h3>
-=======
-    
     <h3>{{ request.user.nickname}}님의 마이 픽캣스토리</h3>
->>>>>>> 5b1fff7222619873f18674c9f29f12264acef7cd
-
-    <article>
-        <div class="content">
-            
+    <article style="padding-bottom:0; margin-bottom: 30px; background-color: #fefeff;filter:drop-shadow(0px 5px 3px #f7f7f7);">
+        <div class="mypage_box1">
             <img src="{% static 'img/icon-mypage.png'%}">
-            
             <div class="mention_items" style="width:100%;">
-                <img src="{% static 'img/icon-marker.png'%}">
-                <span>인천 미추홀구 용현동에서</span><span>픽캣 중!</span>
+                <span><img src="{% static 'img/icon-marker.png'%}">&nbsp;{{ request.user.address}}에서&nbsp;<span style="color:#8B8CEC;">픽캣 중!</span></span>
             </div>
-
-            <div class="">
-                <button id="btn-signin-mypage" type="submit" onclick="location.href='join4'">
+            <div id="btn-signin-mypage" onclick="location.href='join4'">
                 동네 위치 변경
-                </button>
-            </div>
-
-        </div>
-    </article>
-
-    <article>
-        <div class="content"> <!-- content2는 작은 박스 -->
-            <div>
-<<<<<<< HEAD
-                <span>집사님은 급식소 프로 참석러</span>
-=======
-                <span>{{ request.user.address}}에서 픽캣 중!</span>
->>>>>>> 5b1fff7222619873f18674c9f29f12264acef7cd
-                <br>
-                <span>방문오아 배찌 획득완료!</span>
             </div>
         </div>
-    </article>
-
-    <article>
-        <div class="content2"> <!-- content2는 작은 박스 -->
-            <span>체크인 급식소</span>
-            <br>
-            <span>5호관 숲 급식소</span>
-            <div class="hr"></div>
-            <div class="content"></div>
+        <div class="mypage_box2">
+            <div class="mypage_box3">
+                <div>
+                    <span>방문오아 배찌 획득완료!</span>
+                </div>
+            </div>
+            <div class="mypage_box4">
+                <div>
+                    <span style="color:#8B8CEC; font-size: 14px;">체크인 급식소</span>
+                    <a href="#" style="text-decoration: underline; color:rgb(87, 87, 87); font-weight: 600;">{{ user.recentCheckin }}</a>
+                </div>
+                <div style="color:rgb(87, 87, 87); font-size: 14px;">
+                    급식소 체크인&nbsp;<span style="color:#8B8CEC;">총 {{ user.checkIn }}회</span>
+                </div>
+            </div>
         </div>
     </article>
-
-    <article>
-        <div class="content2"> <!-- content2는 작은 박스 -->
-<<<<<<< HEAD
-            <span>급식소 체크인 </span>
-            <br>
-            <span>총 10회</span>
-=======
-            <span>체크인 급식소</span>
-            <br>
-            <span>{{ user.recentCheckin }}</span>
->>>>>>> 5b1fff7222619873f18674c9f29f12264acef7cd
-            <div class="hr"></div>
-            <div class="content">급식소 체크인 총{{ user.checkIn }}회</div>
-        </div>
-    </article>
-
-</section>
-
-<section class="main">
     <article>
         <h2>My pick</h2>
         <div class="hr"></div>
@@ -87,28 +45,9 @@
             </div>
         </div>
     </article>
+    <a class="logout_box" href="{%url 'sign_out'%}">로그아웃</a>
 </section>
 
-<section class = "main">
-    <article>
-        <h2>내가 쓴 멘션 모아보기</h2>
-        <div class="hr"></div>
-        <div class="content">
-            {% for mention in recentMention %}
-                {% if mention.type == "K" %}
-                     <a href="{% url "info_kitchen" mention.kitchenmention_set.first.target.id %}"> @ {{ mention.kitchenmention_set.first.target }}</a>
-                    {{ mention.mention }}
-                {% endif %}
-                {% if mention.type == "C" %}
-                     <a href="{% url "info_cat" mention.catmention_set.first.target.id %}"> @ {{ mention.catmention_set.first.target }}</a>
-                    {{ mention.mention }}
-                {% endif %}
     
-
-            {% endfor %}
-    
-        </div>
-    </article>
-</section>
 
 {% endblock %}
