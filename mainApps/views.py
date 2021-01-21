@@ -25,19 +25,14 @@ def main(request):
             tempEmergency = cat.emergencymention_set.all()
             for catmention in tempCat:
                 tempMentions = tempMentions.union(Mention.objects.filter(pk=catmention.mention.id))
-
             for emergencymention in tempEmergency:
                 tempMentions = tempMentions.union(Mention.objects.filter(pk=emergencymention.mention.id))
-
     if favoriteKitchens:
         for kitchen in favoriteKitchens:
             tempKitchen = kitchen.kitchenmention_set.all()
             for kitchenmention in tempKitchen:
                 tempMentions = tempMentions.union(Mention.objects.filter(pk=kitchenmention.mention.id))
-
     tempMention = tempMentions.order_by('-createdAt')[:10]
-
-
     return render(request, 'main.html',
                       {'Cats': favoriteCats, 'Kitchens': favoriteKitchens, 'recentMention' : tempMention})
 
