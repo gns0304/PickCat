@@ -203,23 +203,7 @@ def image_test(req):
         return render(req, "image_test.html")
 
 
-def sign_up(request):
-    if not request.user.is_authenticated:
-        if request.method == "POST":
-            nickname = request.POST["nickname"]
-            email = request.POST["email"]
-            password = request.POST["password"]
-            phoneNumber = request.POST["phoneNumber"]
-            longitude = request.POST["longitude"]
-            latitude = request.POST["latitude"]
-            address = request.POST["address"]
-            user = User.objects.create_user(
-                email, nickname, phoneNumber, longitude, latitude, address, password
-            )
-            user.save()
-            return redirect("main")
-        return render(request, "sign_up.html")
-    return redirect("main")
+
 
 
 def login(request):
