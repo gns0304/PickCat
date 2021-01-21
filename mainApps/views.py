@@ -287,3 +287,7 @@ def join4(request):
 
 def read_qr(req):
     return render(req, 'qr_reader.html')
+
+
+def newchat(req):
+    return render(req, 'newchat.html')

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import CatMention, KitchenMention, EmergencyMention, Cat, Kitchen, Mention, User
+from .models import CatMention, KitchenMention, EmergencyMention, Cat, Kitchen, Mention, User, Chat
 from django.contrib.auth.decorators import login_required
 from .sms import *
 from django.http import HttpResponse, JsonResponse
@@ -124,3 +124,36 @@ def getKitchenMentions(req):
 @login_required
 def getEmergencyMentions(req):
     pass
+
+
+@login_required
+def newChat(req):
+    if req.method == 'POST':
+        c = Chat()
+        c.user = req.user
+        c.message = req.POST['message']
+        c.save()
+    return render(req, 'newchat.html')
+
+
+@login_required
+def getChat(req):
+    latest = req.GET.get('latest')
+    if not latest:
+        latest = 0
+    chat = Chat.objects.filter(id__gt=latest).order_by('-id')[:30]
+    a = []
+    for m in chat:
+        d = {
+            'id': m.id,
+            'name': m.user.nickname,
+            'image': m.user.image_url,
+            'text': m.message,
+            'is_me': checkUser(req, m.user)
+        }
+        a.append(d)
+    a = {
+        'count': len(a),
+        'data': a
+    }
+    return JsonResponse(a)
