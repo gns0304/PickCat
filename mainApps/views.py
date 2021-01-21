@@ -18,22 +18,31 @@ def main(request):
     favoriteKitchens = userObject.favoriteKitchen.all()
     tempMentions = Mention.objects.none() #멘션들을 저장할 리스트 임시변수
 
-    for cat in favoriteCats:
-        tempCat = cat.catmention_set.all()
-        for catMention in tempCat:
-            tempMentions = tempMentions.union(catMention.mention.all())
+    if not favoriteCats:
+        for cat in favoriteCats:
+            tempCat = cat.catmention_set.all()
+            for catMention in tempCat:
+                tempMentions = tempMentions.union(catMention.mention.all())
 
-    for kitchen in favoriteKitchens:
-        tempKitchen = kitchen.kitchenmention_set.all()
-        for kitchenMention in tempKitchen:
-            tempMentions = tempMentions.union(kitchenMention.mention.all())
+    if not favoriteKitchens:
+        for kitchen in favoriteKitchens:
+            tempKitchen = kitchen.kitchenmention_set.all()
+            for kitchenMention in tempKitchen:
+                tempMentions = tempMentions.union(kitchenMention.mention.all())
 
-    tempMention = tempMentions.order_by('-createdAt')[0]
+    if not tempMentions:
+        return render(request, 'main.html', {'Cats': favoriteCats, 'Kitchens': favoriteKitchens})
+    else:
+        tempMention = tempMentions.order_by('-createdAt')[0]
 
-    if tempMention.type == "K":
-        mentionTarget = tempMention.kitchenmention_set.first().target
-    elif tempMention.type == "C":
-        mentionTarget = tempMention.catmention_set.first().target
+        if tempMention.type == "K":
+            mentionTarget = tempMention.kitchenmention_set.first().target
+        elif tempMention.type == "C":
+            mentionTarget = tempMention.catmention_set.first().target
+
+        return render(request, 'main.html',
+                      {'Cats': favoriteCats, 'Kitchens': favoriteKitchens, 'recentMention': tempMention.mention,
+                       "mentionTarget": mentionTarget})
 
     # mentionTarget.longitude등으로 접근가능
     # mentionTarget.breed등으로도 접근가능
@@ -41,7 +50,7 @@ def main(request):
     # Todo 사진 없으면 오류나니 디폴트 혹은 분기설정해서 오류안나게 하기
 
 
-    return render(request, 'main.html', {'Cats': favoriteCats, 'Kitchens': favoriteKitchens, 'recentMention' : tempMention.mention, "mentionTarget": mentionTarget})
+
 
 def map(request):
     return render(request,'map.html')
