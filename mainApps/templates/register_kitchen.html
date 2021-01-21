@@ -57,15 +57,21 @@
     Http.onreadystatechange = (e) => {
       if (Http.readyState == 4 && Http.status == 200) {
         data = Http.response;
-        console.log(data.documents[0].road_address.address_name);
-        document.getElementById('address').value = data.documents[0].road_address.address_name;
+        if (data.documents[0].road_address) {
+          document.getElementById('address').value = data.documents[0].road_address.address_name;
+        }
+        else {
+          document.getElementById('address').value = data.documents[0].address.address_name;
+        }
         document.getElementById('longitude').value = x;
         document.getElementById('latitude').value = y;
+        window.address_found = 1;
       }
     }
   }
   function verifyForm(e) {
-    if (!"폼 오류확인 if문") {
+    if (!window.address_found) {
+      alert('위치 정보를 불러와주세요');
       return false
     }
     document.querySelectorAll('input').forEach(i => i.disabled = false)

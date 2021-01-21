@@ -4,12 +4,77 @@
 .chat_wrap .chat { padding-bottom: 80px; }
 .chat_wrap .chat ul { width: 100%; list-style: none; padding-inline-start: 0px;}
 .chat_wrap .chat ul li { width: 100%; }
-.chat_wrap .chat ul li.left { text-align: left; }
-.chat_wrap .chat ul li.right { text-align: right; }
+
+/* chatting msg box */
+/*.chat_msg_wrap*/
+.chat_wrap .chat ul li {
+    width: 170px;
+    height: 50px;
+
+    font-size : 20px;
+    margin-left: 220px;
+    padding-left: 20px;
+    margin-top: 10px;
+
+    text-align: center;
+
+    background: transparent linear-gradient(104deg, #7C98FD 0%, #4E43F9 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 5px 8px #0000000D;
+    border-radius: 50px 0px 50px 50px;
+    opacity: 1;
+
+}
+
+
+
+/* 내가 받는 chatting */
+.chat_wrap .chat ul li.left { 
+    text-align: left; 
+
+    /* text */
+
+    font: normal normal normal 13px/18px Avenir;
+    letter-spacing: 0px;
+    color: white;
+    opacity: 1;
+
+}
+
+
+/* 내가 보내는 chatting */
+.chat_wrap .chat ul li.right { 
+    text-align: left; 
+    height: 50px;
+    padding-left: 20px;
+    margin-top: 10px;
+
+    /* text */
+
+    letter-spacing: 0px;
+    color: white;
+    opacity: 1;
+
+    
+}
  
-.chat_wrap .chat ul li > div { font-size: 13px;  }
-.chat_wrap .chat ul li > div.sender { margin: 10px 20px 0 20px; font-weight: bold; }
-.chat_wrap .chat ul li > div.message { display: inline-block; word-break:break-all; margin: 5px 20px; max-width: 75%; border: 1px solid #888; padding: 10px; border-radius: 5px; background-color: #FCFCFC; color: #555; text-align: left; }
+
+.chat_wrap .chat ul li > div.sender { 
+    margin: 10px 20px 0 20px; 
+    font-weight: bold; 
+
+}
+
+.chat_wrap .chat ul li > div.message { 
+    display: inline-block; 
+    word-break:break-all; margin: 5px 20px; 
+    max-width: 75%; 
+    border: 1px solid #888; 
+    padding: 10px; 
+    border-radius: 5px; 
+    background-color: #FCFCFC; 
+    color: #555; 
+    text-align: left; 
+}
  
 .chat_wrap .input-div {  bottom: 0; width: 100%; background-color: #FFF; text-align: center; border-top: 1px solid #F18C7E; }
 .chat_wrap .input-div > textarea { width: 100%; height: 80px; border: none; padding: 10px; }

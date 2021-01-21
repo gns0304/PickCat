@@ -44,6 +44,8 @@
                 }
             }
         }
+
+
         function writeData(data) {
             for (k in data) {
                 console.log(data[k].is_me)
@@ -56,6 +58,7 @@
                 else {
                     class1 = "left"
                     name = data[k].name
+                    
                 }
                 chatbox.innerHTML += `<li class="${class1}"><span class="sender">${name} : </span><span class="message">${data[k].text}</span></li><br>\n`
             }

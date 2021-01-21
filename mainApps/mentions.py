@@ -43,27 +43,28 @@ def newKitchenMention(req):
 
 
 @login_required
-def newEmergencyMention(req):
-    if req.method == 'POST':
-        mention = Mention()
-        mention.user = req.user
-        mention.mention = req.POST['mention']
-        mention.type = 'EMERGENCY'
-        mention.save()
-        m = EmergencyMention()
-        cat = Cat.objects.get(pk=req.POST['id'])
-        m.target = cat
-        m.mention = mention
-        m.save()
-        sms_user = User.objects.filter(favoriteCat=cat)
-        to = []
-        for a in sms_user:
+def newEmergencyMention(req, cat_id):
+    mention = Mention()
+    mention.user = req.user
+    mention.mention = 'Hello World'
+    mention.type = 'EMERGENCY'
+    mention.save()
+    m = EmergencyMention()
+    cat = Cat.objects.get(pk=cat_id)
+    m.target = cat
+    m.mention = mention
+    m.save()
+    sms_user = User.objects.filter(favoriteCat=cat)
+    to = []
+    for a in sms_user:
+        if(a.phoneNumber):
             to.append(a.phoneNumber)
-        text = f"'{cat.name}'냥이에 대해 아래 내용의 긴급 메시지가 등록되었습니다.\n\n{mention.mention}"
-        print(sms(to, text))
-        return HttpResponse(str(to))
-    else:
-        return render(req, 'emergency.html')
+    text = f"'{cat.name}'냥이에 대해 아래 내용의 긴급 메시지가 등록되었습니다."
+    result = sms(to, text)
+    data = {
+        'result': result
+    }
+    return JsonResponse(data)
 
 
 def checkUser(req, user):
