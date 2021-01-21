@@ -188,6 +188,7 @@ def register_kitchen(request):
         kitchen.description = request.POST["description"]
         kitchen.image = request.FILES["uploadedImage"]
         kitchen.save()
+        return redirect(f"/info_kitchen/{kitchen.id}")
 
     return render(request, "register_kitchen.html")
 
