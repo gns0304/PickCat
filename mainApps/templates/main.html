@@ -22,7 +22,7 @@
         <div class="content">
             {% for mention in recentMention %}
                 {% if mention.type == "K" %}
-                     <a href=""> @ {{ mention.kitchenmention_set.first.target }}</a>
+                     <a href="{% url "info_kitchen" mention.kitchenmention_set.first.target.id %}"> @ {{ mention.kitchenmention_set.first.target }}</a>
                     {{ mention.mention }}
                 {% endif %}
                 {% if mention.type == "C" %}
