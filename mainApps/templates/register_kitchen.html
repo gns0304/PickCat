@@ -57,8 +57,12 @@
     Http.onreadystatechange = (e) => {
       if (Http.readyState == 4 && Http.status == 200) {
         data = Http.response;
-        console.log(data.documents[0].road_address.address_name);
-        document.getElementById('address').value = data.documents[0].road_address.address_name;
+        if (data.documents[0].road_address) {
+          document.getElementById('address').value = data.documents[0].road_address.address_name;
+        }
+        else {
+          document.getElementById('address').value = data.documents[0].address.address_name;
+        }
         document.getElementById('longitude').value = x;
         document.getElementById('latitude').value = y;
       }
