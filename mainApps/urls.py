@@ -17,19 +17,16 @@ urlpatterns = [
     path("info_cat/<int:cat_id>", views.info_cat, name="info_cat"),
     path("info_kitchen", views.info_kitchen, name="info_kitchen"),
     path("login", views.login, name="login"),
-<<<<<<< HEAD
-    path("join1", views.join.join1, name="join1"),
-    path("join2", views.join.join2, name="join2"),
-    path("join3", views.join.join3, name="join3"),
-    path("join4", views.join.join4, name="join4"),
+    path("join1", views.join1, name="join1"),
+    path("join2", views.join2, name="join2"),
+    path("join3", views.join3, name="join3"),
+    path("join4", views.join4, name="join4"),
 
-=======
-    path("join", views.join, name="join"),
+    #path("join", views.join, name="join"),
     path("sign_up",views.sign_up, name="sign_up"),
     path("sign_out",views.sign_out, name="sign_out"),
     path("emergency",mentions.newEmergencyMention, name="emergency"),
     path("addfavoritecat/<int:thisCat_id>", views.addFavoriteCat, name="addFavoriteCat"),
     path("removefavoritecat/<int:thisCat_id>", views.removeFavoriteCat, name="removeFavoriteCat"),
     path("mention_kitchen", views.mention_kitchen, name="mention_kitchen"),
->>>>>>> fa1efe18347bf5043164d1728502b2abf28d4825
 ]
