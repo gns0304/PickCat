@@ -173,7 +173,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     #email, nickname, phoneNumber, longitude, latitude, address, password
     email = models.EmailField(max_length=255, unique=True)
     nickname = models.CharField(max_length=20, null=False, blank=False, unique=True)
-    phoneNumber = models.IntegerField(null=False, blank=False, unique=True)
+    phoneNumber = models.IntegerField(max_length=11, null=False, blank=False, unique=True)
     image = models.ImageField(upload_to=image_path, null=True, blank=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
