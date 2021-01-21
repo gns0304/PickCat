@@ -4,7 +4,7 @@
 
 <section class="mypage">
     
-    <h3>수지 집사님의 마이 픽캣스토리</h3>
+    <h3>{{ request.user.nickname}}님의 마이 픽캣스토리</h3>
 
     <form method="POST" action="">
         <div class="mention_items" style="width:100%;">
@@ -19,7 +19,7 @@
     <article>
         <div class="content"> <!-- content2는 작은 박스 -->
             <div>
-                <span>인천 미추홀구 용현동에서 픽캣 중!</span>
+                <span>{{ request.user.address}}에서 픽캣 중!</span>
                 <br>
                 <span>동네 위치 변경</span>
             </div>
@@ -38,11 +38,11 @@
 
     <article>
         <div class="content2"> <!-- content2는 작은 박스 -->
-            <span>??</span>
+            <span>체크인 급식소</span>
             <br>
-            <span>!!!!!</span>
+            <span>{{ user.recentCheckin }}</span>
             <div class="hr"></div>
-            <div class="content"></div>
+            <div class="content">급식소 체크인 총{{ user.checkIn }}회</div>
         </div>
     </article>
 
