@@ -163,13 +163,6 @@ def info_kitchen(request, kitchen_id):
                   {"isFavorite": isFavorite, "kitchenInfo": kitchenInfo})
 
 
-def mention_kitchen(request):
-    return render(request, "mention_kitchen.html")
-
-
-def info_kitchen(request):
-    return render(request, "info_kitchen.html")
-
 
 def mypage(request):
     return render(request, "mypage.html")
