@@ -58,8 +58,10 @@ def map(request):
 def intro(request):
     return render(request,'intro.html')
 
-def info_cat(request):
-    return render(request,'info_cat.html')
+def info_cat(request, cat_id):
+    catInfo = get_object_or_404(Cat, pk=cat_id)
+
+    return render(request,'info_cat.html', {"catInfo":catInfo})
 
 def info_kitchen(request):
     return render(request,'info_kitchen.html')

@@ -49,14 +49,14 @@ class Kitchen(models.Model):
 class Cat(models.Model):
 
     ISNEUTERED = (
-        ('T', 'TRUE'),
-        ('F', 'FALSE'),
-        ('U', 'UNKNOWN')
+        ('T', '중성화 O'),
+        ('F', '중성화 X'),
+        ('U', '알수없음')
     )
     GENDER = (
-        ('M', "MALE"),
-        ("F", "FEMALE"),
-        ("U", "UNKNOWN")
+        ('M', "남자"),
+        ("F", "여자"),
+        ("U", "알수없음")
     )
 
     name = models.CharField(max_length=100, null=False, blank=False)
@@ -117,17 +117,17 @@ class Mention(models.Model):
 
 class CatMention(models.Model):
     target = models.ForeignKey(Cat, on_delete=models.CASCADE, null=False, blank=False)
-    mention = models.ManyToManyField(Mention)
+    mention = models.ForeignKey(Mention, on_delete=models.CASCADE, null=True, blank=True)
 
 
 class KitchenMention(models.Model):
     target = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
-    mention = models.ManyToManyField(Mention)
+    mention = models.ForeignKey(Mention, on_delete=models.CASCADE, null=True, blank=True)
 
 
 class EmergencyMention(models.Model):
     target = models.ForeignKey(Kitchen, on_delete=models.CASCADE, null=False, blank=False)
-    mention = models.ManyToManyField(Mention)
+    mention = models.ForeignKey(Mention, on_delete=models.CASCADE, null=True, blank=True)
 
 
 class UserManager(BaseUserManager):
