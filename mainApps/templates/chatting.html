@@ -5,6 +5,7 @@
     <div class="chat_wrap">
         <div class="chat">
             <ul id="chatbox">
+
             </ul>
         </div>
         <div class="input-div">
@@ -60,7 +61,7 @@
                     name = data[k].name
                     
                 }
-                chatbox.innerHTML += `<li class="${class1}"><span class="sender">${name} : </span><span class="message">${data[k].text}</span></li><br>\n`
+                chatbox.innerHTML += `<li class="${class1}"><div><span class="sender">${name} : </span><span class="message">${data[k].text}</span></div></li><br>\n`
             }
         }
         update()

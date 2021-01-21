@@ -5,7 +5,7 @@
     <article>
         <div class="imgbox">
             <div>
-                <img src="{% static 'img/cat.png'%}">
+                <img src="{{ catInfo.image_url }}">
             </div>
         </div>
         <h3>{{ catInfo.name }}</h3>
@@ -36,15 +36,22 @@
         <div class="hr"></div>
         <span class="unfold1"><img src="{% static 'img/direction-down.png'%}">&nbsp;펼치기</span>
         <div class="content">
-            <div class="infobox">
-                {{ catInfo.breed }}
-                {{ catInfo.get_isNeutered_display }}
-                {{ catInfo.get_gender_display }}
+            <div class="infobox" style="color:#8B8CEC; font-weight: bold; font-size:11pt">
+
+
+               <img src="{% static 'img/icon-cat.png'%}" width="33px" height="33px"><span style="margin: 6px 8px 0px 6px; width: 20%">{{ catInfo.breed }}</span>
+               <img src="{% static 'img/icon-neutered.png'%}" width="33px" height="33px"><span style="margin: 6px 8px 0px 6px;width: 20%">{{ catInfo.get_isNeutered_display }}</span>
+              <img src="{% static 'img/icon-gender.png'%}" width="33px" height="33px"><span style="margin: 6px 8px 0px 6px;width: 20%">{{ catInfo.get_gender_display }}</span>
+                
+
+   <img src="{% static 'img/icon-feature.png'%}" width="33px" height="33px" >
+
+
                 {% for tag in catFeatures %}
-                {{ tag }}
+                <div style="border-radius: 15px; background-color: #8B8CEC; color:white; padding: 0 10px; margin: 7px 3px; height: 20px">{{ tag }}</div>
                 {% endfor %}
 
-            </div>
+
         </div>
     </article>
     <article>

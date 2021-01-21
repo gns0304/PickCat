@@ -6,7 +6,9 @@
 <script>
     function onScanSuccess(qrMessage) {
         if (qrMessage > 0) {
+            alert("체크인되었습니다")
             window.location.href = `/readQr/${qrMessage}`
+
         }
     }
     function onScanFailure(error) {

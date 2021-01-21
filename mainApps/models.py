@@ -45,7 +45,7 @@ class Kitchen(models.Model):
     @property
     def image_url(self):
         if not self.image:
-            return static("img/kitchen.png")
+            return static("img/default_kitchen.png")
         else:
             return get_cdn_url(self.image.url)
 
@@ -80,7 +80,7 @@ class Cat(models.Model):
     @property
     def image_url(self):
         if not self.image:
-            return static("img/cat.png")
+            return static("img/default_cat.png")
         else:
             return get_cdn_url(self.image.url)
 
@@ -221,7 +221,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def image_url(self):
         if not self.image:
-            return static("img/cat.png")
+            return static("img/default_user.png")
         else:
             return get_cdn_url(self.image.url)
 

@@ -147,7 +147,8 @@ def info_kitchen(request, kitchen_id):
 def mypage(request):
 
     user = get_object_or_404(User, email=request.user)
-    print(user.favoriteCat.all())
+
+
 
     attendanceBadge = False
     if user.checkIn >= 10:
