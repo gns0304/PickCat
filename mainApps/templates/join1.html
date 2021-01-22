@@ -1,42 +1,42 @@
 {% extends 'signbase.html' %} {% block content %}
 
 
-  <header>
-    <div class="topbar-sign">
-      <span> 회원가입 </span>
-      <div class="topbar-line"></div>
-    </div>
-  </header>
-
-  <div id="main-title">
-    <span id="title-1" style="color: black">가입 정보 입력</span><br />
-    <span id="title-1" style="color: black">픽켓과 함께 집사 될 준비되셨나요?</span>
+<header>
+  <div class="topbar-sign">
+    <span> 회원가입 </span>
+    <div class="topbar-line"></div>
   </div>
-  ` <form method="POST" action="{% url 'join1'%}">
-    {% csrf_token %}
-    <br /><br />
+</header>
 
-    <div class="input-positioner">
-      <div class="input-bar-wrapper">
-        <input type="email" class="input-bar" placeholder="이메일을 입력해주세요" name="email" required />
-      </div>
-      <br />
-      <div class="input-bar-wrapper">
-        <input type="text" class="input-bar" placeholder="휴대폰 번호를 입력해주세요" name="phoneNumber" required />
-      </div>
-      <br />
-      <div class="input-bar-wrapper">
-        <input type="password" id="pw1" class="input-bar" placeholder="비밀번호를 입력해주세요" name="password" required />
-      </div>
-      <br />
-      <div class="input-bar-wrapper">
-        <input type="password" id="pw2" class="input-bar" placeholder="비밀번호 확인" name="password" required />
-      </div>
+<div id="main-title">
+  <span id="title-1" style="color: black">가입 정보 입력</span><br />
+  <span id="title-1" style="color: black">픽켓과 함께 집사 될 준비되셨나요?</span>
+</div>
+` <form method="POST" action="{% url 'join2'%}">
+  {% csrf_token %}
+  <br /><br />
 
-      <div class="">
-        <button id="btn-signin" type="submit">다음</button>
-      </div>
+  <div class="input-positioner">
+    <div class="input-bar-wrapper">
+      <input type="email" class="input-bar" placeholder="이메일을 입력해주세요" name="email" required />
     </div>
-  </form>
+    <br />
+    <div class="input-bar-wrapper">
+      <input type="text" class="input-bar" placeholder="휴대폰 번호를 입력해주세요" name="phoneNumber" required />
+    </div>
+    <br />
+    <div class="input-bar-wrapper">
+      <input type="password" id="pw1" class="input-bar" placeholder="비밀번호를 입력해주세요" name="password" required />
+    </div>
+    <br />
+    <div class="input-bar-wrapper">
+      <input type="password" id="pw2" class="input-bar" placeholder="비밀번호 확인" name="password" required />
+    </div>
 
-  {% endblock %}
+    <div class="">
+      <button id="btn-signin" type="submit">다음</button>
+    </div>
+  </div>
+</form>
+
+{% endblock %}

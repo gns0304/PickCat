@@ -244,46 +244,40 @@ def sign_out(request):
 
 def join1(request):
     if not request.user.is_authenticated:
-        if request.method == "POST":
-            email = request.POST["email"]
-            password = request.POST["password"]
-            phoneNumber = request.POST["phoneNumber"]
-            user = User.objects.create_user(
-                email, None, phoneNumber, None, None, None, password
-            )
-            user.save()
-            auth.login(request, user)
-            return render(request, "join2.html")
         return render(request, "join1.html")
     return redirect("main")
 
 
 def join2(request):
-
     if request.method == "POST":
-        user = get_object_or_404(User, email=request.user.email)
-        user.nickname = request.POST["nickname"]
-        user.image = request.POST.get("image")
+        email = request.POST["email"]
+        password = request.POST["password"]
+        phoneNumber = request.POST["phoneNumber"]
+        user = User.objects.create_user(
+            email, None, phoneNumber, None, None, None, password
+        )
         user.save()
-
-        return render(request, "join3.html")
+        auth.login(request, user)
+        return render(request, "join2.html")
     return render(request, "join2.html")
 
 
 def join3(request):
     if request.method == "POST":
         user = get_object_or_404(User, email=request.user.email)
-        print(request.user.email)
-        print(request.user.email)
-        print(request.POST["longitude"])
-        user.longitude = request.POST["longitude"]
-        user.latitude = request.POST["latitude"]
+        user.nickname = request.POST["nickname"]
+        user.image = request.FILES.get("image")
         user.save()
-        return render(request, "join4.html")
+        return render(request, "join3.html")
     return render(request, "join3.html")
 
 
 def join4(request):
+    if request.method == "POST":
+        user = get_object_or_404(User, email=request.user.email)
+        user.longitude = request.POST["longitude"]
+        user.latitude = request.POST["latitude"]
+        user.save()
     return render(request, "join4.html")
 
 

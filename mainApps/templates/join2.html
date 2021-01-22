@@ -1,64 +1,39 @@
-{% extends 'signbase.html' %} {% block content %} {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>login</title>
-    {% load static %}
+{% extends 'signbase.html' %} {% block content %}
+<header>
+  <div class="topbar-sign">
+    <span> 프로필 </span>
+    <div class="topbar-line"></div>
+  </div>
+</header>
 
-    <link rel="stylesheet" href="{% static 'style-login.css' %}" />
-    <link rel="stylesheet" href="{% static 'style-join.css' %}" />
-    <script src="{% static 'script.js' %}"></script>
-    <link rel="shortcut icon" href="../static/img/icon-home.png" />
-  </head>
+<div id="main-title">
+  <span id="title-1" style="color: black">프로필 설정 </span><br />
+  <span id="title-2" style="color: black">닉네임과 프로필 사진을 등록해주세요 </span>
+</div>
 
-  <body>
-    <header>
-      <div class="topbar-sign">
-        <span> 프로필 </span>
-        <div class="topbar-line"></div>
+<form method="POST" action="{% url 'join3'%}" enctype="multipart/form-data">
+  {% csrf_token %}
+  <br /><br />
+
+  <div class="input-positioner">
+    <div class="input-box-wrapper">
+      <img src="../static/img/join2-user.png" id="join2-user-image" style="width: 165px; height: 161px;">
+      <input type="file" id="input-bar2" name="image" size="10" />
+
+      <br />
+      <div class="input-bar-wrapper">
+        <input name="nickname" id="input-bar-join2" type="text" placeholder="닉네임을 입력해주세요" />
       </div>
-    </header>
+      <br />
 
-    <div id="main-title">
-      <span id="title-1" style="color: black">프로필 설정 </span><br />
-      <span id="title-2" style="color: black"
-        >닉네임과 프로필 사진을 등록해주세요 </span
-      >
     </div>
 
-    <form method="POST" action="{% url 'join2'%}">
-      {% csrf_token %}
-      <br /><br />
+    <div class="">
+      <button id="btn-signin" type="submit">
+        다음
+      </button>
+    </div>
+  </div>
+</form>
 
-      <div class="input-positioner">
-        <div class="input-box-wrapper">
-            <img src="../static/img/join2-user.png" id="join2-user-image"
-                  style = "width: 165px; height: 161px;">
-            <input type="file" id="input-bar2" name="image" />
-
-            <br />
-        <div class="input-bar-wrapper">
-          <input
-            name="nickname"
-            id="input-bar-join2"
-            type="text"
-            placeholder="닉네임을 입력해주세요"
-          />
-        </div>
-        <br />
-
-        </div>
-        
-        <div class="">
-          <button id="btn-signin" type="submit" onclick="location.href='join3'">
-            다음
-          </button>
-        </div>
-      </div>
-    </form>
-
-    {% endblock %}
-  </body>
-</html>
+{% endblock %}
