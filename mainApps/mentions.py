@@ -48,7 +48,7 @@ def newEmergencyMention(req, cat_id):
     mention = Mention()
     mention.user = req.user
     mention.mention = 'Hello World'
-    mention.type = 'EMERGENCY'
+    mention.type = 'E'
     mention.save()
     m = EmergencyMention()
     cat = Cat.objects.get(pk=cat_id)
