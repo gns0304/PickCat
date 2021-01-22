@@ -7,78 +7,78 @@
     </ul>
     <div style="height: 120px;"></div>
     <div class="input-div">
-        <textarea id="message" placeholder="Press Enter for send message."></textarea>
+        <textarea id="message" placeholder="Press Enter to send message."></textarea>
     </div>
-    
+
 </section>
-    <!-- format -->
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-        function onKey(e) {
-            if (e.keyCode == 13 && !e.shiftKey) {
-                e.preventDefault();
-                const message = document.getElementById("message");
-                sendMessage(message.value);
-                message.value = '';
-            }
+<!-- format -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    function onKey(e) {
+        if (e.keyCode == 13 && !e.shiftKey) {
+            e.preventDefault();
+            const message = document.getElementById("message");
+            sendMessage(message.value);
+            message.value = '';
         }
-        document.addEventListener("keydown", onKey);
-        window.latest = 0;
-        let chatbox = document.getElementById('chatbox')
-        const ENDPOINT = 'getChat'
+    }
+    document.addEventListener("keydown", onKey);
+    window.latest = 0;
+    let chatbox = document.getElementById('chatbox')
+    const ENDPOINT = 'getChat'
 
-        
 
-        
-        function update() {
-            let url = `/${ENDPOINT}?id=1&latest=${window.latest}`
-            xhr = new XMLHttpRequest();
-            xhr.open("GET", url, true);
-            xhr.responseType = 'json';
-            xhr.send();
-            xhr.onreadystatechange = (e) => {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    data = xhr.response
-                    if (data.count != 0) {
-                        window.latest = data.data[0].id
-                        writeData(data.data.reverse())
-                    }
+
+
+    function update() {
+        let url = `/${ENDPOINT}?id=1&latest=${window.latest}`
+        xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.responseType = 'json';
+        xhr.send();
+        xhr.onreadystatechange = (e) => {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                data = xhr.response
+                if (data.count != 0) {
+                    window.latest = data.data[0].id
+                    writeData(data.data.reverse())
                 }
             }
         }
+    }
 
 
-        function writeData(data) {
-            for (k in data) {
-                console.log(data[k].is_me)
-                var class1 = ""
-                var image = ""
-                if (data[k].is_me == false) {
-                    class1 = "left"
-                    image = data[k].image
-                    chatbox.innerHTML += `<li class="${class1}"><img src="${image}" class="mention_user" ><div><span class="sender"></span><span class="message">${data[k].text}</span></div></li>`
-                }
-                else {
-                    class1 = "right"
-                    chatbox.innerHTML += `<li class="${class1}"><div><span class="sender"></span><span class="message">${data[k].text}</span></div></li>`
-                }
+    function writeData(data) {
+        for (k in data) {
+            console.log(data[k].is_me)
+            var class1 = ""
+            var image = ""
+            if (data[k].is_me == false) {
+                class1 = "left"
+                image = data[k].image
+                chatbox.innerHTML += `<li class="${class1}"><img src="${image}" class="mention_user" ><div><span class="sender"></span><span class="message">${data[k].text}</span></div></li>`
             }
-            let body = document.body; 
-            let html = document.documentElement;
-            let height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
-            $('html,body').scrollTop(height);
-            window.setInterval(update, 1000);
+            else {
+                class1 = "right"
+                chatbox.innerHTML += `<li class="${class1}"><div><span class="sender"></span><span class="message">${data[k].text}</span></div></li>`
+            }
         }
-        update()
-        function sendMessage(message) {
-            messageUrl = "{%url 'newChat' %}"
-            xhr = new XMLHttpRequest();
-            xhr.open("POST", messageUrl, true);
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            var params = `message=${encodeURIComponent(message)}`;
-            xhr.send(params);
-        }
-    </script>
+        let body = document.body;
+        let html = document.documentElement;
+        let height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+        $('html,body').scrollTop(height);
+        window.setInterval(update, 1000);
+    }
+    update()
+    function sendMessage(message) {
+        messageUrl = "{%url 'newChat' %}"
+        xhr = new XMLHttpRequest();
+        xhr.open("POST", messageUrl, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        var params = `message=${encodeURIComponent(message)}`;
+        xhr.send(params);
+    }
+</script>
 
 <script src="{% static 'update.js'%}"></script>
 {% endblock %}

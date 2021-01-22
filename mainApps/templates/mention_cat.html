@@ -8,7 +8,7 @@
             <span>{{ cat.name }}</span>
         </div>
         <div class="mention_items">
-            <img src="{% static 'img/cat.png'%}">
+            <img src="{{ cat.image_url }}">
             <span>{{ request.user.nickname }} 집사님의 <span style="color:#8B8CEC">픽캣멘션</span></span>
         </div>
         <div class="mention_items">오늘 {{ cat.name }}는(은) 어때 보이나요?</div>
