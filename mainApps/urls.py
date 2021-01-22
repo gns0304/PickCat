@@ -43,8 +43,8 @@ urlpatterns = [
     path("emergency/<int:cat_id>", mentions.newEmergencyMention, name="emergency"),
     path("getCatMentions", mentions.getCatMentions, name="getCatMentions"),
     path("getKitchenMentions", mentions.getCatMentions, name="getKitchenMentions"),
-    path("newCatMentions", mentions.getCatMentions, name="newCatMentions"),
-    path("newKitchenMentions", mentions.getCatMentions, name="newKitchenMentions"),
+    path("newCatMentions/<int:cat_id>", mentions.newCatMention, name="newCatMentions"),
+    path("newKitchenMentions/<int:kitchen_id>", mentions.newKitchenMentions, name="newKitchenMentions"),
     path(
         "addfavoritecat/<int:thisCat_id>", views.addFavoriteCat, name="addFavoriteCat"
     ),

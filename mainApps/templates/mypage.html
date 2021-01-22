@@ -4,13 +4,15 @@
 
 <section class="mypage">
     <h3>{{ request.user.nickname}}님의 마이 픽캣스토리</h3>
-    <article style="padding-bottom:0; margin-bottom: 30px; background-color: #fefeff;filter:drop-shadow(0px 5px 3px #f7f7f7);">
+    <article
+        style="padding-bottom:0; margin-bottom: 30px; background-color: #fefeff;filter:drop-shadow(0px 5px 3px #f7f7f7);">
         <div class="mypage_box1">
             <img src="{{request.user.image_url}}">
             <div class="mention_items" style="width:100%;">
-                <span><img src="{% static 'img/icon-marker.png'%}">&nbsp;{{ request.user.address}}에서&nbsp;<span style="color:#8B8CEC;">픽캣 중!</span></span>
+                <span><img src="{% static 'img/icon-marker.png'%}">&nbsp;{{ request.user.address}}에서&nbsp;<span
+                        style="color:#8B8CEC;">픽캣 중!</span></span>
             </div>
-            <div id="btn-signin-mypage" onclick="location.href='join4'">
+            <div id="btn-signin-mypage" onclick="location.href='join3'">
                 동네 위치 변경
             </div>
         </div>
@@ -18,13 +20,13 @@
 
             {% if attendaceBadge == True %}
 
-                <div class="mypage_box3">
+            <div class="mypage_box3">
                 <div style="text-align:center; ">
                     <img src="{% static "img/icon-badge.png" %}">
                     <br>
                     <span style="color:#707070;  font-weight: bold; font-size: 13px;">집사님은 급식소 프로 참석러</span>
                     <br>
-                    <span style="color:#ECAB31; font-weight: bold; font-size: 13px;">방문오아 배찌 획득완료!</span>
+                    <span style="color:#ECAB31; font-weight: bold; font-size: 13px;">방문왕 배찌 획득완료!</span>
                 </div>
             </div>
 
@@ -36,7 +38,8 @@
                 <div>
                     <span style="color:#8B8CEC; font-size: 14px;">체크인 급식소</span>
                     {% if user.recentCheckin %}
-                        <a href="{% url "info_kitchen" user.recentCheckin.id %}" style="text-decoration: underline; color:rgb(87, 87, 87); font-weight: 600;">{{ user.recentCheckin }}</a>
+                    <a href="{% url "info_kitchen" user.recentCheckin.id %}"
+                        style="text-decoration: underline; color:rgb(87, 87, 87); font-weight: 600;">{{ user.recentCheckin }}</a>
                     {% endif %}
                 </div>
                 <div style="color:rgb(87, 87, 87); font-size: 14px;">
@@ -63,6 +66,6 @@
     <a class="logout_box" href="{%url 'sign_out'%}">로그아웃</a>
 </section>
 
-    
+
 
 {% endblock %}

@@ -32,7 +32,7 @@ def main(request):
             tempKitchen = kitchen.kitchenmention_set.all()
             for kitchenmention in tempKitchen:
                 tempMentions = tempMentions.union(Mention.objects.filter(pk=kitchenmention.mention.id))
-    tempMention = tempMentions.order_by('-createdAt')[:10]
+    tempMention = tempMentions.order_by('-createdAt')[:4]
     return render(request, 'main.html',
                       {'Cats': favoriteCats, 'Kitchens': favoriteKitchens, 'recentMention' : tempMention})
 
@@ -41,15 +41,17 @@ def main(request):
 
     # Todo 사진 없으면 오류나니 디폴트 혹은 분기설정해서 오류안나게 하기
 
-
+@login_required
 def map(request):
     return render(request, "map.html")
 
 
 def intro(request):
+    if request.user.is_authenticated:
+        return render(request, "main.html")
     return render(request, "intro.html")
 
-
+@login_required
 def info_cat(request, cat_id):
     catInfo = get_object_or_404(Cat, pk=cat_id)
     catFeatures = []
@@ -71,8 +73,13 @@ def info_cat(request, cat_id):
 
     catPost = CatPost.objects.filter(cat=catInfo)
 
+    catMentions = Cat.objects.none()
+    if Cat.objects.get(id=catInfo.id):
+        catMentions = Cat.objects.get(id=catInfo.id).catmention_set.all()[:11]
+
+
     if not catPost:
-        return render(request, 'info_cat.html', {"isFavorite": isFavorite, "catInfo": catInfo, "catFeatures": catFeatures, })
+        return render(request, 'info_cat.html', {"isFavorite": isFavorite, "catInfo": catInfo, "catFeatures": catFeatures, "catMentions" : catMentions })
     else:
         catPhoto = catPost.catphoto_set.all()
 
@@ -84,10 +91,11 @@ def info_cat(request, cat_id):
             "catInfo": catInfo,
             "catFeatures": catFeatures,
             "catPhoto": catPhoto,
+            "catMentions" : catMentions
         },
     )
 
-
+@login_required
 def addFavoriteCat(request, thisCat_id):
 
     user = get_object_or_404(User, email=request.user)
@@ -96,7 +104,7 @@ def addFavoriteCat(request, thisCat_id):
 
     return redirect("info_cat", thisCat_id)
 
-
+@login_required
 def removeFavoriteCat(request, thisCat_id):
     user = get_object_or_404(User, email=request.user)
     cat = get_object_or_404(Cat, pk=thisCat_id)
@@ -104,7 +112,7 @@ def removeFavoriteCat(request, thisCat_id):
 
     return redirect("info_cat", thisCat_id)
 
-
+@login_required
 def addFavoriteKitchen(request, thisKitchen_id):
 
     user = get_object_or_404(User, email=request.user)
@@ -113,7 +121,7 @@ def addFavoriteKitchen(request, thisKitchen_id):
 
     return redirect('info_kitchen', thisKitchen_id)
 
-
+@login_required
 def removeFavoriteKitchen(request, thisKitchen_id):
     user = get_object_or_404(User, email=request.user)
     kitchen = get_object_or_404(Kitchen, pk=thisKitchen_id)
@@ -122,15 +130,15 @@ def removeFavoriteKitchen(request, thisKitchen_id):
     return redirect('info_kitchen', thisKitchen_id)
 
 
-
+@login_required
 def mention_kitchen(request, thisKitchen_id):
     kitchen = get_object_or_404(Kitchen, pk=thisKitchen_id)
     return render(request, 'mention_kitchen.html', {"kitchen": kitchen})
-
+@login_required
 def mention_cat(request, thisCat_id):
     cat = get_object_or_404(Cat, pk=thisCat_id)
     return render(request, 'mention_cat.html', {"cat": cat})
-
+@login_required
 def info_kitchen(request, kitchen_id):
     kitchenInfo = get_object_or_404(Kitchen, pk=kitchen_id)
     isFavorite = False
@@ -139,11 +147,15 @@ def info_kitchen(request, kitchen_id):
     if user.favoriteKitchen.filter(pk=kitchen_id):
         isFavorite = True
 
+    kitchenMentions = Kitchen.objects.none()
+    if Kitchen.objects.get(id=kitchen_id):
+        kitchenMentions = Kitchen.objects.get(id=kitchen_id).kitchenmention_set.all()[:11]
+
     return render(request, 'info_kitchen.html',
-                  {"isFavorite": isFavorite, "kitchenInfo": kitchenInfo})
+                  {"isFavorite": isFavorite, "kitchenInfo": kitchenInfo, "kitchenMentions" : kitchenMentions })
 
 
-
+@login_required
 def mypage(request):
 
     user = get_object_or_404(User, email=request.user)
@@ -156,7 +168,7 @@ def mypage(request):
 
     return render(request, "mypage.html", {"user" : user, "attendaceBadge" : attendanceBadge})
 
-
+@login_required
 def register(request):
     return render(request, "register.html")
 
@@ -194,7 +206,7 @@ def register_kitchen(request):
 
     return render(request, "register_kitchen.html")
 
-
+@login_required
 def chatting(request):
     return render(request, "chatting.html")
 
@@ -234,52 +246,47 @@ def sign_out(request):
 
 def join1(request):
     if not request.user.is_authenticated:
-        if request.method == "POST":
-            email = request.POST["email"]
-            password = request.POST["password"]
-            phoneNumber = request.POST["phoneNumber"]
-            user = User.objects.create_user(
-                email, None, phoneNumber, None, None, None, password
-            )
-            user.save()
-            auth.login(request, user)
-            return render(request, "join2.html")
         return render(request, "join1.html")
     return redirect("main")
 
 
 def join2(request):
-
     if request.method == "POST":
-        user = get_object_or_404(User, email=request.user.email)
-        user.nickname = request.POST["nickname"]
-        user.image = request.POST.get("image")
+        email = request.POST["email"]
+        password = request.POST["password"]
+        phoneNumber = request.POST["phoneNumber"]
+        user = User.objects.create_user(
+            email, None, phoneNumber, None, None, None, password
+        )
         user.save()
-
-        return render(request, "join3.html")
+        auth.login(request, user)
+        return render(request, "join2.html")
     return render(request, "join2.html")
 
 
 def join3(request):
     if request.method == "POST":
         user = get_object_or_404(User, email=request.user.email)
-        print(request.user.email)
-        print(request.user.email)
-        print(request.POST["longitude"])
-        user.longitude = request.POST["longitude"]
-        user.latitude = request.POST["latitude"]
+        user.nickname = request.POST["nickname"]
+        user.image = request.FILES.get("image")
         user.save()
-        return render(request, "join4.html")
+        return render(request, "join3.html")
     return render(request, "join3.html")
 
 
 def join4(request):
+    if request.method == "POST":
+        user = get_object_or_404(User, email=request.user.email)
+        user.longitude = request.POST["longitude"]
+        user.latitude = request.POST["latitude"]
+        user.address = request.POST["address"]
+        user.save()
     return render(request, "join4.html")
 
-
+@login_required
 def read_qr(req):
     return render(req, 'qr_reader.html')
-
+@login_required
 def readQRdetail(request, kitchen_id):
     user = User.objects.get(email=request.user.email)
     kitchen = Kitchen.objects.get(pk=kitchen_id)
@@ -290,6 +297,6 @@ def readQRdetail(request, kitchen_id):
     kitchen.save()
     return redirect("info_kitchen", kitchen_id)
 
-
+@login_required
 def newchat(req):
     return render(req, 'newchat.html')
