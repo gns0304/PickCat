@@ -277,6 +277,7 @@ def join4(request):
         user = get_object_or_404(User, email=request.user.email)
         user.longitude = request.POST["longitude"]
         user.latitude = request.POST["latitude"]
+        user.address = request.POST["address"]
         user.save()
     return render(request, "join4.html")
 

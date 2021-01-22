@@ -16,6 +16,7 @@
 
   <br />
   <input type="hidden" name="longitude" id="lng" />
+  <input type="hidden" name="address" id="addr" />
   <p id="address">지도를 클릭해 위치를 지정 해주세요</p>
   <button id="btn-signin" type="submit">
     다음
@@ -64,6 +65,7 @@
       if (Http.readyState == 4 && Http.status == 200) {
         data = Http.response;
         document.getElementById('address').innerText = data.documents[0].address_name
+        document.getElementById('addr').value = data.documents[0].address_name
       }
     }
   }
