@@ -187,7 +187,8 @@ def register_cat(request):
         post.favoriteKitchen.add(
             Kitchen.objects.get(pk=request.POST["kitchenid"]))
 
-    return redirect("info_cat", post.id)
+        return redirect("info_cat", post.id)
+    return render(request, "register_cat.html")
 
 
 

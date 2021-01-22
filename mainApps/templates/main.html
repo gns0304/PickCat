@@ -23,6 +23,7 @@
             {% for mention in recentMention %}
                 {% if mention.type == "K" %}
                      <a href="{% url "info_kitchen" mention.kitchenmention_set.first.target.id %}"> @ {{ mention.kitchenmention_set.first.target }}</a>
+                    {{ mention.kitchenmention_set.first.target.image_url }}
                     {{ mention.mention }}
                 {% endif %}
                 {% if mention.type == "C" %}
