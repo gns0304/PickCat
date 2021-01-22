@@ -67,7 +67,7 @@
         <div class="hr"></div>
         <div class="content" style="overflow-x: scroll;">
             <div class="kitchen_container2" style="display:flex;">
-                {% for kitchen in Kitchens %}
+                {% for kitchen in allKitchen %}
                     <a href="{% url 'info_kitchen' kitchen.id %}" style="width:400px; position: relative; margin-left:15px; display:block; text-decoration: none;">
                         <img class="main_kitchen2" style="width:100%; object-fit: cover; max-height: 250px;" src="{{ kitchen.image_url }}"><br><br>
                         <span style="font-size: 20px; color:black">{{ kitchen.name }}</span>

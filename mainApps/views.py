@@ -18,6 +18,8 @@ def main(request):
     favoriteCats = userObject.favoriteCat.all()
     favoriteKitchens = userObject.favoriteKitchen.all()
     tempMentions = Mention.objects.none()
+    allKitchen = Kitchen.objects.all()
+
 
     if favoriteCats:
         for cat in favoriteCats:
@@ -34,7 +36,7 @@ def main(request):
                 tempMentions = tempMentions.union(Mention.objects.filter(pk=kitchenmention.mention.id))
     tempMention = tempMentions.order_by('-createdAt')[:4]
     return render(request, 'main.html',
-                      {'Cats': favoriteCats, 'Kitchens': favoriteKitchens, 'recentMention' : tempMention})
+                      {'Cats': favoriteCats, 'Kitchens': favoriteKitchens, 'recentMention' : tempMention, "allKitchen":allKitchen})
 
     # mentionTarget.longitude등으로 접근가능
     # mentionTarget.breed등으로도 접근가능
