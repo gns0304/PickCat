@@ -78,6 +78,7 @@ section[class="mypage"] .mypage_box1 > img{
     border-radius: 100%;
     width:100px;
     height:100px;
+    object-fit: cover;
 }
 section[class="mypage"] .mypage_box1 .mention_items{
     margin-top: 20px;
