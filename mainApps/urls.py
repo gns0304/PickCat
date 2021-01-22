@@ -61,5 +61,6 @@ urlpatterns = [
     path("readQr/<int:kitchen_id>", views.readQRdetail, name="readQRdetail"),
     path("newChat", mentions.newChat, name="newChat"),
     path("getChat", mentions.getChat, name="getChat"),
-    path("newchat", views.newchat, name="newchat")
+    path("newchat", views.newchat, name="newchat"),
+    path("newCatPost/<int:cat_id>",mentions.newCatPost, name="newCatPost"),
 ]
