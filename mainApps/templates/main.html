@@ -21,19 +21,20 @@
         <div class="hr"></div>
         <div class="content">
             {% for mention in recentMention %}
-                {% if mention.type == "K" %}
-                     <a href="{% url "info_kitchen" mention.kitchenmention_set.first.target.id %}"> @ {{ mention.kitchenmention_set.first.target }}</a>
-                    {{ mention.mention }}
-                {% endif %}
-                {% if mention.type == "C" %}
-                     <a href="{% url "info_cat" mention.catmention_set.first.target.id %}"> @ {{ mention.catmention_set.first.target }}</a>
-                    {{ mention.mention }}
-                {% endif %}
-                {% if mention.type == "E" %}
-                     <a href="{% url "info_cat" mention.emergencymention_set.first.target.id %}"> @ {{ mention.emergencymention_set.first.target }}</a>
-                    {{ mention.mention }}
-                {% endif %}
-
+                <div class="mention-container">
+                    {% if mention.type == "K" %}
+                        <a href="{% url "info_kitchen" mention.kitchenmention_set.first.target.id %}"> @ {{ mention.kitchenmention_set.first.target }}</a>
+                        {{ mention.mention }}
+                    {% endif %}
+                    {% if mention.type == "C" %}
+                        <a href="{% url "info_cat" mention.catmention_set.first.target.id %}"> @ {{ mention.catmention_set.first.target }}</a>
+                        {{ mention.mention }}
+                    {% endif %}
+                    {% if mention.type == "E" %}
+                        <a href="{% url "info_cat" mention.emergencymention_set.first.target.id %}"> @ {{ mention.emergencymention_set.first.target }}</a>
+                        {{ mention.mention }}
+                    {% endif %}
+                </div>
 
             {% endfor %}
 
@@ -43,9 +44,9 @@
         <h2>급식소</h2>
         <div class="hr"></div>
         <div class="content" style="overflow-x: scroll;">
-            <div class="kitchen_container" style="width:10000px; display:flex;">
+            <div class="kitchen_container" style="display:flex;">
                 {% for kitchen in Kitchens %}
-                    <a href="{% url 'info_kitchen' kitchen.id %}" style="width:400px; position: relative; margin-right:15px; display:block; text-decoration: none;">
+                    <a href="{% url 'info_kitchen' kitchen.id %}" style="width:400px; position: relative; margin-left:15px; display:block; text-decoration: none;">
                         <img class="main_kitchen" style="width:100%; object-fit: cover; max-height: 250px;" src="{{ kitchen.image_url }}"><br><br>
                         <span style="font-size: 20px; color:black">{{ kitchen.name }}</span>
                         <span style="font-size: 11px; display: inline-block; color:#8B8CEC; border:1px solid #f0f0f0; text-align:center; width:90px; padding:5px; background-color: white; border-radius: 20px;">오늘 체크인 {{ kitchen.checkIn }}명</span>
@@ -56,5 +57,13 @@
         </div>
     </article>
 </section>
-
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    let kitchen = document.querySelectorAll('.main_kitchen').length*415 +"px";
+    let mention = 3*415+'px';
+    let cat = document.querySelectorAll('.imgbox-container .imgbox').length*85 + 'px';
+    $(".imgbox-container").css("width",cat);
+    $(".kitchen_container").css("width",kitchen);
+    $(".mention_container").css("width",mention);
+</script>
 {% endblock %}
