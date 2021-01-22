@@ -123,6 +123,7 @@ section[class="info_cat"] .content{
     margin: 0 auto;
 }
 
+
 section[class="info_cat"] .albumbox{
     display:none;
     flex-wrap: wrap;
@@ -136,6 +137,32 @@ section[class="info_cat"] .albumbox img{
 
 
 
-
+section[class="info_cat"] .mention_container2 .mention_box2 img{
+    width:60px;
+    height:60px;
+    border-radius: 100%;
+}
+section[class="info_cat"] .mention_container2 .mention_box2{
+    height: 70px;
+    width:400px; 
+    position: relative; 
+    margin-left:15px; 
+    display:flex;
+    justify-content: space-around; 
+    text-decoration: none;
+    align-items: center;
+}
+section[class="info_cat"] .mention_container2 .mention_text{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent linear-gradient(104deg,#4E43F9  0%,  #7C98FD 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 5px 8px #0000000D;
+    color:white;
+    border-radius: 20px 20px 20px 0px;
+    opacity: 1;
+    width:80%;
+    height:50px;
+}
 
 

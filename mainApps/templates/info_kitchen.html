@@ -50,17 +50,22 @@
     <article>
         <h2>실시간 멘션</h2>
         <div class="hr"></div>
-        <div class="content">
-
-            {% for mention in kitchenMentions %}
-                {{ mention.mention.user }}
-                <img src="{{ mention.mention.user.image_url }}">
-                {{ mention.mention.mention }}
-            {% endfor %}
-
+        <div class="content" style="overflow-x: scroll;">
+            <div class="mention_container2" style="display:flex">
+                {% for mention in kitchenMentions %}
+                <div class="mention_box2"> 
+                    <img src="{{ mention.mention.user.image_url }}">
+                    <div class="mention_text"><span style="color:#ceffbf;">@ {{ mention.mention.user.nickname }}</span>&nbsp;&nbsp;{{ mention.mention.mention }}</div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </article>
 
 </section>
-
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    let mention = document.querySelectorAll('.mention_box2').length*390+'px';
+    $(".mention_container2").css("width",mention);
+</script>
 {% endblock %}

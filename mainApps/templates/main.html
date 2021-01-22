@@ -6,7 +6,7 @@
         <h2>My pick</h2>
         <div class="hr"></div>
         <div class="content">
-            <div class="imgbox-container">
+            <div class="imgbox_container">
                 {% for cat in Cats %}
                 <div class="imgbox">
                     <a href="{% url 'info_cat' cat.id %}"><img src="{{ cat.image_url }}"></a>
@@ -20,24 +20,29 @@
         <h2>픽켓 실시간</h2>
         <div class="hr"></div>
         <div class="content">
+            <div class="mention_container" style="display:flex">
             {% for mention in recentMention %}
-                <div class="mention-container">
                     {% if mention.type == "K" %}
-                        <a href="{% url "info_kitchen" mention.kitchenmention_set.first.target.id %}"> @ {{ mention.kitchenmention_set.first.target }}</a>
-                        {{ mention.mention }}
+                        <a class="mention_box" href="{% url "info_kitchen" mention.kitchenmention_set.first.target.id %}"> 
+                            <img src="{{mention.kitchenmention_set.first.target.image_url}}">
+                            <div class="mention_text"><span style="color:#ceffbf;">@ {{ mention.kitchenmention_set.first.target }}</span>&nbsp;&nbsp;{{ mention.mention }}</div>
+                        </a>
+                        
                     {% endif %}
                     {% if mention.type == "C" %}
-                        <a href="{% url "info_cat" mention.catmention_set.first.target.id %}"> @ {{ mention.catmention_set.first.target }}</a>
-                        {{ mention.mention }}
+                        <a class="mention_box" href="{% url "info_cat" mention.catmention_set.first.target.id %}"> 
+                            <img src="{{mention.catmention_set.first.target.image_url}}">
+                            <div class="mention_text"><span style="color:#ceffbf;">@ {{ mention.catmention_set.first.target }}</span>&nbsp;&nbsp;{{ mention.mention }}</div>
+                        </a>
                     {% endif %}
                     {% if mention.type == "E" %}
-                        <a href="{% url "info_cat" mention.emergencymention_set.first.target.id %}"> @ {{ mention.emergencymention_set.first.target }}</a>
-                        {{ mention.mention }}
+                        <a class="mention_box" href="{% url "info_cat" mention.emergencymention_set.first.target.id %}"> 
+                            <img src="{{mention.catmention_set.first.target.image_url}}">
+                            <div class="mention_text"><span style="color:#ceffbf;">@ {{ mention.emergencymention_set.first.target }}</span>&nbsp;&nbsp;{{ mention.mention }}</div>
+                        </a>
                     {% endif %}
-                </div>
-
             {% endfor %}
-
+        </div>
         </div>
     </article>
     <article>
@@ -60,9 +65,9 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
     let kitchen = document.querySelectorAll('.main_kitchen').length*415 +"px";
-    let mention = 3*415+'px';
-    let cat = document.querySelectorAll('.imgbox-container .imgbox').length*85 + 'px';
-    $(".imgbox-container").css("width",cat);
+    let mention = document.querySelectorAll('.mention_box').length*410+'px';
+    let cat = document.querySelectorAll('.imgbox_container .imgbox').length*85 + 'px';
+    $(".imgbox_container").css("width",cat);
     $(".kitchen_container").css("width",kitchen);
     $(".mention_container").css("width",mention);
 </script>
