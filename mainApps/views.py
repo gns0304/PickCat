@@ -48,7 +48,7 @@ def map(request):
 
 def intro(request):
     if request.user.is_authenticated:
-        return render(request, "main.html")
+        return redirect("main")
     return render(request, "intro.html")
 
 @login_required
