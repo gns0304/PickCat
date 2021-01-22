@@ -72,6 +72,7 @@ def info_cat(request, cat_id):
             catFeatures[i] = "#" + catFeatures[i]
 
     catPost = CatPost.objects.filter(cat=catInfo)
+    print(catPost)
 
     catMentions = Cat.objects.none()
     if Cat.objects.get(id=catInfo.id):
@@ -81,7 +82,10 @@ def info_cat(request, cat_id):
     if not catPost:
         return render(request, 'info_cat.html', {"isFavorite": isFavorite, "catInfo": catInfo, "catFeatures": catFeatures, "catMentions" : catMentions })
     else:
-        catPhoto = catPost.catphoto_set.all()
+        for ct in catPost:
+            print(ct.catphoto_set.all())
+        for k in ct.catphoto_set.all():
+            print(k.image_url)
 
     return render(
         request,
@@ -90,7 +94,7 @@ def info_cat(request, cat_id):
             "isFavorite": isFavorite,
             "catInfo": catInfo,
             "catFeatures": catFeatures,
-            "catPhoto": catPhoto,
+            "catPost": catPost,
             "catMentions" : catMentions
         },
     )

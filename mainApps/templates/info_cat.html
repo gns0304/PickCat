@@ -60,12 +60,16 @@
         <div class="content">
             <div class="albumbox">
 
-                {% for elem in catPhoto %}
-                <img src="{{ elem.image_url }}">
+                {% for elem in catPost %}
+                    {% for pic in elem.catphoto_set.all %}
+                        <img src="{{ pic.image_url }}">
+                    {% endfor %}
                 {% endfor %}
-                <form>
+                <form action="{% url 'newCatPost' catInfo.id %}" enctype="multipart/form-data" method="post"
+                onkeydown="return event.key != 'Enter';" onsubmit="return verifyForm(event)">
                     {% csrf_token %}
-                    <input type="file" name="image">
+                    <input type="file" name="image" required>
+                    <input type="submit" value="사진 전송">
                 </form>
             </div>
         </div>
