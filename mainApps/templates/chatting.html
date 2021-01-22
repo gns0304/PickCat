@@ -2,20 +2,17 @@
 {% block content %}
 {% load static %}
 <section class="chatting">
-    <div class="chat_wrap">
-        <div class="chat">
-            <ul id="chatbox">
-
-            </ul>
-        </div>
-        <div class="input-div">
-            <textarea id="message" placeholder="Press Enter for send message."></textarea>
-        </div>
-    
-        <!-- format -->
-    
+    <br>
+    <ul id="chatbox" style="width:95%; margin:0 auto; display:block; padding:0px;">
+    </ul>
+    <div style="height: 120px;"></div>
+    <div class="input-div">
+        <textarea id="message" placeholder="Press Enter for send message."></textarea>
     </div>
     
+</section>
+    <!-- format -->
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         function onKey(e) {
             if (e.keyCode == 13 && !e.shiftKey) {
@@ -29,6 +26,10 @@
         window.latest = 0;
         let chatbox = document.getElementById('chatbox')
         const ENDPOINT = 'getChat'
+
+        
+
+        
         function update() {
             let url = `/${ENDPOINT}?id=1&latest=${window.latest}`
             xhr = new XMLHttpRequest();
@@ -51,21 +52,24 @@
             for (k in data) {
                 console.log(data[k].is_me)
                 var class1 = ""
-                var name = ""
-                if (data[k].is_me == true) {
-                    class1 = "right"
-                    name = "Me"
+                var image = ""
+                if (data[k].is_me == false) {
+                    class1 = "left"
+                    image = data[k].image
+                    chatbox.innerHTML += `<li class="${class1}"><img src="${image}" class="mention_user" ><div><span class="sender"></span><span class="message">${data[k].text}</span></div></li>`
                 }
                 else {
-                    class1 = "left"
-                    name = data[k].name
-                    
+                    class1 = "right"
+                    chatbox.innerHTML += `<li class="${class1}"><div><span class="sender"></span><span class="message">${data[k].text}</span></div></li>`
                 }
-                chatbox.innerHTML += `<li class="${class1}"><div><span class="sender">${name} : </span><span class="message">${data[k].text}</span></div></li><br>\n`
             }
+            let body = document.body; 
+            let html = document.documentElement;
+            let height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+            $('html,body').scrollTop(height);
+            window.setInterval(update, 1000);
         }
         update()
-        window.setInterval(update, 1000)
         function sendMessage(message) {
             messageUrl = "{%url 'newChat' %}"
             xhr = new XMLHttpRequest();
@@ -73,9 +77,8 @@
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             var params = `message=${encodeURIComponent(message)}`;
             xhr.send(params);
-    
         }
     </script>
-</section>
+
 <script src="{% static 'update.js'%}"></script>
 {% endblock %}

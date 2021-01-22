@@ -8,7 +8,7 @@
             <span>{{ kitchen.name }}</span>
         </div>
         <div class="mention_items">
-            <img src="{% static 'img/cat.png'%}">
+            <img src="{{kitchen.image_url}}">
             <span>{{ request.user.nickname }} 집사님의 <span style="color:#8B8CEC">픽캣멘션</span></span>
         </div>
         <div class="mention_items">집사님, 오늘 어떤 일을 하셨나요?</div>
