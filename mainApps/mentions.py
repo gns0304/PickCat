@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import CatMention, KitchenMention, EmergencyMention, Cat, Kitchen, Mention, User, Chat
+from .models import CatMention, KitchenMention, EmergencyMention, Cat, Kitchen, Mention, User, Chat, CatPost, CatPhoto
 from django.contrib.auth.decorators import login_required
 from .sms import *
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
+import uuid
 
 @login_required
 def newCatMention(req, cat_id):
@@ -160,3 +160,18 @@ def getChat(req):
         'data': a
     }
     return JsonResponse(a)
+
+@login_required
+def newCatPost(req,cat_id):
+    if req.method == 'POST':
+        c = CatPost()
+        c.cat = Cat.objects.get(pk=cat_id)
+        c.title = uuid.uuid4()
+        c.save()
+        p = CatPhoto()
+        p.post = c
+        p.image = req.FILES['image']
+        p.save()
+        return redirect(f"/info_cat/{cat_id}")
+    return redirect('/')
+        
