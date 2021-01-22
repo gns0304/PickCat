@@ -16,7 +16,7 @@
                 <span>UnPick</span>
                 {% else %}
                 <a class="button" href="{% url 'addFavoriteCat' catInfo.id %}">
-                    <img src="{% static 'img/icon-pick.png'%}">
+                    <img src="{% static 'img/icon-heart.png'%}">
                     <span>Pick</span>
                     {% endif %}
 
@@ -44,7 +44,7 @@
               <img src="{% static 'img/icon-gender.png'%}" width="33px" height="33px"><span style="margin: 6px 8px 0px 6px;width: 20%">{{ catInfo.get_gender_display }}</span>
                 
 
-   <img src="{% static 'img/icon-feature.png'%}" width="33px" height="33px" >
+                <img src="{% static 'img/icon-feature.png'%}" width="33px" height="33px" >
 
 
                 {% for tag in catFeatures %}
@@ -62,7 +62,6 @@
 
                 {% for elem in catPhoto %}
                 <img src="{{ elem.image_url }}">
-
                 {% endfor %}
             </div>
         </div>
@@ -70,18 +69,22 @@
     <article>
         <h2>실시간 멘션</h2>
         <div class="hr"></div>
-        <div class="content">
-
-            {% for mention in catMentions %}
-                {{ mention.mention.user }}
-                <img src="{{ mention.mention.user.image_url }}">
-                {{ mention.mention.mention }}
-            {% endfor %}
-
+        <div class="content" style="overflow-x: scroll;">
+            <div class="mention_container2" style="display:flex">
+                {% for mention in catMentions %}
+                <div class="mention_box2"> 
+                    <img src="{{ mention.mention.user.image_url }}">
+                    <div class="mention_text"><span style="color:#ceffbf;">@ {{ mention.mention.user.nickname }}</span>&nbsp;&nbsp;{{ mention.mention.mention }}</div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </article>
 </section>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
+    let mention = document.querySelectorAll('.mention_box2').length*390+'px';
+    $(".mention_container2").css("width",mention);
     function catEmergency() {
         if (window.emergencySent) {
             alert('이미 긴급 알림이 전송되었습니다');
