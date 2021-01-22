@@ -60,9 +60,12 @@
         <div class="content">
             <div class="albumbox">
 
-                {% for elem in catPhoto %}
-                <img src="{{ elem.image_url }}">
+                {% for elem in catPost %}
+                    {% for pic in elem.catphoto_set.all %}
+                        <img src="{{ pic.image_url }}">
+                    {% endfor %}
                 {% endfor %}
+
             </div>
         </div>
     </article>
