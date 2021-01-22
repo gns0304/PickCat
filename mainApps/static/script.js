@@ -99,5 +99,5 @@ $( document ).ready( function() {
             $( '.albumbox' ).css('display','none');
         }
         return false;
-    } );
+} );
 
