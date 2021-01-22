@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 <section class="mention">
-    <form method="POST" action="">
+    <form method="POST" action="{% url "newKitchenMentions" kitchen.id %}">
         <div class="mention_items" style="width:100%;">
             <img src="{% static 'img/icon-marker.png'%}">
             <span>{{ kitchen.name }}</span>
@@ -29,7 +29,7 @@
                     <img src="{%static 'img/icon-man.png'%}">&nbsp;&nbsp;<span class="mention_span">기타사항 멘션 작성하기</span>
                 </div>
             </div>
-            <input class="mention_value" type="text" placeholder="기타사항을 작성해주세요" required style="width:90%; display:block; margin:0 auto; border-radius: 25px; padding:5px; visibility: hidden;">
+            <input class="mention_value" name="mention" type="text" placeholder="기타사항을 작성해주세요" required style="width:90%; display:block; margin:0 auto; border-radius: 25px; padding:5px; visibility: hidden;">
         </div>
         <input type="submit" value="완료"/>
         {% csrf_token %}
