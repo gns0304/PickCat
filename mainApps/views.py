@@ -41,15 +41,17 @@ def main(request):
 
     # Todo 사진 없으면 오류나니 디폴트 혹은 분기설정해서 오류안나게 하기
 
-
+@login_required
 def map(request):
     return render(request, "map.html")
 
 
 def intro(request):
+    if request.user.is_authenticated:
+        return render(request, "main.html")
     return render(request, "intro.html")
 
-
+@login_required
 def info_cat(request, cat_id):
     catInfo = get_object_or_404(Cat, pk=cat_id)
     catFeatures = []
@@ -93,7 +95,7 @@ def info_cat(request, cat_id):
         },
     )
 
-
+@login_required
 def addFavoriteCat(request, thisCat_id):
 
     user = get_object_or_404(User, email=request.user)
@@ -102,7 +104,7 @@ def addFavoriteCat(request, thisCat_id):
 
     return redirect("info_cat", thisCat_id)
 
-
+@login_required
 def removeFavoriteCat(request, thisCat_id):
     user = get_object_or_404(User, email=request.user)
     cat = get_object_or_404(Cat, pk=thisCat_id)
@@ -110,7 +112,7 @@ def removeFavoriteCat(request, thisCat_id):
 
     return redirect("info_cat", thisCat_id)
 
-
+@login_required
 def addFavoriteKitchen(request, thisKitchen_id):
 
     user = get_object_or_404(User, email=request.user)
@@ -119,7 +121,7 @@ def addFavoriteKitchen(request, thisKitchen_id):
 
     return redirect('info_kitchen', thisKitchen_id)
 
-
+@login_required
 def removeFavoriteKitchen(request, thisKitchen_id):
     user = get_object_or_404(User, email=request.user)
     kitchen = get_object_or_404(Kitchen, pk=thisKitchen_id)
@@ -128,15 +130,15 @@ def removeFavoriteKitchen(request, thisKitchen_id):
     return redirect('info_kitchen', thisKitchen_id)
 
 
-
+@login_required
 def mention_kitchen(request, thisKitchen_id):
     kitchen = get_object_or_404(Kitchen, pk=thisKitchen_id)
     return render(request, 'mention_kitchen.html', {"kitchen": kitchen})
-
+@login_required
 def mention_cat(request, thisCat_id):
     cat = get_object_or_404(Cat, pk=thisCat_id)
     return render(request, 'mention_cat.html', {"cat": cat})
-
+@login_required
 def info_kitchen(request, kitchen_id):
     kitchenInfo = get_object_or_404(Kitchen, pk=kitchen_id)
     isFavorite = False
@@ -153,7 +155,7 @@ def info_kitchen(request, kitchen_id):
                   {"isFavorite": isFavorite, "kitchenInfo": kitchenInfo, "kitchenMentions" : kitchenMentions })
 
 
-
+@login_required
 def mypage(request):
 
     user = get_object_or_404(User, email=request.user)
@@ -166,7 +168,7 @@ def mypage(request):
 
     return render(request, "mypage.html", {"user" : user, "attendaceBadge" : attendanceBadge})
 
-
+@login_required
 def register(request):
     return render(request, "register.html")
 
@@ -204,7 +206,7 @@ def register_kitchen(request):
 
     return render(request, "register_kitchen.html")
 
-
+@login_required
 def chatting(request):
     return render(request, "chatting.html")
 
@@ -281,10 +283,10 @@ def join4(request):
         user.save()
     return render(request, "join4.html")
 
-
+@login_required
 def read_qr(req):
     return render(req, 'qr_reader.html')
-
+@login_required
 def readQRdetail(request, kitchen_id):
     user = User.objects.get(email=request.user.email)
     kitchen = Kitchen.objects.get(pk=kitchen_id)
@@ -295,6 +297,6 @@ def readQRdetail(request, kitchen_id):
     kitchen.save()
     return redirect("info_kitchen", kitchen_id)
 
-
+@login_required
 def newchat(req):
     return render(req, 'newchat.html')
