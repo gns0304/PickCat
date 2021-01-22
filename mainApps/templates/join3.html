@@ -8,7 +8,8 @@
 <div id="map" style="width: 100%; height: 350px"></div>
 <div id="clickLatlng"></div>
 
-<form method="POST" action="{% url 'join4'%}" enctype="application/x-www-form-urlencoded">
+<form method="POST" action="{% url 'join4'%}" enctype="application/x-www-form-urlencoded"
+  onkeydown="return event.key != 'Enter';" onsubmit="return verifyForm(event)">
   {% csrf_token %}
   <br /><br />
 
@@ -56,6 +57,7 @@
 
   });
   function getAddressFromLocations(x, y) {
+    document.getElementById('address').innerText = "주소 정보를 받아오는 중입니다. 잠시만 기다려주세요."
     url = `https://pickcat-kapi-proxy.jaewon.dev/v2/local/geo/coord2regioncode.json?x=${x}&y=${y}`
     Http = new XMLHttpRequest();
     Http.open("GET", url, true);
@@ -66,6 +68,7 @@
         data = Http.response;
         document.getElementById('address').innerText = data.documents[0].address_name
         document.getElementById('addr').value = data.documents[0].address_name
+        window.address_found = 1;
       }
     }
   }
@@ -88,5 +91,13 @@
     }
   }
   getLocation()
+  function verifyForm(e) {
+    if (!window.address_found) {
+      alert('위치 정보를 불러와주세요');
+      return false
+    }
+    return true;
+  }
+
 </script>
 {% endblock %}
