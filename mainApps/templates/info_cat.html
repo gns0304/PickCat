@@ -68,8 +68,9 @@
                 <form action="{% url 'newCatPost' catInfo.id %}" enctype="multipart/form-data" method="post"
                 onkeydown="return event.key != 'Enter';" onsubmit="return verifyForm(event)">
                     {% csrf_token %}
+                    <br><br><span style="font-size: 15px;"><span style="color:#8B8CEC;">{{catInfo.name}}</span>의 사진을 올려주세요!</span><br><hr>
                     <input type="file" name="image" required>
-                    <input type="submit" value="사진 전송">
+                    <input type="submit" value="전송하기"><br><br>
                 </form>
             </div>
         </div>
