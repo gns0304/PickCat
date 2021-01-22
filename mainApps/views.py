@@ -32,7 +32,7 @@ def main(request):
             tempKitchen = kitchen.kitchenmention_set.all()
             for kitchenmention in tempKitchen:
                 tempMentions = tempMentions.union(Mention.objects.filter(pk=kitchenmention.mention.id))
-    tempMention = tempMentions.order_by('-createdAt')[:10]
+    tempMention = tempMentions.order_by('-createdAt')[:4]
     return render(request, 'main.html',
                       {'Cats': favoriteCats, 'Kitchens': favoriteKitchens, 'recentMention' : tempMention})
 
@@ -71,8 +71,13 @@ def info_cat(request, cat_id):
 
     catPost = CatPost.objects.filter(cat=catInfo)
 
+    catMentions = Cat.objects.none()
+    if Cat.objects.get(id=catInfo.id):
+        catMentions = Cat.objects.get(id=catInfo.id).catmention_set.all()[:11]
+
+
     if not catPost:
-        return render(request, 'info_cat.html', {"isFavorite": isFavorite, "catInfo": catInfo, "catFeatures": catFeatures, })
+        return render(request, 'info_cat.html', {"isFavorite": isFavorite, "catInfo": catInfo, "catFeatures": catFeatures, "catMentions" : catMentions })
     else:
         catPhoto = catPost.catphoto_set.all()
 
@@ -84,6 +89,7 @@ def info_cat(request, cat_id):
             "catInfo": catInfo,
             "catFeatures": catFeatures,
             "catPhoto": catPhoto,
+            "catMentions" : catMentions
         },
     )
 
@@ -139,8 +145,12 @@ def info_kitchen(request, kitchen_id):
     if user.favoriteKitchen.filter(pk=kitchen_id):
         isFavorite = True
 
+    kitchenMentions = Kitchen.objects.none()
+    if Kitchen.objects.get(id=kitchen_id):
+        kitchenMentions = Kitchen.objects.get(id=kitchen_id).kitchenmention_set.all()[:11]
+
     return render(request, 'info_kitchen.html',
-                  {"isFavorite": isFavorite, "kitchenInfo": kitchenInfo})
+                  {"isFavorite": isFavorite, "kitchenInfo": kitchenInfo, "kitchenMentions" : kitchenMentions })
 
 
 

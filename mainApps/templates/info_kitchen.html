@@ -41,7 +41,7 @@
                 <img src="{% static 'img/icon-pick.png'%}">
                 <span>Pick</span>
             {% endif %}
-
+        </a>
         <a class="button" href="{% url "mention_kitchen" kitchenInfo.id %}">
             <img src="{% static 'img/icon-message.png'%}">
             <span>멘션쓰기</span>
@@ -50,7 +50,15 @@
     <article>
         <h2>실시간 멘션</h2>
         <div class="hr"></div>
-        <div class="content"></div>
+        <div class="content">
+
+            {% for mention in kitchenMentions %}
+                {{ mention.mention.user }}
+                <img src="{{ mention.mention.user.image_url }}">
+                {{ mention.mention.mention }}
+            {% endfor %}
+
+        </div>
     </article>
 
 </section>

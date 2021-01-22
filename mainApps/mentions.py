@@ -7,37 +7,38 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 @login_required
-def newCatMention(req):
+def newCatMention(req, cat_id):
     if req.method == 'POST':
         mention = Mention()
         mention.user = req.user
         mention.mention = req.POST['mention']
-        mention.type = 'CAT'
+        mention.type = 'C'
         mention.save()
+
         m = CatMention()
-        cat = Cat.objects.get(pk=req.POST['id'])
+        cat = Cat.objects.get(pk=cat_id)
         m.target = cat
         m.mention = mention
         m.save()
-        return None
+        return redirect("info_cat", cat_id)
     else:
         return None
 
 
 @login_required
-def newKitchenMention(req):
+def newKitchenMentions(req, kitchen_id):
     if req.method == 'POST':
         mention = Mention()
         mention.user = req.user
         mention.mention = req.POST['mention']
-        mention.type = 'KITCHEN'
+        mention.type = 'K'
         mention.save()
         m = KitchenMention()
-        kitchen = Kitchen.objects.get(pk=req.POST['id'])
+        kitchen = Kitchen.objects.get(pk=kitchen_id)
         m.target = kitchen
         m.mention = mention
         m.save()
-        return None
+        return redirect("info_kitchen", kitchen_id)
     else:
         return None
 
