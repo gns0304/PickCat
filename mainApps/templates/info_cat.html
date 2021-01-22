@@ -63,6 +63,9 @@
                 {% for elem in catPhoto %}
                 <img src="{{ elem.image_url }}">
                 {% endfor %}
+                <form>
+                    {% csrf_token %}
+                </form>
             </div>
         </div>
     </article>
