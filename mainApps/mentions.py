@@ -47,7 +47,7 @@ def newKitchenMentions(req, kitchen_id):
 def newEmergencyMention(req, cat_id):
     mention = Mention()
     mention.user = req.user
-    mention.mention = 'Hello World'
+    mention.mention = '위급상황이 등록되었습니다.'
     mention.type = 'E'
     mention.save()
     m = EmergencyMention()
