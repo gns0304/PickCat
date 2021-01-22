@@ -115,7 +115,7 @@ section[class="main"] .content{
     margin : 0 auto;
     overflow-x: scroll;
 }
-section[class="main"] .content .imgbox-container{
+section[class="main"] .content .imgbox_container{
     width:1000px;
     display:flex;
     position:relative;
@@ -144,6 +144,33 @@ section[class="main"] .content .imgbox span{
     font-size:11px;
 }
 
+section[class="main"] .mention_container >a img{
+    width:60px;
+    height:60px;
+    border-radius: 100%;
+}
+section[class="main"] .mention_container >a{
+    height: 70px;
+    width:400px; 
+    position: relative; 
+    margin-left:15px; 
+    display:flex;
+    justify-content: space-around; 
+    text-decoration: none;
+    align-items: center;
+}
+section[class="main"] .mention_container .mention_text{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent linear-gradient(104deg,#4E43F9  0%,  #7C98FD 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 5px 8px #0000000D;
+    color:white;
+    border-radius: 20px 20px 20px 0px;
+    opacity: 1;
+    width:80%;
+    height:50px;
+}
 
 
 .blank{
