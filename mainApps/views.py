@@ -188,7 +188,8 @@ def register_cat(request):
             Kitchen.objects.get(pk=request.POST["kitchenid"]))
 
         return redirect("info_cat", post.id)
-    return render(request, "register_cat.html")
+    kitchen = Kitchen.objects.all()
+    return render(request, "register_cat.html",{'kitchen':kitchen})
 
 
 
