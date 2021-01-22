@@ -61,6 +61,22 @@
             </div>
         </div>
     </article>
+<article>
+        <h2>모든 급식소</h2>
+        <div class="hr"></div>
+        <div class="content" style="overflow-x: scroll;">
+            <div class="kitchen_container" style="display:flex;">
+                {% for kitchen in allKitchen %}
+                    <a href="{% url 'info_kitchen' kitchen.id %}" style="width:400px; position: relative; margin-left:15px; display:block; text-decoration: none;">
+                        <img class="main_kitchen" style="width:100%; object-fit: cover; max-height: 250px;" src="{{ kitchen.image_url }}"><br><br>
+                        <span style="font-size: 20px; color:black">{{ kitchen.name }}</span>
+                        <span style="font-size: 11px; display: inline-block; color:#8B8CEC; border:1px solid #f0f0f0; text-align:center; width:90px; padding:5px; background-color: white; border-radius: 20px;">오늘 체크인 {{ kitchen.checkIn }}명</span>
+                        <br><br>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </article>
 </section>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
