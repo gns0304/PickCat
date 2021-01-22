@@ -37,7 +37,7 @@
                     {% endif %}
                     {% if mention.type == "E" %}
                         <a class="mention_box" href="{% url "info_cat" mention.emergencymention_set.first.target.id %}"> 
-                            <img src="{{mention.catmention_set.first.target.image_url}}">
+                            <img src="{{mention.emergencymention_set.first.target.image_url}}">
                             <div class="mention_text"><span style="color:#ceffbf;">@ {{ mention.emergencymention_set.first.target }}</span>&nbsp;&nbsp;{{ mention.mention }}</div>
                         </a>
                     {% endif %}
